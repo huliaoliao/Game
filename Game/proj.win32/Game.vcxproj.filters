@@ -10,6 +10,24 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\大厅">
+      <UniqueIdentifier>{f6bad03a-4182-49d2-92da-a236ece018b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\大厅\大厅顶部">
+      <UniqueIdentifier>{2387c797-f0ad-45a0-ba9f-ef0f6d8eff11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\功能">
+      <UniqueIdentifier>{16e2f6d6-d952-4ae5-8aa8-ac70f5515d69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\功能\缩放菜单选项精灵">
+      <UniqueIdentifier>{04714c84-fb43-4b55-8381-22df0d329fc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\大厅\大厅中部">
+      <UniqueIdentifier>{1f66aa40-e39c-407b-a203-f8907542cae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\大厅\大厅底部">
+      <UniqueIdentifier>{68bdac00-720f-4d85-ac19-33d39cab0894}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -18,8 +36,26 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\Classes\LobbyScene.cpp">
+      <Filter>src\大厅</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LobbySceneTop.cpp">
+      <Filter>src\大厅\大厅顶部</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EncodeUtil.cpp">
+      <Filter>src\功能</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ScalableMenuItemSprite.cpp">
+      <Filter>src\功能\缩放菜单选项精灵</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LobbySceneMiddle.cpp">
+      <Filter>src\大厅\大厅中部</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LobbySceneBottom.cpp">
+      <Filter>src\大厅\大厅底部</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MusicUtil.cpp">
+      <Filter>src\功能</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -29,7 +65,34 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
+    <ClInclude Include="..\Classes\LobbyScene.h">
+      <Filter>src\大厅</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LobbySceneTop.h">
+      <Filter>src\大厅\大厅顶部</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EncodeUtil.h">
+      <Filter>src\功能</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MacroUtil.h">
+      <Filter>src\功能</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Util.h">
+      <Filter>src\功能</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ScalableMenuItemSprite.h">
+      <Filter>src\功能\缩放菜单选项精灵</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LobbySceneMiddle.h">
+      <Filter>src\大厅\大厅中部</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LobbySceneBottom.h">
+      <Filter>src\大厅\大厅底部</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MusicUtil.h">
+      <Filter>src\功能</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Common.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

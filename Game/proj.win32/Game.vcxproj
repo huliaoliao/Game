@@ -138,12 +138,27 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\LobbyScene.cpp" />
+    <ClCompile Include="..\Classes\LobbySceneBottom.cpp" />
+    <ClCompile Include="..\Classes\LobbySceneMiddle.cpp" />
+    <ClCompile Include="..\Classes\LobbySceneTop.cpp" />
+    <ClCompile Include="..\Classes\EncodeUtil.cpp" />
+    <ClCompile Include="..\Classes\MusicUtil.cpp" />
+    <ClCompile Include="..\Classes\ScalableMenuItemSprite.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\Common.h" />
+    <ClInclude Include="..\Classes\LobbyScene.h" />
+    <ClInclude Include="..\Classes\LobbySceneBottom.h" />
+    <ClInclude Include="..\Classes\LobbySceneMiddle.h" />
+    <ClInclude Include="..\Classes\LobbySceneTop.h" />
+    <ClInclude Include="..\Classes\EncodeUtil.h" />
+    <ClInclude Include="..\Classes\MacroUtil.h" />
+    <ClInclude Include="..\Classes\MusicUtil.h" />
+    <ClInclude Include="..\Classes\ScalableMenuItemSprite.h" />
+    <ClInclude Include="..\Classes\Util.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
