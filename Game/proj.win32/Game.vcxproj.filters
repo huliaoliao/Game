@@ -28,6 +28,9 @@
     <Filter Include="src\大厅\大厅底部">
       <UniqueIdentifier>{68bdac00-720f-4d85-ac19-33d39cab0894}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\大厅\设置对话框">
+      <UniqueIdentifier>{17578a6e-58d0-4097-ba02-d53b4bb1a12f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\MusicUtil.cpp">
       <Filter>src\功能</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SetLayer.cpp">
+      <Filter>src\大厅\设置对话框</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,10 +101,16 @@
     <ClInclude Include="..\Classes\Common.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\SetLayer.h">
+      <Filter>src\大厅\设置对话框</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\cocos2d\cocos\ui\proj.win32\libui.vcxproj" />
   </ItemGroup>
 </Project>

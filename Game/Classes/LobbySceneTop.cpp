@@ -1,6 +1,7 @@
 #include "LobbySceneTop.h"
 
 #include "Common.h"
+#include "SetLayer.h"
 #include "ScalableMenuItemSprite.h"
 #include "ui/UIScale9Sprite.h"
 #include "Util.h"
@@ -49,7 +50,7 @@ bool LobbySceneTop::initView()
 	headBgSprite->addChild(headSprite, -1);	//让头像放置在头像框下
 
 	//玩家名称
-	std::string playerName = util::StrongGBToUTF8("谷丝从云");
+	std::string playerName = util::strongGBToUTF8("谷丝从云");
 	auto playerNameText = cocos2d::LabelTTF::create(playerName, "微软雅黑", 18);
 	playerNameText->setColor(cocos2d::Color3B(0xF4, 0xE0, 0xDF));
 	playerNameText->setAnchorPoint(cocos2d::Vec2::ANCHOR_TOP_LEFT);
@@ -122,6 +123,7 @@ void LobbySceneTop::lobbySetCallback(cocos2d::Ref* sender_)
 {
 	util::MusicUtil::playEffectMusic(pressBtnMusic);
 	//转向设置界面
+	SetLayer::createSetLayer();
 }
 
 void LobbySceneTop::lobbyRuleCallback(cocos2d::Ref* sender_)
