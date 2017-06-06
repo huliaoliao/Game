@@ -46,11 +46,11 @@ namespace util
 		return strUtf;
 	}
 
-	bool IsUTF8(const void* pBuffer, long lstr_size)
+	bool IsUTF8(const void* pBuffer_, long lstrSize_)
 	{
 		bool bIsUTF8 = true;
-		unsigned char* start = (unsigned char*)pBuffer;
-		unsigned char* end = (unsigned char*)pBuffer + lstr_size;
+		unsigned char* start = (unsigned char*)pBuffer_;
+		unsigned char* end = (unsigned char*)pBuffer_ + lstrSize_;
 		while (start < end)
 		{
 			// (10000000): 值小于0x80的为ASCII字符 
@@ -97,10 +97,10 @@ namespace util
 		return bIsUTF8;
 	}
 
-	const char *StrongGBToUTF8(const char *str) 
+	const char *strongGBToUTF8(const char* str_) 
 	{
 		const char* strUtf = "";
-		if (strlen(str) == 0)
+		if (strlen(str_) == 0)
 		{
 			return strUtf;
 		}
@@ -110,7 +110,7 @@ namespace util
 		{
 			return strUtf;
 		}
-		/*const */char* strChar = (char*)str;
+		/*const */char* strChar = (char*)str_;
 		/*const */char** pin = &strChar;
 		size_t strLength = strlen(strChar);
 		char* outbuf = (char*)malloc(strLength * 4);

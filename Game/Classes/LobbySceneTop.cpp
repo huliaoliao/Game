@@ -120,18 +120,18 @@ bool LobbySceneTop::initView()
 
 void LobbySceneTop::lobbySetCallback(cocos2d::Ref* sender_)
 {
-	util::MusicUtil::PlayEffectMusic(pressBtnMusic);
+	util::MusicUtil::playEffectMusic(pressBtnMusic);
 	//转向设置界面
 }
 
 void LobbySceneTop::lobbyRuleCallback(cocos2d::Ref* sender_)
 {
-	util::MusicUtil::PlayEffectMusic(pressBtnMusic);
+	util::MusicUtil::playEffectMusic(pressBtnMusic);
 	//转向规则界面
 }
 
 void LobbySceneTop::lobbyFeedbackCallback(cocos2d::Ref* sender_)
 {
-	util::MusicUtil::PlayEffectMusic(pressBtnMusic);
+	util::MusicUtil::playEffectMusic(pressBtnMusic);
 	//转向反馈界面
 }

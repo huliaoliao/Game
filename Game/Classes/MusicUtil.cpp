@@ -1,8 +1,7 @@
 ﻿#include "Musicutil.h"
 #include "audio/include/AudioEngine.h"
 #include "audio/include/SimpleAudioEngine.h"
-using namespace std;
-USING_NS_CC;
+
 using namespace CocosDenshion;
 
 namespace util 
@@ -14,52 +13,52 @@ namespace util
 	const char *const kEffectVolumeKey = "kEffectVolumeKey";
 	const char *const kBackgroundMusicVolumeKey = "kBackgroundMusicVolumeKey";
 
-	bool MusicUtil::is_bg_music_on_ = true;
-	bool MusicUtil::is_effect_music_on_ = true;
-	bool MusicUtil::is_playing_bg = false;
-	int MusicUtil::m_nMusicID = 0;
-	float MusicUtil::m_fEffectVolume = 1.0f;
-	float MusicUtil::m_fBackgroundMusicVolume = 1.0f;
-	string MusicUtil::bg_music_name_ = "";
+	bool MusicUtil::s_bgMusicOn = true;
+	bool MusicUtil::s_effectMusicOn = true;
+	bool MusicUtil::s_playingBgMusic = false;
+	int MusicUtil::s_musicID = 0;
+	float MusicUtil::s_fEffectVolume = 1.0f;
+	float MusicUtil::s_fBackgroundMusicVolume = 1.0f;
+	std::string MusicUtil::s_bgMusicName = "";
 
-	void MusicUtil::DoInit()
+	void MusicUtil::doInit()
 	{
 		// 读取音乐音效设置
-		is_bg_music_on_ = UserDefault::getInstance()->getBoolForKey(kMusicKey, false);
-		is_effect_music_on_ = UserDefault::getInstance()->getBoolForKey(kEffectKey, true);
+		s_bgMusicOn = cocos2d::UserDefault::getInstance()->getBoolForKey(kMusicKey, false);
+		s_effectMusicOn = cocos2d::UserDefault::getInstance()->getBoolForKey(kEffectKey, true);
 		// 读取音量
-		m_fEffectVolume = UserDefault::getInstance()->getFloatForKey(kEffectVolumeKey, 1.0f);
-		m_fBackgroundMusicVolume = UserDefault::getInstance()->getFloatForKey(kBackgroundMusicVolumeKey, 1.0f);
+		s_fEffectVolume = cocos2d::UserDefault::getInstance()->getFloatForKey(kEffectVolumeKey, 1.0f);
+		s_fBackgroundMusicVolume = cocos2d::UserDefault::getInstance()->getFloatForKey(kBackgroundMusicVolumeKey, 1.0f);
 	}
 
-	void MusicUtil::PlayBackgroundMusic(const char *music_name, bool is_loop)
+	void MusicUtil::playBackgroundMusic(const char* musicName_, bool isLoop_)
 	{
-		if (is_playing_bg)
+		if (s_playingBgMusic)
 		{
 			return;
 		}
-		bg_music_name_ = music_name;
-		if (is_bg_music_on_)
+		s_bgMusicName = musicName_;
+		if (s_bgMusicOn)
 		{
-			is_playing_bg = true;
-			SimpleAudioEngine::getInstance()->playBackgroundMusic(music_name, true);
+			s_playingBgMusic = true;
+			SimpleAudioEngine::getInstance()->playBackgroundMusic(musicName_, true);
 		}
 	}
 
-	void MusicUtil::PauseBackgroundMusic()
+	void MusicUtil::pauseBackgroundMusic()
 	{
-		if (is_bg_music_on_)
+		if (s_bgMusicOn)
 		{
 			//experimental::AudioEngine::pause(m_nMusicID);
 			SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 		}
 	}
 
-	void MusicUtil::ResumeBackgroundMusic()
+	void MusicUtil::resumeBackgroundMusic()
 	{
-		if (is_playing_bg)
+		if (s_playingBgMusic)
 		{
-			if (is_bg_music_on_)
+			if (s_bgMusicOn)
 			{
 				//experimental::AudioEngine::resume(m_nMusicID);
 				SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
@@ -67,14 +66,14 @@ namespace util
 		}
 	}
 
-	void MusicUtil::StopBackgroundMusic()
+	void MusicUtil::stopBackgroundMusic()
 	{
-		is_playing_bg = false;
+		s_playingBgMusic = false;
 		//experimental::AudioEngine::stop(m_nMusicID);
 		SimpleAudioEngine::getInstance()->stopBackgroundMusic();
 	}
 
-	void MusicUtil::PlayEffectMusic(const char *effect_name)
+	void MusicUtil::playEffectMusic(const char *effect_name)
 	{
 		//	if (is_effect_music_on_)
 		//{
@@ -83,25 +82,25 @@ namespace util
 		//	}
 	}
 
-	void MusicUtil::EnterForeground()
+	void MusicUtil::enterForeground()
 	{
-		if (is_bg_music_on_)
+		if (s_bgMusicOn)
 		{
 			//experimental::AudioEngine::resume(m_nMusicID);
 			SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 		}
 	}
 
-	void MusicUtil::SaveSettings()
+	void MusicUtil::saveSettings()
 	{
-		UserDefault::getInstance()->setBoolForKey(kMusicKey, is_bg_music_on_);
-		UserDefault::getInstance()->setBoolForKey(kEffectKey, is_effect_music_on_);
-		UserDefault::getInstance()->flush();
+		cocos2d::UserDefault::getInstance()->setBoolForKey(kMusicKey, s_bgMusicOn);
+		cocos2d::UserDefault::getInstance()->setBoolForKey(kEffectKey, s_effectMusicOn);
+		cocos2d::UserDefault::getInstance()->flush();
 	}
 
-	void MusicUtil::End()
+	void MusicUtil::end()
 	{
-		SaveSettings();  // 游戏结束前保存一次设置，以免忘了游戏中忘记保存了
+		saveSettings();  // 游戏结束前保存一次设置，以免忘了游戏中忘记保存了
 		//experimental::AudioEngine::end();
 		SimpleAudioEngine::getInstance()->end();
 	}
@@ -113,30 +112,31 @@ namespace util
 
 	void MusicUtil::setVolume(float fVolume)
 	{
-		log("MusicUtil::setVolume %f", fVolume);
-		m_fEffectVolume = fVolume;
-		SimpleAudioEngine::getInstance()->setEffectsVolume(m_fEffectVolume);
-		UserDefault::getInstance()->setFloatForKey(kEffectVolumeKey, m_fEffectVolume);
-		UserDefault::getInstance()->flush();
+		cocos2d::log("MusicUtil::setVolume %f", fVolume);
+		s_fEffectVolume = fVolume;
+		SimpleAudioEngine::getInstance()->setEffectsVolume(s_fEffectVolume);
+		cocos2d::UserDefault::getInstance()->setFloatForKey(kEffectVolumeKey, s_fEffectVolume);
+		cocos2d::UserDefault::getInstance()->flush();
 	}
 
 	float MusicUtil::getVolume()
 	{
-		return m_fEffectVolume;
+		return s_fEffectVolume;
 	}
 
 	void MusicUtil::setBgMusicVolume(float fVolume)
 	{
-		log("MusicUtil::setBgMusicVolume %f", fVolume);
-		m_fBackgroundMusicVolume = fVolume;
+		cocos2d::log("MusicUtil::setBgMusicVolume %f", fVolume);
+		s_fBackgroundMusicVolume = fVolume;
 		//experimental::AudioEngine::setVolume(m_nMusicID, m_fBackgroundMusicVolume);
-		SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(m_fBackgroundMusicVolume);
-		UserDefault::getInstance()->setFloatForKey(kBackgroundMusicVolumeKey, m_fBackgroundMusicVolume);
-		UserDefault::getInstance()->flush();
+		SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(s_fBackgroundMusicVolume);
+		cocos2d::UserDefault::getInstance()->setFloatForKey(
+			kBackgroundMusicVolumeKey, s_fBackgroundMusicVolume);
+		cocos2d::UserDefault::getInstance()->flush();
 	}
 
 	float MusicUtil::getBgMusicVolume()
 	{
-		return m_fBackgroundMusicVolume;
+		return s_fBackgroundMusicVolume;
 	}
 }
