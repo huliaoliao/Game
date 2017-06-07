@@ -1,5 +1,6 @@
 #include "LobbySceneMiddle.h"
 
+#include "Common.h"
 #include "ScalableMenuItemSprite.h"
 #include "ui/UIScale9Sprite.h"
 #include "Util.h"
@@ -61,38 +62,59 @@ bool LobbySceneMiddle::initView()
 		cocos2d::Place::create(showContentTTF->getPosition() + cocos2d::Size(00, 0)), nullptr)));
 
 	//创建房间按钮
-	auto createRoomBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create("lobby/create_room.png"),
-		nullptr,
-		CC_CALLBACK_1(LobbySceneMiddle::createRoomCallback, this));
-	createRoomBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	createRoomBtn->setPosition(cocos2d::Point(winSize.width / 4, winSize.height / 2 - 20));
-	createRoomBtn->setScale(0.8f);
+// 	auto createRoomBtn = ScalableMenuItemSprite::create(
+// 		cocos2d::Sprite::create("lobby/create_room.png"),
+// 		nullptr,
+// 		CC_CALLBACK_1(LobbySceneMiddle::createRoomCallback, this));
+// 	createRoomBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+// 	createRoomBtn->setPosition(cocos2d::Point(winSize.width / 4, winSize.height / 2 - 20));
+// 	createRoomBtn->setScale(0.8f);
 
 	//加入房间按钮
-	auto joinRoomBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create("lobby/join_room.png"),
-		nullptr,
-		CC_CALLBACK_1(LobbySceneMiddle::joinRoomCallback, this));
-	joinRoomBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	joinRoomBtn->setPosition(cocos2d::Point(winSize.width * 3 / 4, winSize.height / 2 - 20));
-	joinRoomBtn->setScale(0.8f);
+// 	auto joinRoomBtn = ScalableMenuItemSprite::create(
+// 		cocos2d::Sprite::create("lobby/join_room.png"),
+// 		nullptr,
+// 		CC_CALLBACK_1(LobbySceneMiddle::joinRoomCallback, this));
+// 	joinRoomBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+// 	joinRoomBtn->setPosition(cocos2d::Point(winSize.width * 3 / 4, winSize.height / 2 - 20));
+// 	joinRoomBtn->setScale(0.8f);
 
-	auto roomMenu = cocos2d::Menu::create(
-		createRoomBtn, joinRoomBtn, nullptr);
-	roomMenu->setPosition(cocos2d::Point::ZERO);
-	this->addChild(roomMenu);
+	auto startGameBtn = ScalableMenuItemSprite::create(
+		cocos2d::Sprite::create(startGameImage),
+		nullptr,
+		CC_CALLBACK_1(LobbySceneMiddle::createRoomCallback, this));
+	startGameBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+	startGameBtn->setPosition(cocos2d::Point(winSize.width / 2, winSize.height / 2 - 20));
+	startGameBtn->setScale(0.8f);
+
+	auto startGameMenu = cocos2d::Menu::create(
+		startGameBtn, nullptr);
+	startGameMenu->setPosition(cocos2d::Point::ZERO);
+	this->addChild(startGameMenu);
+
+// 	auto roomMenu = cocos2d::Menu::create(
+// 		createRoomBtn, joinRoomBtn, nullptr);
+// 	roomMenu->setPosition(cocos2d::Point::ZERO);
+// 	this->addChild(roomMenu);
 
 	return true;
 }
 
 void LobbySceneMiddle::createRoomCallback(cocos2d::Ref* sender_)
 {
-
+	util::MusicUtil::playEffectMusic(pressBtnMusic);
+	//创建房间
 }
 
 void LobbySceneMiddle::joinRoomCallback(cocos2d::Ref* sender_)
 {
+	util::MusicUtil::playEffectMusic(pressBtnMusic);
+	//加入房间
+}
 
+void LobbySceneMiddle::startGameCallback(cocos2d::Ref* sender_)
+{
+	util::MusicUtil::playEffectMusic(pressBtnMusic);
+	//开始游戏
 }
 

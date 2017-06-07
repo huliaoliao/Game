@@ -23,6 +23,9 @@ private:
 
 	//加入房间回调函数
 	void joinRoomCallback(cocos2d::Ref* sender_);
+
+	//开始游戏回调
+	void startGameCallback(cocos2d::Ref* sender_);
 };
 
 #endif

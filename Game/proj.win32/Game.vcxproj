@@ -73,7 +73,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;F:\cocos2d-x-3.8.1\extensions;C:\Users\Administrator\Desktop\Game\Game\cocos2d\extensions;$(EngineRoot);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;$(EngineRoot);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -138,12 +138,14 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\CustomServiceLayer.cpp" />
     <ClCompile Include="..\Classes\LobbyScene.cpp" />
     <ClCompile Include="..\Classes\LobbySceneBottom.cpp" />
     <ClCompile Include="..\Classes\LobbySceneMiddle.cpp" />
     <ClCompile Include="..\Classes\LobbySceneTop.cpp" />
     <ClCompile Include="..\Classes\EncodeUtil.cpp" />
     <ClCompile Include="..\Classes\MusicUtil.cpp" />
+    <ClCompile Include="..\Classes\RuleLayer.cpp" />
     <ClCompile Include="..\Classes\ScalableMenuItemSprite.cpp" />
     <ClCompile Include="..\Classes\SetLayer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -151,6 +153,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Common.h" />
+    <ClInclude Include="..\Classes\CustomServiceLayer.h" />
     <ClInclude Include="..\Classes\LobbyScene.h" />
     <ClInclude Include="..\Classes\LobbySceneBottom.h" />
     <ClInclude Include="..\Classes\LobbySceneMiddle.h" />
@@ -158,6 +161,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\EncodeUtil.h" />
     <ClInclude Include="..\Classes\MacroUtil.h" />
     <ClInclude Include="..\Classes\MusicUtil.h" />
+    <ClInclude Include="..\Classes\RuleLayer.h" />
     <ClInclude Include="..\Classes\ScalableMenuItemSprite.h" />
     <ClInclude Include="..\Classes\SetLayer.h" />
     <ClInclude Include="..\Classes\Util.h" />

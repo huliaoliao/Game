@@ -63,7 +63,7 @@ bool SetLayer::initContent()
 	listener->setSwallowTouches(true);	//吞噬触摸事件向下层传递
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-	//android物理返回键回调
+	//android物理返回键
 	auto backListener = cocos2d::EventListenerKeyboard::create();
 	backListener->onKeyReleased = CC_CALLBACK_2(SetLayer::onKeyPressed, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(backListener, this);
@@ -90,7 +90,7 @@ bool SetLayer::initView()
 	this->addChild(transparentBg);
 
 	//对话框背景
-	auto dialogBg = cocos2d::ui::Scale9Sprite::create(setDialogBg);
+	auto dialogBg = cocos2d::ui::Scale9Sprite::create(dialogBgImage);
 	auto len = dialogBg->getContentSize().width;
 	//设置伸展区域
 	dialogBg->setCapInsets(cocos2d::Rect(len / 3, len / 2, len / 3, len / 4));
@@ -104,7 +104,7 @@ bool SetLayer::initView()
 	auto dialogBgSize = dialogBg->getContentSize();
 
 	//顶部背景
-	auto dialogBgTop = cocos2d::Sprite::create(setDialogTopBg);
+	auto dialogBgTop = cocos2d::Sprite::create(dialogTopBgImage);
 	dialogBgTop->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_TOP);
 	dialogBgTop->setPosition(cocos2d::Point(dialogBgSize.width / 2, dialogBgSize.height - 10));
 	dialogBg->addChild(dialogBgTop);
@@ -128,7 +128,7 @@ bool SetLayer::initView()
 	dialogBg->addChild(closeBtnMenu);
 
 	//对话框中间背景
-	auto middleBgSprite = cocos2d::ui::Scale9Sprite::create(dialogMiddleBg);
+	auto middleBgSprite = cocos2d::ui::Scale9Sprite::create(dialogMiddleBgImage);
 	len = middleBgSprite->getContentSize().width;
 	middleBgSprite->setCapInsets(cocos2d::Rect(len / 3, len / 3, len / 3, len / 3));
 	middleBgSprite->setContentSize(cocos2d::Size(664, 303));
@@ -139,7 +139,7 @@ bool SetLayer::initView()
 
 	//退出游戏按钮
 	auto quitGameBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create(setDialogBtn),
+		cocos2d::Sprite::create(dialogBtnImage),
 		nullptr,
 		CC_CALLBACK_1(SetLayer::quitGameCallback, this));
 	quitGameBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);
@@ -156,7 +156,7 @@ bool SetLayer::initView()
 
 	//切换账号按钮
 	auto switchAccountBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create(setDialogBtn),
+		cocos2d::Sprite::create(dialogBtnImage),
 		nullptr,
 		CC_CALLBACK_1(SetLayer::switchAccountCallback, this));
 	switchAccountBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);

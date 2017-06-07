@@ -1,6 +1,8 @@
 #include "LobbySceneTop.h"
 
 #include "Common.h"
+#include "CustomServiceLayer.h"
+#include "RuleLayer.h"
 #include "SetLayer.h"
 #include "ScalableMenuItemSprite.h"
 #include "ui/UIScale9Sprite.h"
@@ -130,10 +132,12 @@ void LobbySceneTop::lobbyRuleCallback(cocos2d::Ref* sender_)
 {
 	util::MusicUtil::playEffectMusic(pressBtnMusic);
 	//转向规则界面
+	RuleLayer::createRuleLayer();
 }
 
 void LobbySceneTop::lobbyFeedbackCallback(cocos2d::Ref* sender_)
 {
 	util::MusicUtil::playEffectMusic(pressBtnMusic);
-	//转向反馈界面
+	//转向客服界面
+	CustomServiceLayer::createCustomServiceLayer();
 }

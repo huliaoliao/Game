@@ -31,6 +31,12 @@
     <Filter Include="src\大厅\设置对话框">
       <UniqueIdentifier>{17578a6e-58d0-4097-ba02-d53b4bb1a12f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\大厅\规则对话框">
+      <UniqueIdentifier>{0aaf6931-0e3a-4566-aaf3-df3dc4449586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\大厅\反馈对话框">
+      <UniqueIdentifier>{1fe759cf-ee3f-473a-9e62-125b1582e2a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -62,6 +68,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SetLayer.cpp">
       <Filter>src\大厅\设置对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RuleLayer.cpp">
+      <Filter>src\大厅\规则对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CustomServiceLayer.cpp">
+      <Filter>src\大厅\反馈对话框</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +115,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SetLayer.h">
       <Filter>src\大厅\设置对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RuleLayer.h">
+      <Filter>src\大厅\规则对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CustomServiceLayer.h">
+      <Filter>src\大厅\反馈对话框</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
