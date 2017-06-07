@@ -15,6 +15,19 @@ const char dialogCloseBtn[] = "lobby/close_btn.png";
 const char dialogMiddleBgImage[] = "lobby/dialog-middleBg.png";
 const char startGameImage[] = "lobby/start_game.png";
 
+const char gameSceneBg[] = "image/game/gamescene_bg.png";
+const char gameSceneBorder[] = "image/game/gamescene_border.png";
+const char gameSceneCorner[] = "image/game/gamescene_ corner.png";
+
+const char headImages[] = "image/game/headimage/head_image.png";
+const char headImageList[] = "image/game/headimage/head_image.plist";
+const char headBox[] = "image/game/headimage/head_box.png";
+const char noHead[] = "image/game/headimage/no_head.png";
+const char headLandlordLeft[] = "image/game/headimage/landlord_boy_left.png";
+const char headLandlordRight[] = "image/game/headimage/landlord_boy_right.png";
+const char headFarmerLeft[] = "image/game/headimage/farmer_boy_left.png";
+const char headFarmerRight[] = "image/game/headimage/farmer_boy_right.png";
+
 const int COMMON_DIALOG_ZORDER = 1;
 
 const int DIALOG_WIDTH = 720;

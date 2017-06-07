@@ -1,6 +1,7 @@
 #include "LobbySceneMiddle.h"
 
 #include "Common.h"
+#include "GameScene.h"
 #include "ScalableMenuItemSprite.h"
 #include "ui/UIScale9Sprite.h"
 #include "Util.h"
@@ -82,7 +83,7 @@ bool LobbySceneMiddle::initView()
 	auto startGameBtn = ScalableMenuItemSprite::create(
 		cocos2d::Sprite::create(startGameImage),
 		nullptr,
-		CC_CALLBACK_1(LobbySceneMiddle::createRoomCallback, this));
+		CC_CALLBACK_1(LobbySceneMiddle::startGameCallback, this));
 	startGameBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	startGameBtn->setPosition(cocos2d::Point(winSize.width / 2, winSize.height / 2 - 20));
 	startGameBtn->setScale(0.8f);
@@ -116,5 +117,6 @@ void LobbySceneMiddle::startGameCallback(cocos2d::Ref* sender_)
 {
 	util::MusicUtil::playEffectMusic(pressBtnMusic);
 	//¿ªÊ¼ÓÎÏ·
+	cocos2d::Director::getInstance()->replaceScene(GameScene::createScene());
 }
 

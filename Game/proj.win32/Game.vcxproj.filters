@@ -37,6 +37,30 @@
     <Filter Include="src\大厅\反馈对话框">
       <UniqueIdentifier>{1fe759cf-ee3f-473a-9e62-125b1582e2a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\游戏">
+      <UniqueIdentifier>{12ee7201-b1b4-45f4-9294-65e96edf1910}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\游戏控制器">
+      <UniqueIdentifier>{a7563c9b-2c3e-486b-8455-b31132cd12c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\状态">
+      <UniqueIdentifier>{9387b05a-8f94-488d-9fdf-fdd2903fe105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\状态\准备">
+      <UniqueIdentifier>{53afa7b1-907e-46e4-9847-ca2a5881f871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\游戏场景">
+      <UniqueIdentifier>{a64a8d82-69a4-4ca4-97ff-1980605911b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\游戏场景\玩家层">
+      <UniqueIdentifier>{f3b43077-04d2-47a9-b3a0-b5bbd5bdd61c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\玩家">
+      <UniqueIdentifier>{58bb2ee5-93ef-4237-a91a-9577d7b380f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\玩家\玩家头像">
+      <UniqueIdentifier>{d9fb668c-f0fe-4c4d-91d0-8cc3ef70d841}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,6 +98,27 @@
     </ClCompile>
     <ClCompile Include="..\Classes\CustomServiceLayer.cpp">
       <Filter>src\大厅\反馈对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameController.cpp">
+      <Filter>src\游戏\游戏控制器</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\State.cpp">
+      <Filter>src\游戏\状态</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ReadyState.cpp">
+      <Filter>src\游戏\状态\准备</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>src\游戏\游戏场景</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PlayerLayer.cpp">
+      <Filter>src\游戏\游戏场景\玩家层</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Player.cpp">
+      <Filter>src\游戏\玩家</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HeadImage.cpp">
+      <Filter>src\游戏\玩家\玩家头像</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +166,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\CustomServiceLayer.h">
       <Filter>src\大厅\反馈对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameController.h">
+      <Filter>src\游戏\游戏控制器</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\State.h">
+      <Filter>src\游戏\状态</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ReadyState.h">
+      <Filter>src\游戏\状态\准备</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>src\游戏\游戏场景</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PlayerLayer.h">
+      <Filter>src\游戏\游戏场景\玩家层</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Player.h">
+      <Filter>src\游戏\玩家</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HeadImage.h">
+      <Filter>src\游戏\玩家\玩家头像</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

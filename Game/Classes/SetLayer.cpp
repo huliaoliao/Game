@@ -10,7 +10,7 @@ static const std::string layerName = "setLayer";
 
 using namespace cocos2d;
 
-void SetLayer::createSetLayer()
+void SetLayer::createLayer()
 {
 	auto layer = SetLayer::create();
 	if (cocos2d::Director::getInstance()->getRunningScene()

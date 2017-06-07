@@ -8,6 +8,8 @@
 #include "ui/UIScale9Sprite.h"
 #include "Util.h"
 
+#include "PlayerLayer.h"
+
 bool LobbySceneTop::init()
 {
 	if (!cocos2d::Layer::init())
@@ -125,19 +127,20 @@ void LobbySceneTop::lobbySetCallback(cocos2d::Ref* sender_)
 {
 	util::MusicUtil::playEffectMusic(pressBtnMusic);
 	//转向设置界面
-	SetLayer::createSetLayer();
+	SetLayer::createLayer();
+	//PlayerLayer::createLayer();
 }
 
 void LobbySceneTop::lobbyRuleCallback(cocos2d::Ref* sender_)
 {
 	util::MusicUtil::playEffectMusic(pressBtnMusic);
 	//转向规则界面
-	RuleLayer::createRuleLayer();
+	RuleLayer::createLayer();
 }
 
 void LobbySceneTop::lobbyFeedbackCallback(cocos2d::Ref* sender_)
 {
 	util::MusicUtil::playEffectMusic(pressBtnMusic);
 	//转向客服界面
-	CustomServiceLayer::createCustomServiceLayer();
+	CustomServiceLayer::createLayer();
 }

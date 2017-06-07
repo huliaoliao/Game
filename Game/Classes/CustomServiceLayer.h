@@ -10,7 +10,7 @@
 class CustomServiceLayer : public cocos2d::Layer
 {
 public:
-	static void createCustomServiceLayer();
+	static void createLayer();
 
 private:
 	CREATE_FUNC(CustomServiceLayer);

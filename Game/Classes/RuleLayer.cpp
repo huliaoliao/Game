@@ -10,7 +10,7 @@
 
 static const std::string layerName = "ruleLayer";
 
-void RuleLayer::createRuleLayer()
+void RuleLayer::createLayer()
 {
 	auto layer = RuleLayer::create();
 	if (cocos2d::Director::getInstance()->getRunningScene()->getChildByName(layerName))

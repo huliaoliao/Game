@@ -9,7 +9,7 @@
 
 static const std::string layerName = "feedbackLayer";
 
-void CustomServiceLayer::createCustomServiceLayer()
+void CustomServiceLayer::createLayer()
 {
 	auto layer = CustomServiceLayer::create();
 	if (cocos2d::Director::getInstance()->getRunningScene()

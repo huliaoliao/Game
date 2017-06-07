@@ -13,7 +13,7 @@ class RuleLayer : public cocos2d::Layer
 public:
 	CREATE_FUNC(RuleLayer);
 
-	static void createRuleLayer();
+	static void createLayer();
 
 public:
 	virtual bool init() override;

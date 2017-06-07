@@ -12,7 +12,7 @@ class SetLayer : public cocos2d::Layer
 public:
 	CREATE_FUNC(SetLayer);
 
-	static void createSetLayer();
+	static void createLayer();
 
 public:
 	virtual bool init() override;
