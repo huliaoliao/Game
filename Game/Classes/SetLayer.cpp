@@ -35,7 +35,49 @@ bool SetLayer::init()
 		return false;
 	}
 
+	if (initContent() == false)
+	{
+		return false;
+	}
+
 	return true;
+}
+
+bool SetLayer::initContent()
+{
+	//音量初始化
+	_musicSlider->setValue(util::MusicUtil::getBgMusicVolume());
+	_effectSlider->setValue(util::MusicUtil::getVolume());
+
+	//滑动条监听器
+	_musicSlider->addTargetWithActionForControlEvents(this,
+		cccontrol_selector(SetLayer::musicChangedCallback),
+		cocos2d::extension::Control::EventType::VALUE_CHANGED);
+	_effectSlider->addTargetWithActionForControlEvents(this,
+		cccontrol_selector(SetLayer::effectChangedCallback),
+		cocos2d::extension::Control::EventType::VALUE_CHANGED);
+
+	//屏蔽屏幕触摸往下层传递
+	auto listener = cocos2d::EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = CC_CALLBACK_2(SetLayer::onTouchBegan, this);
+	listener->setSwallowTouches(true);	//吞噬触摸事件向下层传递
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+	//android物理返回键回调
+	auto backListener = cocos2d::EventListenerKeyboard::create();
+	backListener->onKeyReleased = CC_CALLBACK_2(SetLayer::onKeyPressed, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(backListener, this);
+
+	return true;
+}
+
+void SetLayer::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode_, cocos2d::Event* event_)
+{
+	//返回键触摸后释放操作
+	if (keyCode_ == cocos2d::EventKeyboard::KeyCode::KEY_BACK)
+	{
+		backCallback(nullptr);
+	}
 }
 
 bool SetLayer::initView()
@@ -137,21 +179,21 @@ bool SetLayer::initView()
 
 	//音乐图标和滑动条
 	auto musicIcon = cocos2d::Sprite::create(setDialogMusic);
-	auto musicSlider = cocos2d::extension::ControlSlider::create(
+	_musicSlider = cocos2d::extension::ControlSlider::create(
 		setDialogTrack, setDialogProgress, setDialogSlider);
-	musicSlider->setMinimumValue(0.0f);
-	musicSlider->setMaximumValue(1.0f);
+	_musicSlider->setMinimumValue(0.0f);
+	_musicSlider->setMaximumValue(1.0f);
 
 	auto sliderTotalWidth = musicIcon->getContentSize().width + 30
-		+ musicSlider->getContentSize().width;
+		+ _musicSlider->getContentSize().width;
 	musicIcon->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);
 	musicIcon->setPosition(cocos2d::Point(-sliderTotalWidth / 2.0f, 0));
 	bgMusic->addChild(musicIcon);
 
-	musicSlider->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);
-	musicSlider->setPosition(cocos2d::Point(
+	_musicSlider->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);
+	_musicSlider->setPosition(cocos2d::Point(
 		musicIcon->getPosition().x + musicIcon->getContentSize().width + 30, 0));
-	bgMusic->addChild(musicSlider);
+	bgMusic->addChild(_musicSlider);
 
 	//音效
 	auto bgEffect = cocos2d::Sprite::create();
@@ -162,35 +204,75 @@ bool SetLayer::initView()
 
 	//音效图标和滑动条
 	auto effectIcon = cocos2d::Sprite::create(setDialogEffect);
-	auto effectSlider = cocos2d::extension::ControlSlider::create(
+	_effectSlider = cocos2d::extension::ControlSlider::create(
 		setDialogTrack, setDialogProgress, setDialogSlider);
-	effectSlider->setMinimumValue(0.0f);
-	effectSlider->setMaximumValue(1.0f);
+	_effectSlider->setMinimumValue(0.0f);
+	_effectSlider->setMaximumValue(1.0f);
 
 	effectIcon->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);
 	effectIcon->setPosition(cocos2d::Point(-sliderTotalWidth / 2.0f, 0));
 	bgEffect->addChild(effectIcon);
 
-	effectSlider->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);
-	effectSlider->setPosition(cocos2d::Point(
+	_effectSlider->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);
+	_effectSlider->setPosition(cocos2d::Point(
 		effectIcon->getPosition().x + effectIcon->getContentSize().width + 30, 0));
-	bgEffect->addChild(effectSlider);
+	bgEffect->addChild(_effectSlider);
 
 	return true;
 }
 
+bool SetLayer::onTouchBegan(cocos2d::Touch *touch_, cocos2d::Event *unusedEvent_)
+{
+	return true;
+}
+
+
 void SetLayer::backCallback(cocos2d::Ref* sender_)
 {
+	util::MusicUtil::playEffectMusic(pressBtnMusic);
+	//设置窗口消失动画
+	this->runAction(cocos2d::Sequence::create(
+		cocos2d::ScaleTo::create(0.15, 0),
+		cocos2d::CallFunc::create(CC_CALLBACK_0(SetLayer::funcBackCallback, this)),
+		nullptr));
+}
 
+void SetLayer::funcBackCallback()
+{
+	//从当前场景移除设置对话框
+	this->removeFromParent();
 }
 
 void SetLayer::quitGameCallback(cocos2d::Ref* sender_)
 {
-
+	util::MusicUtil::playEffectMusic(pressBtnMusic);
+	cocos2d::Director::getInstance()->end();	//结束游戏
 }
 
 void SetLayer::switchAccountCallback(cocos2d::Ref* sender_)
 {
-
+	util::MusicUtil::playEffectMusic(pressBtnMusic);
+	//切换游戏账号操作
 }
 
+void SetLayer::musicChangedCallback(cocos2d::Ref* sender_, cocos2d::extension::Control::EventType type_)
+{
+	//当滑块的百分比发生变化时
+	if (type_ == cocos2d::extension::ControlSlider::EventType::VALUE_CHANGED)
+	{
+		auto volumn = _musicSlider->getValue();
+		//保存设置的音乐值
+		util::MusicUtil::setBgMusicVolume(volumn);
+	}
+}
+
+void SetLayer::effectChangedCallback(cocos2d::Ref* sender_, cocos2d::extension::Control::EventType type_)
+{
+	//当滑块的百分比发生变化时
+	if (type_ == cocos2d::extension::ControlSlider::EventType::VALUE_CHANGED)
+	{
+		auto volumn = _effectSlider->getValue();
+		//保存设置的音效值
+		util::MusicUtil::setVolume(volumn);
+	}
+}
