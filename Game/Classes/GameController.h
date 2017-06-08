@@ -5,13 +5,46 @@
 */
 
 #include "cocos2d.h"
+#include "State.h"
 
-class GameController : public cocos2d::Ref
+class GameController : private cocos2d::Node
 {
 public:
 	static GameController& getIns();
 
 	static GameController* getInstance();
+
+public:
+	State* getReadyState() const;
+
+	State* getDealState() const;
+
+public:
+	void setState(State* state_);
+
+	void start();	//开始游戏状态运行
+
+	void run();		//运行当前状态
+
+	void updateState();	//切换至下一个状态
+
+private:
+	GameController();
+
+private:
+	bool initContent();
+
+	void update(float delta_);
+
+private:
+	void updateCallback(cocos2d::Ref*);	//切换至下一个状态回调
+
+private:
+	State*				_state;
+
+	State*				_startState;			//开始状态
+	State*				_readyState;			//准备状态
+	State*				_dealState;			//发牌状态
 };
 
 #endif

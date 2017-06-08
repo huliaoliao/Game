@@ -10,6 +10,8 @@ class State : public cocos2d::Ref
 {
 public:
 	virtual void handle() = 0;
+
+	virtual void update() = 0;
 };
 
 #endif

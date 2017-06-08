@@ -6,10 +6,20 @@
 
 #include "State.h"
 
+class GameController;
+
 class ReadyState : public State
 {
 public:
+	ReadyState(GameController* gameController_);
+
+public:
 	virtual void handle();
+
+	virtual void update();
+
+private:
+	GameController* _gameController;
 };
 
 #endif

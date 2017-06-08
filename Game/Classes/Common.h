@@ -28,9 +28,19 @@ const char headLandlordRight[] = "image/game/headimage/landlord_boy_right.png";
 const char headFarmerLeft[] = "image/game/headimage/farmer_boy_left.png";
 const char headFarmerRight[] = "image/game/headimage/farmer_boy_right.png";
 
+const char gameStateReady[] = "image/game/ready.png";
+const char gameStateReadyBtn[] = "image/game/btn_start.png";
+
 const int COMMON_DIALOG_ZORDER = 1;
 
 const int DIALOG_WIDTH = 720;
 const int DIALOG_HEIGHT = 480;
+
+const std::string CREATE_HEADIMAGE_LAYER = "createHeadImageLayer";		//创建头像层
+const std::string DESTROY_HEADIMAGE_LAYER = "destroyHeadImageLayer";	//销毁头像层
+const std::string CREATE_READY_LAYER = "createReadyLayer";		//创建准备层
+const std::string DESTROY_READY_LAYER = "destroyReadyLayer";	//销毁准备层
+
+const std::string GAME_CONTROLLER_RUN = "gameControllerRun";	//游戏控制器运行
 
 #endif

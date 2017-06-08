@@ -18,8 +18,8 @@ bool HeadImage::init()
 	_curHeadImage = cocos2d::Sprite::create(noHead);
 	_curHeadImage->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_curHeadImage->setPosition(cocos2d::Point(_headBox->getContentSize() / 2));
-	_curHeadImage->setScale(HEADIMAGE_SCALE);
-	this->addChild(_curHeadImage);
+	//_curHeadImage->setScale(HEADIMAGE_SCALE);
+	_headBox->addChild(_curHeadImage);
 
 	//设置Node大小
 	this->setContentSize(_headBox->getContentSize() * HEADIMAGE_SCALE);
@@ -34,11 +34,16 @@ bool HeadImage::init()
 	return true;
 }
 
-void HeadImage::setHeadImageType(Type type_, Orientation orientation_)
+void HeadImage::setHeadImageType(Type type_)
 {
 	//根据头像类型和朝向，建立一个精灵帧
-	auto spriteFrame = HeadImage::createSpriteFrameWithType(type_, orientation_);
+	auto spriteFrame = HeadImage::createSpriteFrameWithType(type_, this->_orientation);
 	_curHeadImage->setDisplayFrame(spriteFrame);
+}
+
+void HeadImage::setOrientation(Orientation orientation_)
+{
+	this->_orientation = orientation_;
 }
 
 cocos2d::SpriteFrame* HeadImage::createSpriteFrameWithType(Type type_, Orientation orientation_)

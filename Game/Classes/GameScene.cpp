@@ -1,9 +1,10 @@
 #include "GameScene.h"
 
 #include "Common.h"
+#include "GameController.h"
+#include "HeadImageLayer.h"
+#include "ReadyStateLayer.h"
 #include "ui/UIScale9Sprite.h"
-
-#include "PlayerLayer.h"
 
 cocos2d::Scene* GameScene::createScene()
 {
@@ -26,9 +27,14 @@ bool GameScene::init()
 		return false;
 	}
 
+	if (initContent() == false)
+	{
+		return false;
+	}
+
 	//如果不这样做，因为Scene还没有完全初始化，导致当前RunningScene
 	//不是该Scene，导致出错
-	this->scheduleOnce(schedule_selector(GameScene::initUpdate), 1.0f);
+	//this->scheduleOnce(schedule_selector(GameScene::start), 1.0f);
 
 	return true;
 }
@@ -58,13 +64,51 @@ bool GameScene::initView()
 	return true;
 }
 
-void GameScene::initUpdate(float delta_)
+bool GameScene::initContent()
 {
-	PlayerLayer::createLayer();
+	//注册添加头像层消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(GameScene::createHeadImageLayerCallback, this),
+		CREATE_HEADIMAGE_LAYER, nullptr);
+
+	//注册销毁头像层消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(GameScene::destroyHeadImageLayerCallback, this),
+		DESTROY_HEADIMAGE_LAYER, nullptr);
+
+	//注册添加准备层消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(GameScene::createReadyLayerCallback, this),
+		CREATE_READY_LAYER, nullptr);
+
+	//注册销毁准备层消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(GameScene::destroyReadyLayerCallback, this),
+		DESTROY_READY_LAYER, nullptr);
+
+	return true;
 }
 
+void GameScene::createHeadImageLayerCallback(cocos2d::Ref*)
+{
+	//创建头像层
+	HeadImageLayer::createLayer();
+}
 
+void GameScene::destroyHeadImageLayerCallback(cocos2d::Ref*)
+{
+	//销毁头像层
+	HeadImageLayer::destroyLayer();
+}
 
+void GameScene::createReadyLayerCallback(cocos2d::Ref*)
+{
+	//创建准备层
+	ReadyStateLayer::createLayer();
+}
 
-
-
+void GameScene::destroyReadyLayerCallback(cocos2d::Ref*)
+{
+	//销毁准备层
+	ReadyStateLayer::destroyLayer();
+}

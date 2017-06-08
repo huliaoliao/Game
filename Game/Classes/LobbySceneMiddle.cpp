@@ -1,7 +1,7 @@
 #include "LobbySceneMiddle.h"
 
 #include "Common.h"
-#include "GameScene.h"
+#include "GameController.h"
 #include "ScalableMenuItemSprite.h"
 #include "ui/UIScale9Sprite.h"
 #include "Util.h"
@@ -117,6 +117,7 @@ void LobbySceneMiddle::startGameCallback(cocos2d::Ref* sender_)
 {
 	util::MusicUtil::playEffectMusic(pressBtnMusic);
 	//¿ªÊ¼ÓÎÏ·
-	cocos2d::Director::getInstance()->replaceScene(GameScene::createScene());
+	//cocos2d::Director::getInstance()->replaceScene(GameScene::createScene());
+	GameController::getInstance()->start();
 }
 

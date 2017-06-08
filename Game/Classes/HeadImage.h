@@ -28,7 +28,10 @@ public:
 	virtual bool init() override;
 
 public:
-	void setHeadImageType(Type type_, Orientation orientation_);
+	void setHeadImageType(Type type_);
+
+	//设置头像朝向
+	void setOrientation(Orientation orientation_);
 
 private:
 	cocos2d::SpriteFrame* createSpriteFrameWithType(Type type_, Orientation orientation_);
@@ -36,6 +39,7 @@ private:
 private:
 	cocos2d::Sprite*	_headBox;		//头像框
 	cocos2d::Sprite*	_curHeadImage;	//当前头像
+	Orientation			_orientation;
 
 	static cocos2d::SpriteFrameCache* s_spriteFrameCache;
 };

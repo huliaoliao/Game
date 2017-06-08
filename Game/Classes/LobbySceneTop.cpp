@@ -8,7 +8,7 @@
 #include "ui/UIScale9Sprite.h"
 #include "Util.h"
 
-#include "PlayerLayer.h"
+#include "HeadImageLayer.h"
 
 bool LobbySceneTop::init()
 {

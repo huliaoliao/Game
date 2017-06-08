@@ -19,7 +19,16 @@ public:
 private:
 	bool initView();
 
-	void initUpdate(float delta_);
+	bool initContent();
+
+private:
+	void createHeadImageLayerCallback(cocos2d::Ref*);	//创建头像层回调	
+
+	void destroyHeadImageLayerCallback(cocos2d::Ref*);	//销毁头像层回调
+
+	void createReadyLayerCallback(cocos2d::Ref*);			//创建准备层
+
+	void destroyReadyLayerCallback(cocos2d::Ref*);			//销毁准备层
 };
 
 #endif

@@ -52,14 +52,23 @@
     <Filter Include="src\游戏\游戏场景">
       <UniqueIdentifier>{a64a8d82-69a4-4ca4-97ff-1980605911b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\游戏\游戏场景\玩家层">
-      <UniqueIdentifier>{f3b43077-04d2-47a9-b3a0-b5bbd5bdd61c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\游戏\玩家">
       <UniqueIdentifier>{58bb2ee5-93ef-4237-a91a-9577d7b380f8}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\游戏\玩家\玩家头像">
       <UniqueIdentifier>{d9fb668c-f0fe-4c4d-91d0-8cc3ef70d841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\游戏场景\头像层">
+      <UniqueIdentifier>{f3b43077-04d2-47a9-b3a0-b5bbd5bdd61c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\游戏场景\准备状态层">
+      <UniqueIdentifier>{d2729b7e-9646-4b59-a0cd-40cbfe8342ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\状态\发牌">
+      <UniqueIdentifier>{96f823b5-aa7c-4862-b389-ead49dc75859}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\状态\开始">
+      <UniqueIdentifier>{60606f65-5aea-487f-85fa-011306881407}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -111,14 +120,23 @@
     <ClCompile Include="..\Classes\GameScene.cpp">
       <Filter>src\游戏\游戏场景</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\PlayerLayer.cpp">
-      <Filter>src\游戏\游戏场景\玩家层</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Player.cpp">
       <Filter>src\游戏\玩家</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\HeadImage.cpp">
       <Filter>src\游戏\玩家\玩家头像</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HeadImageLayer.cpp">
+      <Filter>src\游戏\游戏场景\头像层</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ReadyStateLayer.cpp">
+      <Filter>src\游戏\游戏场景\准备状态层</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DealState.cpp">
+      <Filter>src\游戏\状态\发牌</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\StartState.cpp">
+      <Filter>src\游戏\状态\开始</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,14 +197,23 @@
     <ClInclude Include="..\Classes\GameScene.h">
       <Filter>src\游戏\游戏场景</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\PlayerLayer.h">
-      <Filter>src\游戏\游戏场景\玩家层</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Player.h">
       <Filter>src\游戏\玩家</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\HeadImage.h">
       <Filter>src\游戏\玩家\玩家头像</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HeadImageLayer.h">
+      <Filter>src\游戏\游戏场景\头像层</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ReadyStateLayer.h">
+      <Filter>src\游戏\游戏场景\准备状态层</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DealState.h">
+      <Filter>src\游戏\状态\发牌</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\StartState.h">
+      <Filter>src\游戏\状态\开始</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
