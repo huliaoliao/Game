@@ -4,5 +4,6 @@
 #include "EncodeUtil.h"
 #include "MacroUtil.h"
 #include "MusicUtil.h"
+#include "PokerUtil.h"
 
 #endif

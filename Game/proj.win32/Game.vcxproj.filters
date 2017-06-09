@@ -55,9 +55,6 @@
     <Filter Include="src\游戏\玩家">
       <UniqueIdentifier>{58bb2ee5-93ef-4237-a91a-9577d7b380f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\游戏\玩家\玩家头像">
-      <UniqueIdentifier>{d9fb668c-f0fe-4c4d-91d0-8cc3ef70d841}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\游戏\游戏场景\头像层">
       <UniqueIdentifier>{f3b43077-04d2-47a9-b3a0-b5bbd5bdd61c}</UniqueIdentifier>
     </Filter>
@@ -69,6 +66,39 @@
     </Filter>
     <Filter Include="src\游戏\状态\开始">
       <UniqueIdentifier>{60606f65-5aea-487f-85fa-011306881407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\游戏场景\扑克层">
+      <UniqueIdentifier>{bd158208-a556-4014-9448-1c069f36360b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\扑克">
+      <UniqueIdentifier>{effe5d2b-ce52-4319-be8b-58ee0abda680}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\玩家\电脑玩家">
+      <UniqueIdentifier>{78dbf8c4-cae0-46ee-a322-5234f943a6d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\游戏场景\头像层\玩家头像">
+      <UniqueIdentifier>{d9fb668c-f0fe-4c4d-91d0-8cc3ef70d841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\玩家\手动玩家">
+      <UniqueIdentifier>{06ea7617-f027-4a21-a27c-9b81d80802ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\功能\单例">
+      <UniqueIdentifier>{c3f7dd63-e09c-4573-874c-c1ef2662b63e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\玩家\玩家实例">
+      <UniqueIdentifier>{ee567db4-be0b-4d4d-80a2-9a334a810716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\扑克\扑克控制器">
+      <UniqueIdentifier>{dead339b-b8ed-45a0-9013-abcba455f89d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\扑克\扑克精灵">
+      <UniqueIdentifier>{353d0155-59e9-431f-afeb-a3fdd005a6f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\状态\叫地主">
+      <UniqueIdentifier>{318580f4-e6ef-4c3d-89a7-f226b5eabc34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\游戏场景\叫地主层">
+      <UniqueIdentifier>{f0b65306-d688-4702-b15f-e03bd659f3cf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -124,7 +154,7 @@
       <Filter>src\游戏\玩家</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\HeadImage.cpp">
-      <Filter>src\游戏\玩家\玩家头像</Filter>
+      <Filter>src\游戏\游戏场景\头像层\玩家头像</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\HeadImageLayer.cpp">
       <Filter>src\游戏\游戏场景\头像层</Filter>
@@ -137,6 +167,36 @@
     </ClCompile>
     <ClCompile Include="..\Classes\StartState.cpp">
       <Filter>src\游戏\状态\开始</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PokerLayer.cpp">
+      <Filter>src\游戏\游戏场景\扑克层</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Common.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ComputerPlayer.cpp">
+      <Filter>src\游戏\玩家\电脑玩家</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HolderPlayer.cpp">
+      <Filter>src\游戏\玩家\手动玩家</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PokerController.cpp">
+      <Filter>src\游戏\扑克\扑克控制器</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Poker.cpp">
+      <Filter>src\游戏\扑克</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PokerSprite.cpp">
+      <Filter>src\游戏\扑克\扑克精灵</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PokerUtil.cpp">
+      <Filter>src\功能</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CallLandlordState.cpp">
+      <Filter>src\游戏\状态\叫地主</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CallLandlordLayer.cpp">
+      <Filter>src\游戏\游戏场景\叫地主层</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,7 +261,7 @@
       <Filter>src\游戏\玩家</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\HeadImage.h">
-      <Filter>src\游戏\玩家\玩家头像</Filter>
+      <Filter>src\游戏\游戏场景\头像层\玩家头像</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\HeadImageLayer.h">
       <Filter>src\游戏\游戏场景\头像层</Filter>
@@ -214,6 +274,45 @@
     </ClInclude>
     <ClInclude Include="..\Classes\StartState.h">
       <Filter>src\游戏\状态\开始</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PokerLayer.h">
+      <Filter>src\游戏\游戏场景\扑克层</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ComputerPlayer.h">
+      <Filter>src\游戏\玩家\电脑玩家</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HolderPlayer.h">
+      <Filter>src\游戏\玩家\手动玩家</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ComputerPlayerInstanceOne.h">
+      <Filter>src\游戏\玩家\玩家实例</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Singleton.h">
+      <Filter>src\功能\单例</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ComputerPlayerInstanceTwo.h">
+      <Filter>src\游戏\玩家\玩家实例</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HolderPlayerInstance.h">
+      <Filter>src\游戏\玩家\玩家实例</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PokerController.h">
+      <Filter>src\游戏\扑克\扑克控制器</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Poker.h">
+      <Filter>src\游戏\扑克</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PokerSprite.h">
+      <Filter>src\游戏\扑克\扑克精灵</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PokerUtil.h">
+      <Filter>src\功能</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CallLandlordState.h">
+      <Filter>src\游戏\状态\叫地主</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CallLandlordLayer.h">
+      <Filter>src\游戏\游戏场景\叫地主层</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

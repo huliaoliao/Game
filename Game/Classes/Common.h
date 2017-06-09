@@ -1,6 +1,8 @@
 #ifndef					__COMMON_H__
 #define					__COMMON_H__
 
+#include <string>
+
 const char* const pressBtnMusic = "music/btnpress.mp3";
 
 const char dialogBgImage[] = "lobby/dialog_bg.png";
@@ -23,15 +25,22 @@ const char headImages[] = "image/game/headimage/head_image.png";
 const char headImageList[] = "image/game/headimage/head_image.plist";
 const char headBox[] = "image/game/headimage/head_box.png";
 const char noHead[] = "image/game/headimage/no_head.png";
-const char headLandlordLeft[] = "image/game/headimage/landlord_boy_left.png";
-const char headLandlordRight[] = "image/game/headimage/landlord_boy_right.png";
-const char headFarmerLeft[] = "image/game/headimage/farmer_boy_left.png";
-const char headFarmerRight[] = "image/game/headimage/farmer_boy_right.png";
+const char headLandlordLeft[] = "landlord_boy_left.png";
+const char headLandlordRight[] = "landlord_boy_right.png";
+const char headFarmerLeft[] = "farmer_boy_left.png";
+const char headFarmerRight[] = "farmer_boy_right.png";
 
 const char gameStateReady[] = "image/game/ready.png";
 const char gameStateReadyBtn[] = "image/game/btn_start.png";
 
+const char NOCALLBTN[] = "image/game/calllandlord/btn_nocall.png";
+const char CALLONEBTN[] = "image/game/calllandlord/btn_one.png";
+const char CALLTWOBTN[] = "image/game/calllandlord/btn_two.png";
+const char CALLTHREEBTN[] = "image/game/calllandlord/btn_three.png";
+
 const int COMMON_DIALOG_ZORDER = 1;
+
+const int SINGLE_TYPE_CARD_NUM = 13;
 
 const int DIALOG_WIDTH = 720;
 const int DIALOG_HEIGHT = 480;
@@ -40,7 +49,25 @@ const std::string CREATE_HEADIMAGE_LAYER = "createHeadImageLayer";		//创建头像层
 const std::string DESTROY_HEADIMAGE_LAYER = "destroyHeadImageLayer";	//销毁头像层
 const std::string CREATE_READY_LAYER = "createReadyLayer";		//创建准备层
 const std::string DESTROY_READY_LAYER = "destroyReadyLayer";	//销毁准备层
+const std::string CREATE_POKER_LAYER = "createPokerLayer";			//创建扑克层
+const std::string DESTROY_POKER_LAYER = "destroyPokerLayer";	//销毁扑克层
+const std::string CREATE_CALL_LANDLORD_LAYER = "createCallLandlordLayer";	//创建叫地主层
+const std::string DESTROY_CALL_LANDLORD_LAYER = "destroyCallLandlordLayer";	//销毁叫地主层
+
+const std::string UPDATE_GAME_STATE = "updateGameState";		//更新游戏状态
+const std::string UPDATE_CALL_LANDLORD_INDEX = "updateCallLandlordIndex";	//更新叫地主顺序
+const std::string DISPLAY_CALL_LANDLORD_BTN = "displayCallLandlordBtn";			//显示手动玩家叫地主按钮
 
 const std::string GAME_CONTROLLER_RUN = "gameControllerRun";	//游戏控制器运行
+const std::string DISPLAY_HOLDER_POKERS = "displayHolderPokers";	//显示手动玩家（自己）手中的牌
+const std::string DISPLAY_LANDLORD_POKERS = "displayLandlordPokers";	//显示预留给地主的牌
+const std::string UPDATE_HOLDER_HEADIMAGE = "updateHolderHeadImage";	//更新手动玩家头像为地主
+const std::string UPDATE_COMPUTERONE_HEADIMAHE = "updateComputerOneHeadImage";	//更新电脑玩家1头像为地主
+const std::string UPDATE_COMPUTERTWO_HEADIMAGE = "updateComputerOneHeadImage";	//更新电脑玩家2头像为地主
+
+const std::string POKER_IMAGES = "image/game/poker/Joker.png";
+const std::string POKER_IMAGE_LIST = "image/game/poker/Joker.plist";
+const std::string CALL_LANDLORD_IMAGES = "image/game/calllandlord/call_landlord_state.png";
+const std::string CALL_LANDLORD_IMAGE_LIST = "image/game/calllandlord/call_landlord_state.plist";
 
 #endif

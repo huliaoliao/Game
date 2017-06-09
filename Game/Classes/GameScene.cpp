@@ -1,8 +1,10 @@
 #include "GameScene.h"
 
+#include "CallLandlordLayer.h"
 #include "Common.h"
 #include "GameController.h"
 #include "HeadImageLayer.h"
+#include "PokerLayer.h"
 #include "ReadyStateLayer.h"
 #include "ui/UIScale9Sprite.h"
 
@@ -86,6 +88,26 @@ bool GameScene::initContent()
 		callfuncO_selector(GameScene::destroyReadyLayerCallback, this),
 		DESTROY_READY_LAYER, nullptr);
 
+	//注册添加扑克层消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(GameScene::createPokerLayerCallback, this),
+		CREATE_POKER_LAYER, nullptr);
+
+	//注册销毁扑克层消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(GameScene::destroyPokerLayerCallback, this),
+		DESTROY_POKER_LAYER, nullptr);
+
+	//注册添加叫地主层消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(GameScene::createCallLandlordLayerCallback, this),
+		CREATE_CALL_LANDLORD_LAYER, nullptr);
+
+	//注册销毁扑克层消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(GameScene::destroyCallLandlordLayerCallback, this),
+		DESTROY_CALL_LANDLORD_LAYER, nullptr);
+
 	return true;
 }
 
@@ -111,4 +133,28 @@ void GameScene::destroyReadyLayerCallback(cocos2d::Ref*)
 {
 	//销毁准备层
 	ReadyStateLayer::destroyLayer();
+}
+
+void GameScene::createPokerLayerCallback(cocos2d::Ref*)
+{
+	//创建扑克层
+	PokerLayer::createLayer();
+}
+
+void GameScene::destroyPokerLayerCallback(cocos2d::Ref*)
+{
+	//销毁扑克层
+	PokerLayer::destroyLayer();
+}
+
+void GameScene::createCallLandlordLayerCallback(cocos2d::Ref*)
+{
+	//创建叫地主层
+	CallLandlordLayer::createLayer();
+}
+
+void GameScene::destroyCallLandlordLayerCallback(cocos2d::Ref*)
+{
+	//销毁叫地主层
+	CallLandlordLayer::destroyLayer();
 }

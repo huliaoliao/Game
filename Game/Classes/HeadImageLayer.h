@@ -23,6 +23,20 @@ private:
 private:
 	bool initView();
 
+	bool initContent();
+
+	//将所有头像都设置为农民
+	void updateHeadImage();
+
+private:
+	//针对不同的callback，将目标头像设置为地主
+
+	void updateHolderHeadImageCallback(cocos2d::Ref*);
+
+	void updateComputerOneHeadImageCallback(cocos2d::Ref*);
+
+	void updateComputerTwoHeadImageCallback(cocos2d::Ref*);
+
 private:
 	HeadImage* _computerOneHeadImage;
 	HeadImage* _computerTwoHeadImage;

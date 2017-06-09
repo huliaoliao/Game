@@ -29,6 +29,14 @@ private:
 	void createReadyLayerCallback(cocos2d::Ref*);			//创建准备层
 
 	void destroyReadyLayerCallback(cocos2d::Ref*);			//销毁准备层
+
+	void createPokerLayerCallback(cocos2d::Ref*);			//创建扑克层
+
+	void destroyPokerLayerCallback(cocos2d::Ref*);			//销毁扑克层
+
+	void createCallLandlordLayerCallback(cocos2d::Ref*);	//创建叫地主层
+
+	void destroyCallLandlordLayerCallback(cocos2d::Ref*);	//销毁叫地主层
 };
 
 #endif

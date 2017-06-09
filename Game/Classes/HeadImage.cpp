@@ -53,22 +53,22 @@ cocos2d::SpriteFrame* HeadImage::createSpriteFrameWithType(Type type_, Orientati
 	{
 		if (orientation_ == LEFT)
 		{
-			spriteFrame = s_spriteFrameCache->getSpriteFrameByName(headLandlordLeft);
+			spriteFrame = s_spriteFrameCache->getSpriteFrameByName(headLandlordRight);
 		}
 		else if (orientation_ == RIGHT)
 		{
-			spriteFrame = s_spriteFrameCache->getSpriteFrameByName(headLandlordRight);
+			spriteFrame = s_spriteFrameCache->getSpriteFrameByName(headLandlordLeft);
 		}
 	}
 	else if (type_ == FARMER)
 	{
 		if (orientation_ == LEFT)
 		{
-			spriteFrame = s_spriteFrameCache->getSpriteFrameByName(headFarmerLeft);
+			spriteFrame = s_spriteFrameCache->getSpriteFrameByName(headFarmerRight);
 		}
 		else if (orientation_ == RIGHT)
 		{
-			spriteFrame = s_spriteFrameCache->getSpriteFrameByName(headFarmerRight);
+			spriteFrame = s_spriteFrameCache->getSpriteFrameByName(headFarmerLeft);
 		}
 	}
 	return spriteFrame;

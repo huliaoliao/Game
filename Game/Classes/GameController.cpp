@@ -1,6 +1,7 @@
 #include "GameController.h"
 
 #include "Common.h"
+#include "CallLandlordState.h"
 #include "DealState.h"
 #include "GameScene.h"
 #include "ReadyState.h"
@@ -11,12 +12,19 @@ GameController::GameController()
 	this->_startState = new StartState(this);
 	this->_readyState = new ReadyState(this);
 	this->_dealState = new DealState(this);
+	this->_callLandlordState = new CallLandlordState(this);
 
 	this->_state = _startState;	//初始化状态为开始状态
+
+	initContent();
 }
 
 bool GameController::initContent()
 {
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(GameController::updateStateCallback, this),
+		UPDATE_GAME_STATE,
+		nullptr);
 
 	return true;
 }
@@ -42,6 +50,11 @@ State* GameController::getDealState() const
 	return _dealState;
 }
 
+State* GameController::getCalllLandlordState() const
+{
+	return _callLandlordState;
+}
+
 void GameController::setState(State* state_)
 {
 	this->_state = state_;
@@ -59,7 +72,7 @@ void GameController::start()
 
 	//这完全是解决上述问题的无法做法
 	auto scheduleVar = cocos2d::Director::getInstance()->getScheduler();
-	scheduleVar->schedule(schedule_selector(GameController::update), this, 0.0, false);
+	scheduleVar->schedule(schedule_selector(GameController::update), this, 1.0, false);
 }
 
 void GameController::run()
@@ -67,9 +80,11 @@ void GameController::run()
 	_state->handle();
 }
 
-void GameController::updateCallback(cocos2d::Ref*)
+void GameController::updateStateCallback(cocos2d::Ref*)
 {
 	_state->update();
+
+	this->run();
 }
 
 void GameController::update(float delta_)

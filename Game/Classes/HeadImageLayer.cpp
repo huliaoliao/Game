@@ -35,6 +35,11 @@ bool HeadImageLayer::init()
 		return false;
 	}
 
+	if (initContent() == false)
+	{
+		return false;
+	}
+
 	return true;
 }
 
@@ -63,8 +68,54 @@ bool HeadImageLayer::initView()
 	_holdPlayerHeadImage->setOrientation(HeadImage::LEFT);
 	_holdPlayerHeadImage->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);
 	_holdPlayerHeadImage->setPosition(
-		cocos2d::Point(winSize.width * 0.1, winSize.height * 0.4));
+		cocos2d::Point(winSize.width * 0.1, winSize.height * 0.3));
 	this->addChild(_holdPlayerHeadImage);
 
 	return true;
+}
+
+bool HeadImageLayer::initContent()
+{
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(HeadImageLayer::updateHolderHeadImageCallback, this),
+		UPDATE_HOLDER_HEADIMAGE,
+		nullptr);
+
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(HeadImageLayer::updateComputerOneHeadImageCallback, this),
+		UPDATE_COMPUTERONE_HEADIMAHE,
+		nullptr);
+
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(HeadImageLayer::updateComputerTwoHeadImageCallback, this),
+		UPDATE_COMPUTERTWO_HEADIMAGE,
+		nullptr);
+
+	return true;
+}
+
+void HeadImageLayer::updateHeadImage()
+{
+	_holdPlayerHeadImage->setHeadImageType(HeadImage::FARMER);
+	_computerOneHeadImage->setHeadImageType(HeadImage::FARMER);
+	_computerTwoHeadImage->setHeadImageType(HeadImage::FARMER);
+}
+
+
+void HeadImageLayer::updateHolderHeadImageCallback(cocos2d::Ref*)
+{
+	updateHeadImage();
+	_holdPlayerHeadImage->setHeadImageType(HeadImage::LEANDLORD);
+}
+
+void HeadImageLayer::updateComputerOneHeadImageCallback(cocos2d::Ref*)
+{
+	updateHeadImage();
+	_computerOneHeadImage->setHeadImageType(HeadImage::LEANDLORD);
+}
+
+void HeadImageLayer::updateComputerTwoHeadImageCallback(cocos2d::Ref*)
+{
+	updateHeadImage();
+	_computerTwoHeadImage->setHeadImageType(HeadImage::LEANDLORD);
 }

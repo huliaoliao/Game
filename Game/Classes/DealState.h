@@ -5,6 +5,7 @@
 */
 
 #include "State.h"
+#include "Poker.h"
 
 class GameController;
 
@@ -20,6 +21,11 @@ public:
 
 protected:
 	void updateStateCallback(cocos2d::Ref*);
+
+private:
+	void dealPokers(const std::vector<Poker>& randomPokers_);
+
+	void displayLandlordPokers(std::vector<Poker>& pokers_);
 
 private:
 	GameController* _gameController;

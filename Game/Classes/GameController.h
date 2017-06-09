@@ -19,6 +19,8 @@ public:
 
 	State* getDealState() const;
 
+	State* getCalllLandlordState() const;
+
 public:
 	void setState(State* state_);
 
@@ -37,7 +39,7 @@ private:
 	void update(float delta_);
 
 private:
-	void updateCallback(cocos2d::Ref*);	//切换至下一个状态回调
+	void updateStateCallback(cocos2d::Ref*);	//切换至下一个状态回调
 
 private:
 	State*				_state;
@@ -45,6 +47,7 @@ private:
 	State*				_startState;			//开始状态
 	State*				_readyState;			//准备状态
 	State*				_dealState;			//发牌状态
+	State*				_callLandlordState;//叫地主状态
 };
 
 #endif
