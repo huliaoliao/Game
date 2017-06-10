@@ -103,6 +103,9 @@
     <Filter Include="src\游戏\状态\出牌">
       <UniqueIdentifier>{ea81102e-0935-4ffc-8f3f-b8d48e5e71fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\游戏\扑克\出牌集合">
+      <UniqueIdentifier>{31579381-db02-4a05-b555-380816b11393}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -203,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ComputerPlayerInstanceOne.cpp">
       <Filter>src\游戏\玩家\玩家实例</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\OutPokers.cpp">
+      <Filter>src\游戏\扑克\出牌集合</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +328,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\OutPokerState.h">
       <Filter>src\游戏\状态\出牌</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\OutPokers.h">
+      <Filter>src\游戏\扑克\出牌集合</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PokerSetType.h">
+      <Filter>src\游戏\扑克</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
