@@ -9,8 +9,9 @@ Poker::Poker(Type type_, int value_ /* = 0 */)
 
 bool Poker::operator==(const Poker& poker_)
 {
-	return (this->type == poker_.type)
-		&& (this->value = poker_.value);
+	auto ret = (this->type == poker_.type)
+		&& (this->value == poker_.value);
+	return ret;
 }
 
 namespace std

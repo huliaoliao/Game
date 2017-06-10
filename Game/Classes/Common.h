@@ -34,6 +34,13 @@ const char CALLONEBTN[] = "image/game/calllandlord/btn_one.png";
 const char CALLTWOBTN[] = "image/game/calllandlord/btn_two.png";
 const char CALLTHREEBTN[] = "image/game/calllandlord/btn_three.png";
 
+const char HINT_BTN[] = "image/game/btn_hint.png";
+const char HINT_DISABLE_BTN[] = "image/game/btn_hint_disabled.png";
+const char OUTPOKER_BTN[] = "image/game/btn_out.png";
+const char OUTPOKER_DISABLE_BTN[] = "image/game/btn_out_disabled.png";
+const char PASS_BTN[] = "image/game/btn_pass.png";
+const char PASS_DISABLE_BTN[] = "image/game/btn_pass_disabled.png";
+
 const char headLandlordLeft[] = "landlord_boy_left.png";
 const char headLandlordRight[] = "landlord_boy_right.png";
 const char headFarmerLeft[] = "farmer_boy_left.png";
@@ -43,6 +50,8 @@ const char NOCALLSTATE[] = "flagcall_0.png";
 const char CALLONESTATE[] = "flagcall_1.png";
 const char CALLTWOSTATE[] = "flagcall_2.png";
 const char CALLTHREESTATE[] = "flagcall_3.png";
+
+const char PASS_IMAGE[] = "image/game/pass.png";
 
 const int COMMON_DIALOG_ZORDER = 1;
 
@@ -90,5 +99,15 @@ const std::string POKER_IMAGES = "image/game/poker/Joker.png";
 const std::string POKER_IMAGE_LIST = "image/game/poker/Joker.plist";
 const std::string CALL_LANDLORD_IMAGES = "image/game/calllandlord/call_landlord_state.png";
 const std::string CALL_LANDLORD_IMAGE_LIST = "image/game/calllandlord/call_landlord_state.plist";
+
+const std::string DESTROY_LAST_HOLDER_OUTPOKERS = "destroyLastHolderOutPokers";
+const std::string DISPLAY_HOLDER_OUTPOKERS = "displayHolderOutPokers";
+const std::string DESTROY_LAST_COMPUTER_ONE_OUTPOKERS = "destroyLastComputerOneOutPokers";
+const std::string DISPLAY_COMPUTER_ONE_OUTPOKERS = "displayComputerOneOutPokers";
+const std::string DESTROY_LAST_COMPUTER_TWO_OUTPOKERS = "destroyLastComputerTwoOutPokers";
+const std::string DISPLAY_COMPUTER_TWO_OUTPOKERS = "displayComputerTwoOutPokers";
+
+const std::string ADD_POKER_IN_HOLDER_POKERSWAITFOROUT = "addPokerInHolderPokersWaitForOut";	//在手动玩家准备出的牌中添加牌
+const std::string DELETE_POKER_IN_HOLDER_POKERSWAITFOROUT = "deletePokerInHolderPokersWaitForOut";	//在手动玩家准备出的牌中删除牌
 
 #endif

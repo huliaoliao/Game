@@ -26,3 +26,22 @@ void Player::setCallScore(int score_)
 {
 	this->_callScore = score_;
 }
+
+Player::Type Player::getPlayerType() const
+{
+	return _type;
+}
+
+void Player::setPlayerType(Type type_)
+{
+	this->_type = type_;
+}
+
+void Player::setPokersCanClick(bool canClick_)
+{
+	for (int i = 0; i < _holdPokers.size(); ++i)
+	{
+		auto pokerSprite = PokerController::getInstance()->genPokerSprite(_holdPokers.at(i));
+		pokerSprite->setCanClick(canClick_);
+	}
+}

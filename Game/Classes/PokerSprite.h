@@ -25,6 +25,22 @@ private:
 
 	bool initView();
 
+	bool initContent();
+
+public:
+	//将该牌上移，表示被点击
+	void selectedPokersOut();
+
+	//点击的牌再次点击，回到未点击位置
+	void selectedPokerBack();
+
+public:
+	//是否能被点击
+	CC_SYNTHESIZE(bool, canClick, CanClick);	
+	
+	//是否已选
+	CC_SYNTHESIZE(bool, isSelected, IsSelected);
+
 private:
 	cocos2d::Sprite* _pokerSprite;
 	Poker				 _poker;

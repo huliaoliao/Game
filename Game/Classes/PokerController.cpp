@@ -113,6 +113,11 @@ std::vector<PokerSprite*> PokerController::genPokerSprites(const cocos2d::Vector
 	return result;
 }
 
+PokerSprite* PokerController::genPokerSprite(Poker poker_)
+{
+	return s_pokersMap.at(poker_);
+}
+
 int PokerController::calcImageIndex(const Poker& poker_)
 {
 	int result = 0;

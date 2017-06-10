@@ -35,7 +35,7 @@ private:
 	void setLandlordDelayed(float delta_);
 
 	//对所有人的分数进行判断，决定地主
-	void dicideLandlord();
+	void decideLandlord();
 
 private:
 	void updateCallIndexCallback(cocos2d::Ref*);

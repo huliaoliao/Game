@@ -21,6 +21,8 @@ struct Poker : public cocos2d::Ref
 		BACK = 54,				//ÆË¿Ë±³Ãæ
 	};
 
+	Poker() = default;
+
 	Poker(Type type_, int value_ = 0);
 
 	bool operator==(const Poker& poker_);

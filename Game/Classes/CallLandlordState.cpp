@@ -67,7 +67,7 @@ void CallLandlordState::callLandlordDelayed(float delta_)
 	_players.at(_curCallIndex)->callLandlord();
 }
 
-void CallLandlordState::dicideLandlord()
+void CallLandlordState::decideLandlord()
 {
 	//找出叫分最高的人
 	int maxScore = 0;
@@ -81,6 +81,19 @@ void CallLandlordState::dicideLandlord()
 		{
 			maxScore = score;
 			landlordIndex = playerIndex;
+		}
+	}
+
+	//设置玩家类型（地主Or农民）
+	for (int i = 0; i < _players.size(); ++i)
+	{
+		if (i == landlordIndex)
+		{
+			_players.at(i)->setPlayerType(Player::LANDLORD);
+		}
+		else
+		{
+			_players.at(i)->setPlayerType(Player::FARMER);
 		}
 	}
 
@@ -160,15 +173,14 @@ void CallLandlordState::updateCallIndexCallback(cocos2d::Ref*)
 	if (_calledNum == _players.size())
 	{
 		//叫分结束，决定谁是地主
-		dicideLandlord();
+		decideLandlord();
 		return;		//上下两个return导致一个错误调试很久...
 	}
 	int lastCallIndex = _curCallIndex;
 	if (_players.at(lastCallIndex)->getCallScore() == _maxScore)
 	{
 		//已经有人叫到最高分，因此直接叫分结束，设置该人为地主
-		this->_landlordIndex = _landlordIndex;
-		setLandlord();
+		decideLandlord();
 		return;
 	}
 	_curCallIndex = (_curCallIndex + 1) % _players.size();
