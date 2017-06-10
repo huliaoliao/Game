@@ -7,8 +7,13 @@
 #include "ComputerPlayer.h"
 #include "Singleton.h"
 
-class ComputerPlayerInstanceOne : public Singleton<ComputerPlayer>
+class ComputerPlayerInstanceOne : private Singleton<ComputerPlayerInstanceOne>
 {
+public:
+	static ComputerPlayer* getInstance();
+
+private:
+	static ComputerPlayer _computerPlayer;
 };
 
 #endif

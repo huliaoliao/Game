@@ -140,8 +140,9 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\CallLandlordLayer.cpp" />
     <ClCompile Include="..\Classes\CallLandlordState.cpp" />
-    <ClCompile Include="..\Classes\Common.cpp" />
     <ClCompile Include="..\Classes\ComputerPlayer.cpp" />
+    <ClCompile Include="..\Classes\ComputerPlayerInstanceOne.cpp" />
+    <ClCompile Include="..\Classes\ComputerPlayerInstanceTwo.cpp" />
     <ClCompile Include="..\Classes\CustomServiceLayer.cpp" />
     <ClCompile Include="..\Classes\DealState.cpp" />
     <ClCompile Include="..\Classes\GameController.cpp" />
@@ -154,6 +155,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\LobbySceneTop.cpp" />
     <ClCompile Include="..\Classes\EncodeUtil.cpp" />
     <ClCompile Include="..\Classes\MusicUtil.cpp" />
+    <ClCompile Include="..\Classes\OutPokerState.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\HeadImageLayer.cpp" />
     <ClCompile Include="..\Classes\Poker.cpp" />
@@ -167,7 +169,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\ScalableMenuItemSprite.cpp" />
     <ClCompile Include="..\Classes\SetLayer.cpp" />
     <ClCompile Include="..\Classes\StartState.cpp" />
-    <ClCompile Include="..\Classes\State.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +193,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\EncodeUtil.h" />
     <ClInclude Include="..\Classes\MacroUtil.h" />
     <ClInclude Include="..\Classes\MusicUtil.h" />
+    <ClInclude Include="..\Classes\OutPokerState.h" />
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\HeadImageLayer.h" />
     <ClInclude Include="..\Classes\Poker.h" />

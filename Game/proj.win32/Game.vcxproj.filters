@@ -100,6 +100,9 @@
     <Filter Include="src\游戏\游戏场景\叫地主层">
       <UniqueIdentifier>{f0b65306-d688-4702-b15f-e03bd659f3cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\游戏\状态\出牌">
+      <UniqueIdentifier>{ea81102e-0935-4ffc-8f3f-b8d48e5e71fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -141,9 +144,6 @@
     <ClCompile Include="..\Classes\GameController.cpp">
       <Filter>src\游戏\游戏控制器</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\State.cpp">
-      <Filter>src\游戏\状态</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\ReadyState.cpp">
       <Filter>src\游戏\状态\准备</Filter>
     </ClCompile>
@@ -171,9 +171,6 @@
     <ClCompile Include="..\Classes\PokerLayer.cpp">
       <Filter>src\游戏\游戏场景\扑克层</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Common.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\ComputerPlayer.cpp">
       <Filter>src\游戏\玩家\电脑玩家</Filter>
     </ClCompile>
@@ -197,6 +194,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\CallLandlordLayer.cpp">
       <Filter>src\游戏\游戏场景\叫地主层</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\OutPokerState.cpp">
+      <Filter>src\游戏\状态\出牌</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ComputerPlayerInstanceTwo.cpp">
+      <Filter>src\游戏\玩家\玩家实例</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ComputerPlayerInstanceOne.cpp">
+      <Filter>src\游戏\玩家\玩家实例</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\CallLandlordLayer.h">
       <Filter>src\游戏\游戏场景\叫地主层</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\OutPokerState.h">
+      <Filter>src\游戏\状态\出牌</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

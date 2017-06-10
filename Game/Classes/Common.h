@@ -25,10 +25,6 @@ const char headImages[] = "image/game/headimage/head_image.png";
 const char headImageList[] = "image/game/headimage/head_image.plist";
 const char headBox[] = "image/game/headimage/head_box.png";
 const char noHead[] = "image/game/headimage/no_head.png";
-const char headLandlordLeft[] = "landlord_boy_left.png";
-const char headLandlordRight[] = "landlord_boy_right.png";
-const char headFarmerLeft[] = "farmer_boy_left.png";
-const char headFarmerRight[] = "farmer_boy_right.png";
 
 const char gameStateReady[] = "image/game/ready.png";
 const char gameStateReadyBtn[] = "image/game/btn_start.png";
@@ -37,6 +33,16 @@ const char NOCALLBTN[] = "image/game/calllandlord/btn_nocall.png";
 const char CALLONEBTN[] = "image/game/calllandlord/btn_one.png";
 const char CALLTWOBTN[] = "image/game/calllandlord/btn_two.png";
 const char CALLTHREEBTN[] = "image/game/calllandlord/btn_three.png";
+
+const char headLandlordLeft[] = "landlord_boy_left.png";
+const char headLandlordRight[] = "landlord_boy_right.png";
+const char headFarmerLeft[] = "farmer_boy_left.png";
+const char headFarmerRight[] = "farmer_boy_right.png";
+
+const char NOCALLSTATE[] = "flagcall_0.png";
+const char CALLONESTATE[] = "flagcall_1.png";
+const char CALLTWOSTATE[] = "flagcall_2.png";
+const char CALLTHREESTATE[] = "flagcall_3.png";
 
 const int COMMON_DIALOG_ZORDER = 1;
 
@@ -58,12 +64,27 @@ const std::string UPDATE_GAME_STATE = "updateGameState";		//更新游戏状态
 const std::string UPDATE_CALL_LANDLORD_INDEX = "updateCallLandlordIndex";	//更新叫地主顺序
 const std::string DISPLAY_CALL_LANDLORD_BTN = "displayCallLandlordBtn";			//显示手动玩家叫地主按钮
 
+//玩家叫分回调
+const std::string COMPUTER_ONE_NOCALL = "computerOneNoCall";
+const std::string COMPUTER_ONE_CALLONE = "computerOneCallOne";
+const std::string COMPUTER_ONE_CALLTWO = "computerOneCallTwo";
+const std::string COMPUTER_ONE_CALLTHREE = "computerOneCallThree";
+
+const std::string COMPUTER_TWO_NOCALL = "computerTwoNoCall";
+const std::string COMPUTER_TWO_CALLONE = "computerTwoCallOne";
+const std::string COMPUTER_TWO_CALLTWO = "computerTwoCallTwo";
+const std::string COMPUTER_TWO_CALLTHREE = "computerTwoCallThree";
+
+//显示玩家叫分回调
+const std::string DISPLAY_COMPUTE_ONE_CALLLANDLORD_STATE = "displayComputerOneCallState";
+const std::string DISPLAY_COMPUTE_TWO_CALLLANDLORD_STATE = "displayComputerTwoCallState";
+
 const std::string GAME_CONTROLLER_RUN = "gameControllerRun";	//游戏控制器运行
 const std::string DISPLAY_HOLDER_POKERS = "displayHolderPokers";	//显示手动玩家（自己）手中的牌
 const std::string DISPLAY_LANDLORD_POKERS = "displayLandlordPokers";	//显示预留给地主的牌
 const std::string UPDATE_HOLDER_HEADIMAGE = "updateHolderHeadImage";	//更新手动玩家头像为地主
 const std::string UPDATE_COMPUTERONE_HEADIMAHE = "updateComputerOneHeadImage";	//更新电脑玩家1头像为地主
-const std::string UPDATE_COMPUTERTWO_HEADIMAGE = "updateComputerOneHeadImage";	//更新电脑玩家2头像为地主
+const std::string UPDATE_COMPUTERTWO_HEADIMAGE = "updateComputerTwoHeadImage";	//更新电脑玩家2头像为地主
 
 const std::string POKER_IMAGES = "image/game/poker/Joker.png";
 const std::string POKER_IMAGE_LIST = "image/game/poker/Joker.plist";

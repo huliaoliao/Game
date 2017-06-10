@@ -4,6 +4,7 @@
 #include "CallLandlordState.h"
 #include "DealState.h"
 #include "GameScene.h"
+#include "OutPokerState.h"
 #include "ReadyState.h"
 #include "StartState.h"
 
@@ -13,6 +14,7 @@ GameController::GameController()
 	this->_readyState = new ReadyState(this);
 	this->_dealState = new DealState(this);
 	this->_callLandlordState = new CallLandlordState(this);
+	this->_outPokerState = new OutPokerState(this);
 
 	this->_state = _startState;	//初始化状态为开始状态
 
@@ -55,6 +57,11 @@ State* GameController::getCalllLandlordState() const
 	return _callLandlordState;
 }
 
+State* GameController::getOutPokerState() const
+{
+	return _outPokerState;
+}
+
 void GameController::setState(State* state_)
 {
 	this->_state = state_;
@@ -75,7 +82,7 @@ void GameController::start()
 	scheduleVar->schedule(schedule_selector(GameController::update), this, 1.0, false);
 }
 
-void GameController::run()
+void GameController::runState()
 {
 	_state->handle();
 }
@@ -83,8 +90,6 @@ void GameController::run()
 void GameController::updateStateCallback(cocos2d::Ref*)
 {
 	_state->update();
-
-	this->run();
 }
 
 void GameController::update(float delta_)
@@ -95,5 +100,5 @@ void GameController::update(float delta_)
 		scheduleVar->unschedule(schedule_selector(GameController::update), this);
 	}
 
-	this->run();
+	this->runState();
 }

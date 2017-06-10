@@ -24,6 +24,6 @@ void StartState::update()
 	_gameController->setState(_gameController->getReadyState());
 
 	//运行下一个状态
-	_gameController->run();
+	_gameController->runState();
 }
 

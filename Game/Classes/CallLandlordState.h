@@ -22,13 +22,17 @@ public:
 private:
 	bool initContent();
 
-	void callLandlord();
+	void callLandlordDelayed();
+
+	void callLandlordDelayed(float delta_);
 
 	//更新头像
 	void updateHeadImage(int landlordIndex_);
 
 	//设置地主
-	void setLandlord(int _index);
+	void setLandlord();
+
+	void setLandlordDelayed(float delta_);
 
 	//对所有人的分数进行判断，决定地主
 	void dicideLandlord();
@@ -41,8 +45,10 @@ private:
 
 	cocos2d::Vector<Player*> _players;
 
+	int	_startIndex;
 	int	_curCallIndex;
 	int	_calledNum;
+	int	_landlordIndex;
 	const int _maxScore;
 };
 

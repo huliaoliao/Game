@@ -22,5 +22,5 @@ void ReadyState::update()
 	//更新至下一个状态，发牌状态
 	this->_gameController->setState(_gameController->getDealState());
 
-	_gameController->run();
+	_gameController->runState();
 }

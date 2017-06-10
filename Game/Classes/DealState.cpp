@@ -42,7 +42,7 @@ void DealState::update()
 	this->_gameController->setState(_gameController->getCalllLandlordState());
 
 	//运行下一个状态
-	_gameController->run();
+	_gameController->runState();
 }
 
 void DealState::updateStateCallback(cocos2d::Ref*)

@@ -9,6 +9,11 @@
 
 class ComputerPlayerInstanceTwo : public Singleton < ComputerPlayer >
 {
+public:
+	static ComputerPlayer* getInstance();
+
+private:
+	static ComputerPlayer _computerPlayer;
 };
 
 #endif

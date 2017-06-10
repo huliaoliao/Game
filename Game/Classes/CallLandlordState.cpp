@@ -18,7 +18,8 @@ CallLandlordState::CallLandlordState(GameController* gameController_)
 	_players.pushBack(ComputerPlayerInstanceTwo::getInstance());
 
 	//随机随着开始叫地主的玩家
-	_curCallIndex = rand() % _players.size();
+	_startIndex = rand() % _players.size();
+	_curCallIndex = _startIndex;
 
 	initContent();
 }
@@ -30,12 +31,16 @@ void CallLandlordState::handle()
 		CREATE_CALL_LANDLORD_LAYER, nullptr);
 
 	//开始叫地主循环
-	callLandlord();
+	callLandlordDelayed();
 }
 
 void CallLandlordState::update()
 {
+	//更新游戏状态为下一个状态，出牌状态
+	this->_gameController->setState(_gameController->getOutPokerState());
 
+	//运行下一个状态
+	_gameController->runState();
 }
 
 bool CallLandlordState::initContent()
@@ -47,8 +52,18 @@ bool CallLandlordState::initContent()
 	return true;
 }
 
-void CallLandlordState::callLandlord()
+void CallLandlordState::callLandlordDelayed()
 {
+	auto scheduleVar = cocos2d::Director::getInstance()->getScheduler();
+	scheduleVar->schedule(schedule_selector(CallLandlordState::callLandlordDelayed), this, 1.0, false);
+}
+
+void CallLandlordState::callLandlordDelayed(float delta_)
+{
+	//每个玩家仅执行一次，故unschdule
+	auto scheduleVar = cocos2d::Director::getInstance()->getScheduler();
+	scheduleVar->unschedule(schedule_selector(CallLandlordState::callLandlordDelayed), this);
+
 	_players.at(_curCallIndex)->callLandlord();
 }
 
@@ -56,25 +71,41 @@ void CallLandlordState::dicideLandlord()
 {
 	//找出叫分最高的人
 	int maxScore = 0;
-	int landlordIndex = 0;
-	for (int i = 0; i < _players.size(); ++i)
+	int landlordIndex = _startIndex;
+	//从随机开始的顺序遍历
+	for (int i = 0, playerIndex = _startIndex; i < _players.size();
+		++i, playerIndex = (playerIndex + 1) % _players.size())
 	{
-		int score = _players.at(i)->getCallScore();
+		int score = _players.at(playerIndex)->getCallScore();
 		if (score > maxScore)
 		{
 			maxScore = score;
-			landlordIndex = i;
+			landlordIndex = playerIndex;
 		}
 	}
+
+	this->_landlordIndex = landlordIndex;
+
 	//cocos2d::NotificationCenter::getInstance()->postNotification(DESTROY_CALL_LANDLORD_LAYER, nullptr);
 	//获取地主获得者后的操作（预留的地主牌发给该获得者）
-	setLandlord(landlordIndex);
+	setLandlord();
 }
 
-void CallLandlordState::setLandlord(int _index)
+void CallLandlordState::setLandlord()
 {
+	auto scheduleVar = cocos2d::Director::getInstance()->getScheduler();
+	//延迟2秒，避免最后一个叫分的玩家的叫分状态无法看到
+	scheduleVar->schedule(schedule_selector(CallLandlordState::setLandlordDelayed), this, 2.0, false);
+}
+
+void CallLandlordState::setLandlordDelayed(float delta_)
+{
+	//仅执行一次，故unschdule
+	auto scheduleVar = cocos2d::Director::getInstance()->getScheduler();
+	scheduleVar->unschedule(schedule_selector(CallLandlordState::setLandlordDelayed), this);
+
 	//更新头像
-	updateHeadImage(_index);
+	updateHeadImage(_landlordIndex);
 
 	//将预留的地主牌发给地主获得者
 	auto pokers = PokerController::getInstance()->getRandomPokers();
@@ -82,7 +113,7 @@ void CallLandlordState::setLandlord(int _index)
 	for (int i = pokers.size() - 3; i < pokers.size(); ++i)
 	{
 		//landlordPokers.push_back(pokers[i]);
-		_players.at(_index)->pushPoker(pokers[i]);
+		_players.at(_landlordIndex)->pushPoker(pokers[i]);
 	}
 
 	//手动玩家刷新一次需要显示的牌
@@ -90,6 +121,9 @@ void CallLandlordState::setLandlord(int _index)
 
 	//销毁叫地主层，进入出牌状态
 	cocos2d::NotificationCenter::getInstance()->postNotification(DESTROY_CALL_LANDLORD_LAYER);
+
+	//进入下一个游戏状态
+	this->update();
 }
 
 void CallLandlordState::updateHeadImage(int landlordIndex_)
@@ -110,6 +144,18 @@ void CallLandlordState::updateHeadImage(int landlordIndex_)
 
 void CallLandlordState::updateCallIndexCallback(cocos2d::Ref*)
 {
+	//显示玩家叫分信息
+	if (_curCallIndex == 1)
+	{
+		cocos2d::NotificationCenter::getInstance()->postNotification(
+			DISPLAY_COMPUTE_ONE_CALLLANDLORD_STATE, nullptr);
+	}
+	else if (_curCallIndex == 2)
+	{
+		cocos2d::NotificationCenter::getInstance()->postNotification(
+			DISPLAY_COMPUTE_TWO_CALLLANDLORD_STATE, nullptr);
+	}
+
 	_calledNum++;
 	if (_calledNum == _players.size())
 	{
@@ -121,9 +167,11 @@ void CallLandlordState::updateCallIndexCallback(cocos2d::Ref*)
 	if (_players.at(lastCallIndex)->getCallScore() == _maxScore)
 	{
 		//已经有人叫到最高分，因此直接叫分结束，设置该人为地主
-		setLandlord(lastCallIndex);
+		this->_landlordIndex = _landlordIndex;
+		setLandlord();
 		return;
 	}
 	_curCallIndex = (_curCallIndex + 1) % _players.size();
-	callLandlord();
+
+	callLandlordDelayed();
 }

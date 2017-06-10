@@ -21,12 +21,14 @@ public:
 
 	State* getCalllLandlordState() const;
 
+	State* getOutPokerState() const;
+
 public:
 	void setState(State* state_);
 
 	void start();	//开始游戏状态运行
 
-	void run();		//运行当前状态
+	void runState();		//运行当前状态
 
 	void updateState();	//切换至下一个状态
 
@@ -48,6 +50,7 @@ private:
 	State*				_readyState;			//准备状态
 	State*				_dealState;			//发牌状态
 	State*				_callLandlordState;//叫地主状态
+	State*				_outPokerState;		//出牌状态
 };
 
 #endif
