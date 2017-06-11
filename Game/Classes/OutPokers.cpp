@@ -1,18 +1,18 @@
 #include "OutPokers.h"
 
 OutPokers::OutPokers(Player* pokerOwner_, Poker poker_, size_t totalLen_, 
-	PokerSetType pokersType_)
+	PokersType pokersType_)
 	: _outPokersOwner(pokerOwner_), _lowestPoker(poker_), _totalLen(totalLen_),
 	_pokersType(pokersType_)
 {
 }
 
-PokerSetType OutPokers::getPokersType() const
+PokersType OutPokers::getPokersType() const
 {
 	return this->_pokersType;
 }
 
-void OutPokers::setPokersType(PokerSetType pokersType_)
+void OutPokers::setPokersType(PokersType pokersType_)
 {
 	this->_pokersType = pokersType_;
 }

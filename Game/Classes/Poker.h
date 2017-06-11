@@ -19,6 +19,7 @@ struct Poker : public cocos2d::Ref
 		BLACKJOKER = 52,	//小王
 		REDJOKER = 53,		//大王
 		BACK = 54,				//扑克背面
+		NONE,						//不存在的牌型（用于返回结果表示所需的牌不存在）
 	};
 
 	Poker() = default;

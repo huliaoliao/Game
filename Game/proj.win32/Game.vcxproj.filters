@@ -106,6 +106,9 @@
     <Filter Include="src\游戏\扑克\出牌集合">
       <UniqueIdentifier>{31579381-db02-4a05-b555-380816b11393}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\游戏\游戏规则">
+      <UniqueIdentifier>{d4d9b7e3-44ce-48d3-ae98-16e292f826aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -209,6 +212,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\OutPokers.cpp">
       <Filter>src\游戏\扑克\出牌集合</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameRule.cpp">
+      <Filter>src\游戏\游戏规则</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -334,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\PokerSetType.h">
       <Filter>src\游戏\扑克</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameRule.h">
+      <Filter>src\游戏\游戏规则</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -146,6 +146,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\CustomServiceLayer.cpp" />
     <ClCompile Include="..\Classes\DealState.cpp" />
     <ClCompile Include="..\Classes\GameController.cpp" />
+    <ClCompile Include="..\Classes\GameRule.cpp" />
     <ClCompile Include="..\Classes\GameScene.cpp" />
     <ClCompile Include="..\Classes\HeadImage.cpp" />
     <ClCompile Include="..\Classes\HolderPlayer.cpp" />
@@ -183,6 +184,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\CustomServiceLayer.h" />
     <ClInclude Include="..\Classes\DealState.h" />
     <ClInclude Include="..\Classes\GameController.h" />
+    <ClInclude Include="..\Classes\GameRule.h" />
     <ClInclude Include="..\Classes\GameScene.h" />
     <ClInclude Include="..\Classes\HeadImage.h" />
     <ClInclude Include="..\Classes\HolderPlayer.h" />

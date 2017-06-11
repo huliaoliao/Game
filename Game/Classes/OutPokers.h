@@ -14,12 +14,12 @@ class Player;
 class OutPokers : public cocos2d::Ref
 {
 public:
-	OutPokers(Player* pokerOwner_, Poker poker_, size_t totalLen_, PokerSetType pokersType_);
+	OutPokers(Player* pokerOwner_, Poker poker_, size_t totalLen_, PokersType pokersType_);
 
 public:
-	PokerSetType getPokersType() const;
+	PokersType getPokersType() const;
 
-	void setPokersType(PokerSetType pokersType_);
+	void setPokersType(PokersType pokersType_);
 
 	size_t getTotalLen() const;
 
@@ -32,7 +32,7 @@ public:
 	Player* getPokerOwner() const;
 
 private:
-	PokerSetType	_pokersType;	//当前的牌型
+	PokersType	_pokersType;	//当前的牌型
 	size_t				_totalLen;		//整个牌面的长度，例如334455的长度是6
 	Poker				_lowestPoker;	//整个牌面牌值最小的牌
 	Player*				_outPokersOwner;	//当前扑克持有者
