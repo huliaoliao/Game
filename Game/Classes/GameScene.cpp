@@ -4,6 +4,7 @@
 #include "Common.h"
 #include "GameController.h"
 #include "HeadImageLayer.h"
+#include "OverLayer.h"
 #include "PokerLayer.h"
 #include "ReadyStateLayer.h"
 #include "ui/UIScale9Sprite.h"
@@ -108,6 +109,18 @@ bool GameScene::initContent()
 		callfuncO_selector(GameScene::destroyCallLandlordLayerCallback, this),
 		DESTROY_CALL_LANDLORD_LAYER, nullptr);
 
+	//注册添加结束层消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(GameScene::createOverLayerCallback, this),
+		CREATE_OVER_LAYER,
+		nullptr);
+
+	//注册销毁结束层消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(GameScene::destroyOverLayerCallback, this),
+		DESTROY_OVER_LAYER,
+		nullptr);
+
 	return true;
 }
 
@@ -158,3 +171,16 @@ void GameScene::destroyCallLandlordLayerCallback(cocos2d::Ref*)
 	//销毁叫地主层
 	CallLandlordLayer::destroyLayer();
 }
+
+void GameScene::createOverLayerCallback(cocos2d::Ref*)
+{
+	//创建结束层
+	OverLayer::createLayer();
+}
+
+void GameScene::destroyOverLayerCallback(cocos2d::Ref*)
+{
+	//销毁结束层
+	OverLayer::destroyLayer();
+}
+

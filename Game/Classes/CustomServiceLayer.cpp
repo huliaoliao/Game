@@ -117,7 +117,7 @@ bool CustomServiceLayer::initView()
 
 	//拨打客服电话按钮
 	auto callCustomServiceBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create(dialogBtnImage),
+		cocos2d::Sprite::create(DIALOG_BTN),
 		nullptr,
 		CC_CALLBACK_1(CustomServiceLayer::callServiceCallback, this));
 	callCustomServiceBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);
@@ -134,7 +134,7 @@ bool CustomServiceLayer::initView()
 
 	//意见反馈按钮
 	auto feedbackBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create(dialogBtnImage),
+		cocos2d::Sprite::create(DIALOG_BTN),
 		nullptr,
 		CC_CALLBACK_1(CustomServiceLayer::feedbackCallback, this));
 	feedbackBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);

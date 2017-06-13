@@ -15,6 +15,8 @@ public:
 	static GameController* getInstance();
 
 public:
+	State* getStartState() const;
+
 	State* getReadyState() const;
 
 	State* getDealState() const;

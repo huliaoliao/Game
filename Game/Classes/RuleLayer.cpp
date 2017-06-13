@@ -87,7 +87,7 @@ bool RuleLayer::initView()
 
 	//µ×²¿OK°´Å¥
 	auto btnOK = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create(dialogBtnImage),
+		cocos2d::Sprite::create(DIALOG_BTN),
 		nullptr,
 		CC_CALLBACK_1(RuleLayer::backCallback, this));
 	btnOK->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);

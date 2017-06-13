@@ -118,6 +118,9 @@
     <Filter Include="src\游戏\状态\结束">
       <UniqueIdentifier>{64536c6c-af63-4b53-8491-d3ed30e33e4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\游戏\游戏场景\游戏结束层">
+      <UniqueIdentifier>{89c6931f-7562-41ce-8018-ffb41a392335}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -233,6 +236,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\OverState.cpp">
       <Filter>src\游戏\状态\结束</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\OverLayer.cpp">
+      <Filter>src\游戏\游戏场景\游戏结束层</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -370,6 +376,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\OverState.h">
       <Filter>src\游戏\状态\结束</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\OverLayer.h">
+      <Filter>src\游戏\游戏场景\游戏结束层</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

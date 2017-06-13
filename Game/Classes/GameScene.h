@@ -37,6 +37,10 @@ private:
 	void createCallLandlordLayerCallback(cocos2d::Ref*);	//创建叫地主层
 
 	void destroyCallLandlordLayerCallback(cocos2d::Ref*);	//销毁叫地主层
+
+	void createOverLayerCallback(cocos2d::Ref*);		//创建结束层
+
+	void destroyOverLayerCallback(cocos2d::Ref*);	//销毁结束层
 };
 
 #endif

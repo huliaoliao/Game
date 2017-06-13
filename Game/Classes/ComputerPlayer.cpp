@@ -68,13 +68,6 @@ void ComputerPlayer::outPokers(OutPokers* lastOutPokers_)
 		}
 	}
 
-	//所有牌出完了
-	if (_holdPokers.size() == 0)
-	{
-		//TODO
-		return;
-	}
-
 	CountDownController::getInstance()->startCountDown(this);
 
 // 	//显示要打出的牌

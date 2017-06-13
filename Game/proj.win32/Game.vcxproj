@@ -160,6 +160,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\MusicUtil.cpp" />
     <ClCompile Include="..\Classes\OutPokers.cpp" />
     <ClCompile Include="..\Classes\OutPokerState.cpp" />
+    <ClCompile Include="..\Classes\OverLayer.cpp" />
     <ClCompile Include="..\Classes\OverState.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\HeadImageLayer.cpp" />
@@ -203,6 +204,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\MusicUtil.h" />
     <ClInclude Include="..\Classes\OutPokers.h" />
     <ClInclude Include="..\Classes\OutPokerState.h" />
+    <ClInclude Include="..\Classes\OverLayer.h" />
     <ClInclude Include="..\Classes\OverState.h" />
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\HeadImageLayer.h" />

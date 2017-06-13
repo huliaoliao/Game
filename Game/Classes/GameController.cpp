@@ -44,6 +44,11 @@ GameController* GameController::getInstance()
 	return &getIns();
 }
 
+State* GameController::getStartState() const
+{
+	return _startState;
+}
+
 State* GameController::getReadyState() const
 {
 	return _readyState;

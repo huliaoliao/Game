@@ -7,7 +7,7 @@ const char* const pressBtnMusic = "music/btnpress.mp3";
 
 const char dialogBgImage[] = "lobby/dialog_bg.png";
 const char dialogTopBgImage[] = "lobby/dialog_bgTop.png";
-const char dialogBtnImage[] = "lobby/dialog_btn.png";
+const char DIALOG_BTN[] = "lobby/dialog_btn.png";
 const char setDialogEffect[] = "lobby/set/setting-effect.png";
 const char setDialogMusic[] = "lobby/set/setting-music.png";
 const char setDialogProgress[] = "lobby/set/setting-progress.png";
@@ -68,6 +68,8 @@ const std::string CREATE_POKER_LAYER = "createPokerLayer";			//´´½¨ÆË¿Ë²ã
 const std::string DESTROY_POKER_LAYER = "destroyPokerLayer";	//Ïú»ÙÆË¿Ë²ã
 const std::string CREATE_CALL_LANDLORD_LAYER = "createCallLandlordLayer";	//´´½¨½ÐµØÖ÷²ã
 const std::string DESTROY_CALL_LANDLORD_LAYER = "destroyCallLandlordLayer";	//Ïú»Ù½ÐµØÖ÷²ã
+const std::string CREATE_OVER_LAYER = "createOverLayer";	//´´½¨½áÊø²ã
+const std::string DESTROY_OVER_LAYER = "destroyOverLayer";	//Ïú»Ù½áÊø²ã
 
 const std::string UPDATE_GAME_STATE = "updateGameState";		//¸üÐÂÓÎÏ·×´Ì¬
 const std::string UPDATE_CALL_LANDLORD_INDEX = "updateCallLandlordIndex";	//¸üÐÂ½ÐµØÖ÷Ë³Ðò
@@ -134,5 +136,14 @@ const std::string HOLDER_START_COUNTDOWN = "holderStartCountDown";	//ÊÖ¶¯Íæ¼Ò¼ÆÊ
 const std::string HOLDER_STOP_COUNTDOWN = "holderStopCountDown";	//ÊÖ¶¯Íæ¼Ò¼ÆÊ±Æ÷Í£Ö¹¼ÆÊ±
 const std::string COMPUTER_ONE_START_COUNTDOWN = "computerOneStartCountDown";	//µçÄÔÍæ¼Ò1¼ÆÊ±Æ÷¿ªÊ¼¼ÆÊ±
 const std::string COMPUTER_TWO_START_COUNTDOWN = "computerTwoStartCountDown";	//µçÄÔÍæ¼Ò2¼ÆÊ±Æ÷¿ªÊ¼¼ÆÊ±
+
+const std::string LOST_ANIMATION_IMAGES = "image/game/animation/lost/lost.png";
+const std::string LOST_ANIMATION_IMAGE_LIST = "image/game/animation/lost/lost.plist";
+const std::string WIN_ANIMATION_IMAGES = "image/game/animation/win/win.png";
+const std::string WIN_ANIMATION_IMAGE_LIST = "image/game/animation/win/win.plist";
+
+const std::string RUN_WIN_ANIMATION = "runWinAnimation";	//ÔËÐÐÊ¤Àû¶¯»­
+const std::string RUN_LOST_ANIMATION = "runLostAnimation";	//ÔËÐÐÊ§°Ü¶¯»­
+const std::string RETURN_TO_LOBBY = "returnToLobby";	//·µ»ØÓÎÏ·´óÌü
 
 #endif
