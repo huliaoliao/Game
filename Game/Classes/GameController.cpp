@@ -5,6 +5,7 @@
 #include "DealState.h"
 #include "GameScene.h"
 #include "OutPokerState.h"
+#include "OverState.h"
 #include "ReadyState.h"
 #include "StartState.h"
 
@@ -15,6 +16,7 @@ GameController::GameController()
 	this->_dealState = new DealState(this);
 	this->_callLandlordState = new CallLandlordState(this);
 	this->_outPokerState = new OutPokerState(this);
+	this->_overState = new OverState(this);
 
 	this->_state = _startState;	//初始化状态为开始状态
 
@@ -60,6 +62,11 @@ State* GameController::getCalllLandlordState() const
 State* GameController::getOutPokerState() const
 {
 	return _outPokerState;
+}
+
+State* GameController::getOverState() const
+{
+	return _overState;
 }
 
 void GameController::setState(State* state_)

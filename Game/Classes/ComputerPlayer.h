@@ -11,7 +11,9 @@ class ComputerPlayer : public Player
 public:
 	virtual void callLandlord();
 
-	virtual void outPokers(const OutPokers* outPokers_);
+	virtual void outPokers(OutPokers* lastOutPokers_);
+
+	virtual void outPokersCallback();
 };
 
 #endif

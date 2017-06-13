@@ -100,8 +100,14 @@ const std::string POKER_IMAGE_LIST = "image/game/poker/Joker.plist";
 const std::string CALL_LANDLORD_IMAGES = "image/game/calllandlord/call_landlord_state.png";
 const std::string CALL_LANDLORD_IMAGE_LIST = "image/game/calllandlord/call_landlord_state.plist";
 
+const std::string COUNTDOWN_IMAGES = "image/game/clock/clock.png";
+const std::string COUNTDOWN_IMAGE_LIST = "image/game/clock/clock.plist";
+const std::string COUNTDOWN_NUMS = "image/game/clock/clock_num.png";
+
+const std::string PASS_HINT = "image/game/passhint.png";	//提示没有打得过上家的牌图片
+
 const std::string DESTROY_LAST_HOLDER_OUTPOKERS = "destroyLastHolderOutPokers";
-const std::string DISPLAY_HOLDER_OUTPOKERS = "displayHolderOutPokers";
+const std::string DISPLAY_HOLDER_OUTPOKERS = "displayHolderOutPokers";//显示手动玩家要出的牌
 const std::string DESTROY_LAST_COMPUTER_ONE_OUTPOKERS = "destroyLastComputerOneOutPokers";
 const std::string DISPLAY_COMPUTER_ONE_OUTPOKERS = "displayComputerOneOutPokers";
 const std::string DESTROY_LAST_COMPUTER_TWO_OUTPOKERS = "destroyLastComputerTwoOutPokers";
@@ -109,5 +115,24 @@ const std::string DISPLAY_COMPUTER_TWO_OUTPOKERS = "displayComputerTwoOutPokers"
 
 const std::string ADD_POKER_IN_HOLDER_POKERSWAITFOROUT = "addPokerInHolderPokersWaitForOut";	//在手动玩家准备出的牌中添加牌
 const std::string DELETE_POKER_IN_HOLDER_POKERSWAITFOROUT = "deletePokerInHolderPokersWaitForOut";	//在手动玩家准备出的牌中删除牌
+
+const std::string UPDATE_OUT_ORDER = "updateOutOrder";	//更新出牌顺序
+const std::string DISPLAY_HOLDER_OUTPOKERS_BTNS = "displayHolderOutPokersBtns";	//显示手动玩家出牌相关按钮
+//const std::string IS_HOLDER_POKERS_CAN_OUT = "isHolderPokersCanOut";	//手动玩家选择的牌是否可以出
+const std::string OUTPOKERS_BTN_ENABLED = "outPokersBtnEnabled";	//出牌按钮可以按下
+const std::string OUTPOKERS_BTN_DISABLED = "outPokersBtnDisabled";	//出牌按钮不可按
+const std::string HINT_BTN_ENABLED = "hintBtnEnabled";		//提示按钮可按
+const std::string HOLDER_OUTPOKERS = "holderOutPokers";		//手动玩家出牌
+const std::string UPDATE_LAST_OUTPOKERS = "updateLastOutPokers";	//更新上一手牌
+const std::string CLICK_HINT_BTN = "clickHintBtn";	//点击提示按钮
+const std::string MAKE_HINT_POKERS_SELECTED = "makeHintPokersSelected";	//令提示按钮被选中（表示待出）
+const std::string SHOW_PASSHINT = "showPassHint";	
+
+// const std::string START_COUNTDOWN = "startCountDown";		//开始倒计时
+// const std::string STOP_COUNTDOWN = "stopCountDown";	//停止倒计时
+const std::string HOLDER_START_COUNTDOWN = "holderStartCountDown";	//手动玩家计时器开始计时
+const std::string HOLDER_STOP_COUNTDOWN = "holderStopCountDown";	//手动玩家计时器停止计时
+const std::string COMPUTER_ONE_START_COUNTDOWN = "computerOneStartCountDown";	//电脑玩家1计时器开始计时
+const std::string COMPUTER_TWO_START_COUNTDOWN = "computerTwoStartCountDown";	//电脑玩家2计时器开始计时
 
 #endif

@@ -33,19 +33,31 @@ public:
 
 	void setPokersCanClick(bool canClick_);
 
+	bool isWinner() const;	//根据是否出完牌判断是否是赢家
+
 public:
 	//叫地主
 	virtual void callLandlord() = 0;
 
 	//出牌
-	virtual void outPokers(const OutPokers* outPokers_) = 0;
+	virtual void outPokers(OutPokers* lastOutPokers_) = 0;
+
+	//出牌回调（提供给计时器计时结束调用）
+	virtual void outPokersCallback() = 0;
+
+	//根据上一手玩家出的牌查找合适的牌
+	virtual std::vector<Poker> searchOutPokers(OutPokers* lastOutPokers_);
+
+	//根据出的牌，创建一个OutPokers对象，用于记录上一手牌信息
+	OutPokers* createLastOutPokers(const std::vector<Poker>& pokers_);
 
 protected:
-	std::vector<Poker>	 _holdPokers;		//持有的牌
+	std::vector<Poker>	_holdPokers;		//持有的牌
 	std::vector<Poker>	 _outedPokers;	//当前打出的牌
+	//cocos2d::Vector<Poker*>	_outedPokersForPost;	//当前打出的牌，用于消息传递，避免使用局部变量传递消息被回收
 	int							 _callScore;
 	Type							 _type;				//玩家类型
-	OutPokers*				_lastOutPokers;	//上一手扑克，初始化为nullptr，轮到其出牌时获取，出完牌后必须置nullptr
+	//OutPokers*				_lastOutPokers;	//上一手扑克，初始化为nullptr，轮到其出牌时获取，出完牌后必须置nullptr
 };
 
 #endif

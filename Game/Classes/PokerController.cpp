@@ -101,12 +101,12 @@ void PokerController::randomPokers()
 	}
 }
 
-std::vector<PokerSprite*> PokerController::genPokerSprites(const cocos2d::Vector<Poker*>& pokers_)
+std::vector<PokerSprite*> PokerController::genPokerSprites(const std::vector<Poker>& pokers_)
 {
 	std::vector<PokerSprite*> result;
 	for (int i = 0; i < pokers_.size(); ++i)
 	{
-		auto sprite = s_pokersMap.at(*pokers_.at(i));
+		auto sprite = s_pokersMap.at(pokers_.at(i));
 		result.push_back(sprite);
 	}
 

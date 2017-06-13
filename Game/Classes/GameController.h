@@ -23,6 +23,8 @@ public:
 
 	State* getOutPokerState() const;
 
+	State* getOverState() const;
+
 public:
 	void setState(State* state_);
 
@@ -51,6 +53,7 @@ private:
 	State*				_dealState;			//·¢ÅÆ×´Ì¬
 	State*				_callLandlordState;//½ĞµØÖ÷×´Ì¬
 	State*				_outPokerState;		//³öÅÆ×´Ì¬
+	State*				_overState;			//½áÊø×´Ì¬
 };
 
 #endif

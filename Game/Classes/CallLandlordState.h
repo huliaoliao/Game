@@ -43,7 +43,7 @@ private:
 private:
 	GameController* _gameController;
 
-	cocos2d::Vector<Player*> _players;
+	std::vector<Player*> _players;
 
 	int	_startIndex;
 	int	_curCallIndex;

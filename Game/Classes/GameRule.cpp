@@ -6,7 +6,7 @@
 
 #define COMPARE_POKER_GREATER(a, b) util::PokerUtil::pokerCmpWithoutType(a, b)
 #define COMPARE_POKER_EQUAL(a, b) !util::PokerUtil::pokerCmpWithoutType(a, b) && \
-	util::PokerUtil::pokerCmpWithoutType(b, a)
+	!util::PokerUtil::pokerCmpWithoutType(b, a)
 
 bool GameRule::isSingle(const std::vector<Poker>& pokers_)
 {
@@ -360,10 +360,10 @@ bool GameRule::isKingBomb(const std::vector<Poker>& pokers_)
 
 	if (isKing(pokers_.at(0)) && isKing(pokers_.at(1)))
 	{
-		return false;
+		return true;
 	}
 
-	return true;
+	return false;
 }
 
 bool GameRule::isKing(const Poker& poker_)
@@ -386,6 +386,7 @@ bool GameRule::isExistBomb(const std::vector<Poker>& pokers_)
 		{
 			return true;
 		}
+		index++;
 	}
 	return false;
 }
@@ -433,9 +434,9 @@ std::pair<std::vector<Poker>, std::vector<Poker>>
 	std::vector<Poker> pokers = pokers_;
 	std::vector<Poker> triplePokers;
 	int index = 0;
-	while (index <= pokers.size() - 3)
+	while (index <= ((int)pokers.size() - 3))	//pokers.size()是size_t类型，如果小于3,-3后将不是负数而是一个很大的数，由此导致错误
 	{
-		auto tmp = std::vector<Poker>(pokers_.begin() + index, pokers_.begin() + index + 3);
+		auto tmp = std::vector<Poker>(pokers.begin() + index, pokers.begin() + index + 3);
 		if (isTriple(tmp) == true)
 		{
 			for (int i = 0; i < tmp.size(); ++i)
@@ -876,7 +877,7 @@ std::vector<Poker> GameRule::searchKingBomb(const std::vector<Poker>& pokers_)
 	}
 
 	//两张王肯定是整个牌面的第一第二张，
-	//因此直接将前两张牌放入一个Vector，调用isKingBomb函数来判断
+	//因此直接将前两张牌放入一个vector，调用isKingBomb函数来判断
 	std::vector<Poker> tmp{ pokers_.at(0), pokers_.at(1) };
 
 	if (isKingBomb(tmp))
@@ -1238,9 +1239,9 @@ PokersType GameRule::analysePokersType(std::vector<Poker> pokers_)
 			return TRIPLE;
 		}
 
-		if (isTripleStraightWithSingle(pokers_))
+		if (isTripleWithSingle(pokers_))
 		{
-			return TRIPLESTRAIGHTWITHSINGLE;
+			return TRIPLEWITHSINGLE;
 		}
 
 		if (isBomb(pokers_))

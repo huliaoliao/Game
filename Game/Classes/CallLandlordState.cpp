@@ -13,9 +13,9 @@ CallLandlordState::CallLandlordState(GameController* gameController_)
 {
 	srand((unsigned)time(nullptr));
 
-	_players.pushBack(HolderPlayerInstance::getInstance());
-	_players.pushBack(ComputerPlayerInstanceOne::getInstance());
-	_players.pushBack(ComputerPlayerInstanceTwo::getInstance());
+	_players.push_back(HolderPlayerInstance::getInstance());
+	_players.push_back(ComputerPlayerInstanceOne::getInstance());
+	_players.push_back(ComputerPlayerInstanceTwo::getInstance());
 
 	//随机随着开始叫地主的玩家
 	_startIndex = rand() % _players.size();

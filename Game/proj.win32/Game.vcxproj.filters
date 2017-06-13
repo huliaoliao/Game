@@ -109,6 +109,15 @@
     <Filter Include="src\游戏\游戏规则">
       <UniqueIdentifier>{d4d9b7e3-44ce-48d3-ae98-16e292f826aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\游戏\计时器">
+      <UniqueIdentifier>{9b3c8f83-e320-4b61-90af-109d07b57c00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\计时器\计时控制器">
+      <UniqueIdentifier>{0ccc5217-79c8-46eb-8a2f-cfae6768a0e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\游戏\状态\结束">
+      <UniqueIdentifier>{64536c6c-af63-4b53-8491-d3ed30e33e4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -215,6 +224,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameRule.cpp">
       <Filter>src\游戏\游戏规则</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CountDown.cpp">
+      <Filter>src\游戏\计时器</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CountDownController.cpp">
+      <Filter>src\游戏\计时器\计时控制器</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\OverState.cpp">
+      <Filter>src\游戏\状态\结束</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +361,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameRule.h">
       <Filter>src\游戏\游戏规则</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CountDown.h">
+      <Filter>src\游戏\计时器</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CountDownController.h">
+      <Filter>src\游戏\计时器\计时控制器</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\OverState.h">
+      <Filter>src\游戏\状态\结束</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

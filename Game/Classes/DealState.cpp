@@ -22,11 +22,11 @@ void DealState::handle()
 		CREATE_POKER_LAYER, nullptr);
 
 	//获取洗好的牌
-	auto randomPokers = PokerController::getInstance()->getRandomPokers();
+	_randomPokers = PokerController::getInstance()->getRandomPokers();
 	//发牌
-	dealPokers(randomPokers);
+	dealPokers(_randomPokers);
 	//显示预留给地主的牌
-	displayLandlordPokers(randomPokers);
+	displayLandlordPokers(_randomPokers);
 
 	//在场景中手动玩家的牌（利用消息机制传递数据）
 	HolderPlayerInstance::getInstance()->displayPokers();
@@ -79,10 +79,11 @@ void DealState::dealPokers(const std::vector<Poker>& randomPokers_)
 void DealState::displayLandlordPokers(std::vector<Poker>& pokers_)
 {
 	//获取留给地主的牌
-	cocos2d::Vector<Poker*> landlordPokers;
+	static std::vector<Poker> landlordPokers;	//用于消息传递的变量必须是非局部变量
+	landlordPokers.clear();
 	for (int i = pokers_.size() - 3; i < pokers_.size(); ++i)
 	{
-		landlordPokers.pushBack(&pokers_.at(i));
+		landlordPokers.push_back(pokers_.at(i));
 	}
 
 	cocos2d::NotificationCenter::getInstance()->postNotification(DISPLAY_LANDLORD_POKERS,

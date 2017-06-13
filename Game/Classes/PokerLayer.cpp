@@ -1,6 +1,10 @@
 #include "PokerLayer.h"
 
 #include "Common.h"
+#include "CountDown.h"
+#include "CountDownController.h"
+#include "HolderPlayerInstance.h"
+#include "Player.h"
 #include "Poker.h"
 #include "PokerController.h"
 #include "ScalableMenuItemSprite.h"
@@ -8,6 +12,7 @@
 const std::string layerName = "pokerLayer";
 
 const float MIMIUM_CARDS_OVERLAPWIDTH = 20.0f;
+const float COUNTDOWN_SCALE = 0.5f;
 
 void PokerLayer::createLayer()
 {
@@ -90,28 +95,58 @@ bool PokerLayer::initView()
 	passBtn->setPosition(cocos2d::Point(btnPos.x - btnWidth - btnInterval, btnPos.y));
 
 	//提示按钮
-	auto hintBtn = ScalableMenuItemSprite::create(
+	_hintBtn = ScalableMenuItemSprite::create(
 		cocos2d::Sprite::create(HINT_BTN),
 		nullptr,
 		CC_CALLBACK_1(PokerLayer::hintBtnCallback, this));
-	hintBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	hintBtn->setPosition(cocos2d::Point(btnPos.x, btnPos.y));
-	hintBtn->setDisabledImage(cocos2d::Sprite::create(HINT_DISABLE_BTN));	//提示按钮不可按状态
-	hintBtn->setEnabled(false);	//提示按钮开始不可点击
+	_hintBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+	_hintBtn->setPosition(cocos2d::Point(btnPos.x, btnPos.y));
+	_hintBtn->setDisabledImage(cocos2d::Sprite::create(HINT_DISABLE_BTN));	//提示按钮不可按状态
+	_hintBtn->setEnabled(false);	//提示按钮开始不可点击
 
 	//出牌按钮
-	auto outPokersBtn = ScalableMenuItemSprite::create(
+	_outPokersBtn = ScalableMenuItemSprite::create(
 		cocos2d::Sprite::create(OUTPOKER_BTN),
 		nullptr,
 		CC_CALLBACK_1(PokerLayer::outPokersBtnCallback, this));
-	outPokersBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	outPokersBtn->setPosition(cocos2d::Point(btnPos.x + btnWidth + btnInterval, btnPos.y));
-	outPokersBtn->setDisabledImage(cocos2d::Sprite::create(OUTPOKER_DISABLE_BTN));	//出牌按钮不可按状态
-	outPokersBtn->setEnabled(false);
+	_outPokersBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+	_outPokersBtn->setPosition(cocos2d::Point(btnPos.x + btnWidth + btnInterval, btnPos.y));
+	_outPokersBtn->setDisabledImage(cocos2d::Sprite::create(OUTPOKER_DISABLE_BTN));	//出牌按钮不可按状态
+	_outPokersBtn->setEnabled(false);
 
-	_btnMenu = cocos2d::Menu::create(passBtn, hintBtn, outPokersBtn, nullptr);
+	_btnMenu = cocos2d::Menu::create(passBtn, _hintBtn, _outPokersBtn, nullptr);
 	_btnMenu->setPosition(cocos2d::Point::ZERO);
+	_btnMenu->setVisible(false);		//初始化时不可见
 	this->addChild(_btnMenu);
+
+	//三位玩家的计时器
+	_holderCountDown = CountDown::create();
+	_holderCountDown->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+	_holderCountDown->setPosition(holderPos);
+	_holderCountDown->setVisible(false);
+	_holderCountDown->setScale(COUNTDOWN_SCALE);
+	this->addChild(_holderCountDown);
+
+	_computerOneCountDown = CountDown::create();
+	_computerOneCountDown->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+	_computerOneCountDown->setPosition(computerOnePos);
+	_computerOneCountDown->setVisible(false);
+	_computerOneCountDown->setScale(COUNTDOWN_SCALE);
+	this->addChild(_computerOneCountDown);
+
+	_computerTwoCountDown = CountDown::create();
+	_computerTwoCountDown->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+	_computerTwoCountDown->setPosition(computerTwoPos);
+	_computerTwoCountDown->setVisible(false);
+	_computerTwoCountDown->setScale(COUNTDOWN_SCALE);
+	this->addChild(_computerTwoCountDown);
+
+	//没有打得过上家牌的提示
+	_passHintSprite = cocos2d::Sprite::create(PASS_HINT);
+	_passHintSprite->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+	_passHintSprite->setPosition(cocos2d::Point(winSize.width * 0.5, winSize.height * 0.4));
+	_passHintSprite->setVisible(false);
+	this->addChild(_passHintSprite);
 
 	return true;
 }
@@ -138,7 +173,7 @@ bool PokerLayer::initContent()
 
 	//注册显示玩家该局打出的牌消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::displayHolderOutPokersCallbacl, this),
+		callfuncO_selector(PokerLayer::displayHolderOutPokersCallback, this),
 		DISPLAY_HOLDER_OUTPOKERS,
 		nullptr);
 
@@ -164,6 +199,66 @@ bool PokerLayer::initContent()
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
 		callfuncO_selector(PokerLayer::displayComputerTwoOutPokersCallback, this),
 		DISPLAY_COMPUTER_TWO_OUTPOKERS,
+		nullptr);
+
+	//注册显示手动玩家出牌相关按钮的消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(PokerLayer::displayHolderOutPokersBtnsCallback),
+		DISPLAY_HOLDER_OUTPOKERS_BTNS,
+		nullptr);
+
+	//注册令出牌按钮可按的消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(PokerLayer::outPokersBtnEnabledCallback, this),
+		OUTPOKERS_BTN_ENABLED,
+		nullptr);
+
+	//注册令出牌按钮不可按的消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(PokerLayer::outPokersBtnDisabledCallback, this),
+		OUTPOKERS_BTN_DISABLED,
+		nullptr);
+
+	//注册提示按钮可按的消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(PokerLayer::hintBtnEnabledCallback, this),
+		HINT_BTN_ENABLED,
+		nullptr);
+
+	//注册显示"没有打得过上家的牌"提示的消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(PokerLayer::showPassHintCallback, this),
+		SHOW_PASSHINT,
+		nullptr);
+
+	//注册手动玩家计时器开始计时的消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(PokerLayer::holderStartCountDownCallback, this),
+		HOLDER_START_COUNTDOWN,
+		nullptr);
+
+	//注册手动玩家计时器停止计时的消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(PokerLayer::holderStopCountDownCallback, this),
+		HOLDER_STOP_COUNTDOWN,
+		nullptr);
+
+	//注册电脑玩家1计时器开始计时的消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(PokerLayer::computerOneStartCountDownCallback, this),
+		COMPUTER_ONE_START_COUNTDOWN,
+		nullptr);
+
+	//注册电脑玩家2计时器开始计时的消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(PokerLayer::computerTwoStartCountDownCallback, this),
+		COMPUTER_TWO_START_COUNTDOWN,
+		nullptr);
+
+	//注册显示提示按钮点击后令提示的扑克选中的消息
+	cocos2d::NotificationCenter::getInstance()->addObserver(this,
+		callfuncO_selector(PokerLayer::makeHintPokersSelectedCallback, this),
+		MAKE_HINT_POKERS_SELECTED,
 		nullptr);
 
 	return true;
@@ -271,10 +366,8 @@ void PokerLayer::onTouchEnded(cocos2d::Touch *touch_, cocos2d::Event *unusedEven
 	_holderClickedPokerSprites.clear();
 }
 
-std::vector<PokerSprite*> PokerLayer::createPokerSprites(cocos2d::Ref* sender_)
+std::vector<PokerSprite*> PokerLayer::createPokerSprites(const std::vector<Poker>& pokers)
 {
-	const auto pokers = *reinterpret_cast<cocos2d::Vector<Poker*>*>(sender_);
-
 	//由于一个Sprite不能被addChild两次，这里将显示的地主预留牌精灵或者打出的牌设置成一个clone获得的值
 	const auto tmp = PokerController::getInstance()->genPokerSprites(pokers);
 	std::vector<PokerSprite*> pokerSprites;
@@ -332,7 +425,7 @@ void PokerLayer::displayPokers(const std::vector<PokerSprite*>& pokers_, float d
 
 void PokerLayer::displayHolderPokersCallback(cocos2d::Ref* sender_)
 {
-	const auto pokers = *reinterpret_cast<cocos2d::Vector<Poker*>*>(sender_);
+	const auto pokers = *reinterpret_cast<std::vector<Poker>*>(sender_);
 
 	//两次无变化，直接返回
 	if (_lastHolderPokerSprites.size() == pokers.size())
@@ -342,16 +435,22 @@ void PokerLayer::displayHolderPokersCallback(cocos2d::Ref* sender_)
 
 	for (int i = 0; i < pokers.size(); ++i)
 	{
-		cocos2d::log("%d : %d\n", pokers.at(i)->type, pokers.at(i)->value);
+		cocos2d::log("%d : %d\n", pokers.at(i).type, pokers.at(i).value);
 	}
-	const auto pokerSprites = PokerController::getInstance()->genPokerSprites(pokers);
 
 	//需要将上次显示的牌给销毁
 	for (int i = 0; i < _lastHolderPokerSprites.size(); ++i)
 	{
 		_lastHolderPokerSprites.at(i)->removeFromParent();
 	}
+
+	const auto pokerSprites = PokerController::getInstance()->genPokerSprites(pokers);
 	_lastHolderPokerSprites = pokerSprites;
+
+	if (pokerSprites.size() == 0)
+	{
+		return;
+	}
 
 	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
 	float displayPokerMaxWidth =  winSize.width * 5.0 / 6.0;
@@ -364,7 +463,14 @@ void PokerLayer::displayHolderPokersCallback(cocos2d::Ref* sender_)
 
 void PokerLayer::displayLandlordPokersCallback(cocos2d::Ref* sender_)
 {
-	auto pokerSprites = createPokerSprites(sender_);
+	const auto pokers = *reinterpret_cast<std::vector<Poker>*>(sender_);
+
+	if (sender_ == nullptr || pokers.size() == 0)
+	{
+		CCASSERT(1 == 0, "Landlord Pokers is empty!");
+	}
+
+	auto pokerSprites = createPokerSprites(pokers);
 
 	const float SCALE = 0.7f;
 
@@ -389,7 +495,7 @@ void PokerLayer::destroyHolderLastOutPokersCallback(cocos2d::Ref* sender_)
 	_lastHolderOutPokersSprites.clear();
 }
 
-void PokerLayer::displayHolderOutPokersCallbacl(cocos2d::Ref* sender_)
+void PokerLayer::displayHolderOutPokersCallback(cocos2d::Ref* sender_)
 {
 	//如果没有出牌，那么显示不出
 	if (sender_ == nullptr)
@@ -401,7 +507,16 @@ void PokerLayer::displayHolderOutPokersCallbacl(cocos2d::Ref* sender_)
 
 	CCASSERT(sender_ != nullptr, "sender_ is nullptr!");
 
-	auto pokerSprites = createPokerSprites(sender_);
+	const auto pokers = *reinterpret_cast<std::vector<Poker>*>(sender_);
+
+	if (pokers.size() == 0)
+	{
+		//显示不出
+		_holderPassSprite->setVisible(true);
+		return;
+	}
+
+	auto pokerSprites = createPokerSprites(pokers);
 
 	//把当前出的牌记录下来
 	_lastHolderOutPokersSprites = pokerSprites;
@@ -409,7 +524,7 @@ void PokerLayer::displayHolderOutPokersCallbacl(cocos2d::Ref* sender_)
 	const float SCALE = 0.7f;
 
 	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	float displayPokerMaxWidth = 192;
+	float displayPokerMaxWidth = 240;
 	float displayPokerMiddleX = winSize.width / 2;
 	float displayPokerStartX = displayPokerMiddleX - displayPokerMaxWidth / 2.0f;
 	float displayPokerY = winSize.height * 0.4f;
@@ -440,14 +555,23 @@ void PokerLayer::displayComputerOneOutPokersCallback(cocos2d::Ref* sender_)
 
 	CCASSERT(sender_ != nullptr, "sender_ is nullptr!");
 
-	auto pokerSprites = createPokerSprites(sender_);
+	const auto pokers = *reinterpret_cast<std::vector<Poker>*>(sender_);
+
+	if (pokers.size() == 0)
+	{
+		//显示不出按钮
+		_computerOnePassSprite->setVisible(true);
+		return;
+	}
+
+	auto pokerSprites = createPokerSprites(pokers);
 
 	_lastComputerOneOutPokersSprites = pokerSprites;
 
 	const float SCALE = 0.7f;
 
 	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	float displayPokerMaxWidth = 192;
+	float displayPokerMaxWidth = 240;
 	float displayPokerMiddleX = winSize.width * 0.7f;
 	float displayPokerStartX = displayPokerMiddleX - displayPokerMaxWidth / 2.0f;
 	float displayPokerY = winSize.height * 0.72f;
@@ -478,14 +602,22 @@ void PokerLayer::displayComputerTwoOutPokersCallback(cocos2d::Ref* sender_)
 
 	CCASSERT(sender_ != nullptr, "sender_ is nullptr!");
 
-	auto pokerSprites = createPokerSprites(sender_);
+	const auto pokers = *reinterpret_cast<std::vector<Poker>*>(sender_);
+	if (pokers.size() == 0)
+	{
+		//显示不出按钮
+		_computerTwoPassSprite->setVisible(true);
+		return;
+	}
+
+	auto pokerSprites = createPokerSprites(pokers);
 
 	_lastComputerTwoOutPokersSprites = pokerSprites;
 
 	const float SCALE = 0.7f;
 
 	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	float displayPokerMaxWidth = 192;
+	float displayPokerMaxWidth = 240;
 	float displayPokerMiddleX = winSize.width * 0.3f;
 	float displayPokerStartX = displayPokerMiddleX - displayPokerMaxWidth / 2.0f;
 	float displayPokerY = winSize.height * 0.72f;
@@ -493,17 +625,114 @@ void PokerLayer::displayComputerTwoOutPokersCallback(cocos2d::Ref* sender_)
 		displayPokerY, false, SCALE);
 }
 
+void PokerLayer::displayHolderOutPokersBtnsCallback(cocos2d::Ref*)
+{
+	//显示出牌相关按钮
+	_btnMenu->setVisible(true);
+}
+
 void PokerLayer::passBtnCallback(cocos2d::Ref* sender_)
 {
+	//点击出牌按钮后，倒计时器停止计时并隐藏
+	CountDownController::getInstance()->stopCountDown(HolderPlayerInstance::getInstance());
+	//恢复按钮至默认状态（出牌和提示不可按，所有按钮不可见）
+	_outPokersBtn->setEnabled(false);
+	_hintBtn->setEnabled(false);
+	_btnMenu->setVisible(false);
+	_passHintSprite->setVisible(false);
 
+	//传递空指针，表示不出牌
+	cocos2d::NotificationCenter::getInstance()->postNotification(DISPLAY_HOLDER_OUTPOKERS, nullptr);
+	//更新出牌顺序
+	cocos2d::NotificationCenter::getInstance()->postNotification(UPDATE_OUT_ORDER, nullptr);
 }
 
 void PokerLayer::outPokersBtnCallback(cocos2d::Ref* sender_)
 {
-
+	//点击出牌按钮后，倒计时器停止计时并隐藏
+	CountDownController::getInstance()->stopCountDown(HolderPlayerInstance::getInstance());
+	//恢复按钮至默认状态（出牌和提示不可按，所有按钮不可见）
+	_outPokersBtn->setEnabled(false);
+	_hintBtn->setEnabled(false);
+	_btnMenu->setVisible(false);
+	_passHintSprite->setVisible(false);
+	cocos2d::NotificationCenter::getInstance()->postNotification(HOLDER_OUTPOKERS, nullptr);
 }
 
 void PokerLayer::hintBtnCallback(cocos2d::Ref* sender_)
 {
+	cocos2d::NotificationCenter::getInstance()->postNotification(CLICK_HINT_BTN, nullptr);
+}
 
+void PokerLayer::outPokersBtnEnabledCallback(cocos2d::Ref*)
+{
+	_outPokersBtn->setEnabled(true);
+}
+
+void PokerLayer::outPokersBtnDisabledCallback(cocos2d::Ref*)
+{
+	_outPokersBtn->setEnabled(false);
+}
+
+void PokerLayer::hintBtnEnabledCallback(cocos2d::Ref*)
+{
+	_hintBtn->setEnabled(true);
+}
+
+void PokerLayer::holderStartCountDownCallback(cocos2d::Ref* sender_)
+{
+	if (sender_ != nullptr)
+	{
+		auto player = reinterpret_cast<Player*>(sender_);
+		//std::function<void(void)> function = CC_CALLBACK_0(Player::outPokersCallback, player);
+		std::function<void(void)> function = [=](){
+			passBtnCallback(nullptr);
+		};
+		_holderCountDown->setCallbackFunc(function);
+	}
+	_holderCountDown->startCountDown();
+}
+
+void PokerLayer::holderStopCountDownCallback(cocos2d::Ref* sender_)
+{
+	_holderCountDown->stopCountDown();
+}
+
+void PokerLayer::computerOneStartCountDownCallback(cocos2d::Ref* sender_)
+{
+	if (sender_ != nullptr)
+	{
+		auto player = reinterpret_cast<Player*>(sender_);
+		std::function<void(void)> function = CC_CALLBACK_0(Player::outPokersCallback, player);
+		_computerOneCountDown->setCallbackFunc(function);
+		_computerOneCountDown->setCountDownUpper(2.0f);
+	}
+	_computerOneCountDown->startCountDown();
+}
+
+void PokerLayer::computerTwoStartCountDownCallback(cocos2d::Ref* sender_)
+{
+	if (sender_ != nullptr)
+	{
+		auto player = reinterpret_cast<Player*>(sender_);
+		std::function<void(void)> function = CC_CALLBACK_0(Player::outPokersCallback, player);
+		_computerTwoCountDown->setCallbackFunc(function);
+		_computerTwoCountDown->setCountDownUpper(2.0f);
+	}
+	_computerTwoCountDown->startCountDown();
+}
+
+void PokerLayer::makeHintPokersSelectedCallback(cocos2d::Ref* sender_)
+{
+	const auto pokers = *reinterpret_cast<std::vector<Poker>*>(sender_);
+	auto pokerSprites = PokerController::getInstance()->genPokerSprites(pokers);
+	for (int i = 0; i < pokerSprites.size(); ++i)
+	{
+		pokerSprites.at(i)->selectedPokersOut();	//将该张牌上移，表示被选中
+	}
+}
+
+void PokerLayer::showPassHintCallback(cocos2d::Ref* sender_)
+{
+	_passHintSprite->setVisible(true);
 }

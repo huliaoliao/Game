@@ -22,7 +22,7 @@ public:
 	std::vector<Poker> getRandomPokers();
 
 	//扑克精灵生成器，给定Poker生成对应的精灵
-	std::vector<PokerSprite*> genPokerSprites(const cocos2d::Vector<Poker*>& pokers_);
+	std::vector<PokerSprite*> genPokerSprites(const std::vector<Poker>& pokers_);
 
 	PokerSprite* genPokerSprite(Poker poker_);
 

@@ -29,6 +29,8 @@ private:
 
 private:
 	GameController* _gameController;
+
+	std::vector<Poker>	_randomPokers;
 };
 
 #endif

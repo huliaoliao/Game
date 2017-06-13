@@ -143,6 +143,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\ComputerPlayer.cpp" />
     <ClCompile Include="..\Classes\ComputerPlayerInstanceOne.cpp" />
     <ClCompile Include="..\Classes\ComputerPlayerInstanceTwo.cpp" />
+    <ClCompile Include="..\Classes\CountDown.cpp" />
+    <ClCompile Include="..\Classes\CountDownController.cpp" />
     <ClCompile Include="..\Classes\CustomServiceLayer.cpp" />
     <ClCompile Include="..\Classes\DealState.cpp" />
     <ClCompile Include="..\Classes\GameController.cpp" />
@@ -158,6 +160,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\MusicUtil.cpp" />
     <ClCompile Include="..\Classes\OutPokers.cpp" />
     <ClCompile Include="..\Classes\OutPokerState.cpp" />
+    <ClCompile Include="..\Classes\OverState.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\HeadImageLayer.cpp" />
     <ClCompile Include="..\Classes\Poker.cpp" />
@@ -181,6 +184,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\ComputerPlayer.h" />
     <ClInclude Include="..\Classes\ComputerPlayerInstanceOne.h" />
     <ClInclude Include="..\Classes\ComputerPlayerInstanceTwo.h" />
+    <ClInclude Include="..\Classes\CountDown.h" />
+    <ClInclude Include="..\Classes\CountDownController.h" />
     <ClInclude Include="..\Classes\CustomServiceLayer.h" />
     <ClInclude Include="..\Classes\DealState.h" />
     <ClInclude Include="..\Classes\GameController.h" />
@@ -198,6 +203,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\MusicUtil.h" />
     <ClInclude Include="..\Classes\OutPokers.h" />
     <ClInclude Include="..\Classes\OutPokerState.h" />
+    <ClInclude Include="..\Classes\OverState.h" />
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\HeadImageLayer.h" />
     <ClInclude Include="..\Classes\Poker.h" />
