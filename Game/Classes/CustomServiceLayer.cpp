@@ -88,7 +88,7 @@ bool CustomServiceLayer::initView()
 	dialogBg->addChild(dialogBgTop);
 
 	//顶部标题
-	auto titleTTF = cocos2d::LabelTTF::create(util::GBToUTF8("客服"), "微软雅黑", 34);
+	auto titleTTF = cocos2d::LabelTTF::create(util::GBToUTF8("客服"), "Arial", 34);
 	titleTTF->setColor(cocos2d::Color3B(0xff, 0xff, 0xff));
 	titleTTF->setPosition(cocos2d::Point(dialogBgTop->getContentSize() / 2));
 	dialogBgTop->addChild(titleTTF);
@@ -127,7 +127,7 @@ bool CustomServiceLayer::initView()
 	dialogBg->addChild(callCustomServiceMenu);
 
 	//拨打客服电话按钮文本内容
-	auto callCustomServiceTTF = cocos2d::LabelTTF::create(util::GBToUTF8("拨打电话"), "微软雅黑", 32);
+	auto callCustomServiceTTF = cocos2d::LabelTTF::create(util::GBToUTF8("拨打电话"), "Arial", 32);
 	callCustomServiceTTF->setColor(cocos2d::Color3B(0x68, 0x2f, 0x2b));
 	callCustomServiceTTF->setPosition(cocos2d::Point(callCustomServiceBtn->getContentSize() / 2));
 	callCustomServiceBtn->addChild(callCustomServiceTTF);
@@ -144,7 +144,7 @@ bool CustomServiceLayer::initView()
 	dialogBg->addChild(feedbackMenu);
 
 	//意见反馈按钮文本内容
-	auto feedbackTTF = cocos2d::LabelTTF::create(util::GBToUTF8("意见反馈"), "微软雅黑", 32);
+	auto feedbackTTF = cocos2d::LabelTTF::create(util::GBToUTF8("意见反馈"), "Arial", 32);
 	feedbackTTF->setColor(cocos2d::Color3B(0x68, 0x2f, 0x2b));
 	feedbackTTF->setPosition(cocos2d::Point(feedbackBtn->getContentSize() / 2));
 	feedbackBtn->addChild(feedbackTTF);

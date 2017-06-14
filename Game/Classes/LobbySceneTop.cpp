@@ -55,7 +55,7 @@ bool LobbySceneTop::initView()
 
 	//Íæ¼ÒÃû³Æ
 	std::string playerName = util::strongGBToUTF8("¹ÈË¿´ÓÔÆ");
-	auto playerNameText = cocos2d::LabelTTF::create(playerName, "Î¢ÈíÑÅºÚ", 18);
+	auto playerNameText = cocos2d::LabelTTF::create(playerName, "Arial", 18);
 	playerNameText->setColor(cocos2d::Color3B(0xF4, 0xE0, 0xDF));
 	playerNameText->setAnchorPoint(cocos2d::Vec2::ANCHOR_TOP_LEFT);
 	playerNameText->setPosition(cocos2d::Point(headBgSprite->getPosition()) +
@@ -64,7 +64,7 @@ bool LobbySceneTop::initView()
 
 	//Íæ¼ÒID
 	auto playerID = "ID:123456";
-	auto playerIDText = cocos2d::LabelTTF::create(playerID, "Î¢ÈíÑÅºÚ", 18);
+	auto playerIDText = cocos2d::LabelTTF::create(playerID, "Arial", 18);
 	playerIDText->setColor(cocos2d::Color3B(0xF4, 0xE0, 0xDF));
 	playerIDText->setAnchorPoint(cocos2d::Vec2::ANCHOR_TOP_LEFT);
 	playerIDText->setPosition(playerNameText->getPosition() + 

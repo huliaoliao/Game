@@ -52,7 +52,7 @@ bool LobbySceneMiddle::initView()
 	//显示内容
 	std::string showContent = "欢迎来到单机斗地主!";
 	auto showContentTTF = cocos2d::LabelTTF::create(util::strongGBToUTF8(showContent.c_str()),
-		"微软雅黑", 27);
+		"Arial", 27);
 	showContentTTF->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);
 	showContentTTF->setPosition(cocos2d::Point(marqueeBg->getContentSize().width / 2, 0));
 	clipper->addChild(showContentTTF);

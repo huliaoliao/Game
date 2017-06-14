@@ -68,7 +68,7 @@ bool RuleLayer::initView()
 	dialogBg->addChild(dialogTopBg);
 
 	//对话框顶部标题
-	auto dialogTitleTTF = cocos2d::LabelTTF::create(util::GBToUTF8("玩法说明"), "微软雅黑", 34);
+	auto dialogTitleTTF = cocos2d::LabelTTF::create(util::GBToUTF8("玩法说明"), "Arial", 34);
 	dialogTitleTTF->setColor(cocos2d::Color3B(0xff, 0xff, 0xff));
 	dialogTitleTTF->setPosition(cocos2d::Point(dialogTopBg->getContentSize() / 2));
 	dialogTopBg->addChild(dialogTitleTTF);
@@ -97,7 +97,7 @@ bool RuleLayer::initView()
 	dialogBg->addChild(btnOkMenu);
 
 	//OK按钮标题内容
-	auto btnTTF = cocos2d::LabelTTF::create(util::GBToUTF8("确 定"), "微软雅黑", 34);
+	auto btnTTF = cocos2d::LabelTTF::create(util::GBToUTF8("确 定"), "Arial", 34);
 	btnTTF->setColor(cocos2d::Color3B(0x68, 0x2f, 0x2b));
 	btnTTF->setPosition(btnOK->getContentSize() / 2);
 	btnOK->addChild(btnTTF);
@@ -151,7 +151,7 @@ bool RuleLayer::initListView()
 	_dialogMiddleBg->addChild(ruleListView, 2);
 
 	const std::string rule = "游戏规则说明";
-	auto ruleTTF = cocos2d::LabelTTF::create(util::GBToUTF8(rule.c_str()), "微软雅黑", 30);
+	auto ruleTTF = cocos2d::LabelTTF::create(util::GBToUTF8(rule.c_str()), "Arial", 30);
 	ruleTTF->setDimensions(cocos2d::Size(ruleListView->getContentSize().width, 
 		ruleTTF->getContentSize().height));	//设置文字显示区域
 	ruleTTF->setHorizontalAlignment(cocos2d::TextHAlignment::LEFT);//左对齐

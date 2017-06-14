@@ -110,7 +110,7 @@ bool SetLayer::initView()
 	dialogBg->addChild(dialogBgTop);
 
 	//¶¥²¿±êÌâ
-	auto titleTTF = cocos2d::LabelTTF::create(util::GBToUTF8("Éè	ÖÃ"), "Î¢ÈíÑÅºÚ", 34);
+	auto titleTTF = cocos2d::LabelTTF::create(util::GBToUTF8("Éè	ÖÃ"), "Arial", 34);
 	titleTTF->setColor(cocos2d::Color3B(0xff, 0xff, 0xff));
 	titleTTF->setPosition(cocos2d::Point(dialogBgTop->getContentSize() / 2));
 	dialogBgTop->addChild(titleTTF);
@@ -149,7 +149,7 @@ bool SetLayer::initView()
 	dialogBg->addChild(quiteGameMenu);
 
 	//ÍË³öÓÎÏ·°´Å¥ÎÄ±¾ÄÚÈÝ
-	auto quitGameTTF = cocos2d::LabelTTF::create(util::GBToUTF8("ÍË³öÓÎÏ·"), "Î¢ÈíÑÅºÚ", 32);
+	auto quitGameTTF = cocos2d::LabelTTF::create(util::GBToUTF8("ÍË³öÓÎÏ·"), "Arial", 32);
 	quitGameTTF->setColor(cocos2d::Color3B(0x68, 0x2f, 0x2b));
 	quitGameTTF->setPosition(cocos2d::Point(quitGameBtn->getContentSize() / 2));
 	quitGameBtn->addChild(quitGameTTF);
@@ -166,7 +166,7 @@ bool SetLayer::initView()
 	dialogBg->addChild(switchAccountMenu);
 
 	//ÇÐ»»ÕËºÅ°´Å¥»Øµ÷º¯Êý
-	auto switchAccountTTF = cocos2d::LabelTTF::create(util::GBToUTF8("ÇÐ»»ÕËºÅ"), "Î¢ÈíÑÅºÚ", 32);
+	auto switchAccountTTF = cocos2d::LabelTTF::create(util::GBToUTF8("ÇÐ»»ÕËºÅ"), "Arial", 32);
 	switchAccountTTF->setColor(cocos2d::Color3B(0x68, 0x2f, 0x2b));
 	switchAccountTTF->setPosition(cocos2d::Point(switchAccountBtn->getContentSize() / 2));
 	switchAccountBtn->addChild(switchAccountTTF);

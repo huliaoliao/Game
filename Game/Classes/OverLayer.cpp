@@ -77,7 +77,7 @@ bool OverLayer::initView()
 
 	//返回按钮标题
 	auto btnTTF = cocos2d::LabelTTF::create(util::strongGBToUTF8("返回游戏大厅"),
-		"微软雅黑", 32);
+		"Arial", 32);
 	btnTTF->setColor(cocos2d::Color3B(0x68, 0x2f, 0x2b));
 	btnTTF->setPosition(cocos2d::Point(_returnToLobbyBtn->getContentSize() / 2));
 	_returnToLobbyBtn->addChild(btnTTF);
