@@ -126,61 +126,61 @@ bool CallLandlordLayer::initContent()
 {
 	//注册显示手动玩家叫地主按钮
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordLayer::displayCallLandlordBtnCallback, this),
+		callfuncO_selector(CallLandlordLayer::displayCallLandlordBtnCallback),
 		DISPLAY_CALL_LANDLORD_BTN,
 		nullptr);
 
 	//电脑玩家1叫分回调（包含四种叫分状态）
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordLayer::computerOneNoCallCallback, this),
+		callfuncO_selector(CallLandlordLayer::computerOneNoCallCallback),
 		COMPUTER_ONE_NOCALL,
 		nullptr);
 
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordLayer::computerOneCallOneCallback, this),
+		callfuncO_selector(CallLandlordLayer::computerOneCallOneCallback),
 		COMPUTER_ONE_CALLONE,
 		nullptr);
 
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordLayer::computerOneCallTwoCallback, this),
+		callfuncO_selector(CallLandlordLayer::computerOneCallTwoCallback),
 		COMPUTER_ONE_CALLTWO,
 		nullptr);
 
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordLayer::computerOneCallThreeCallback, this),
+		callfuncO_selector(CallLandlordLayer::computerOneCallThreeCallback),
 		COMPUTER_ONE_CALLTHREE,
 		nullptr);
 
 	//电脑玩家2叫分回调（包含四种叫分状态）
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordLayer::computerTwoNoCallCallback, this),
+		callfuncO_selector(CallLandlordLayer::computerTwoNoCallCallback),
 		COMPUTER_TWO_NOCALL,
 		nullptr);
 
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordLayer::computerTwoCallOneCallback, this),
+		callfuncO_selector(CallLandlordLayer::computerTwoCallOneCallback),
 		COMPUTER_TWO_CALLONE,
 		nullptr);
 
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordLayer::computerTwoCallTwoCallback, this),
+		callfuncO_selector(CallLandlordLayer::computerTwoCallTwoCallback),
 		COMPUTER_TWO_CALLTWO,
 		nullptr);
 
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordLayer::computerTwoCallThreeCallback, this),
+		callfuncO_selector(CallLandlordLayer::computerTwoCallThreeCallback),
 		COMPUTER_TWO_CALLTHREE,
 		nullptr);
 
 	//注册显示电脑玩家1的叫分状态消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordLayer::displayComputerOneCallStateCallback, this),
+		callfuncO_selector(CallLandlordLayer::displayComputerOneCallStateCallback),
 		DISPLAY_COMPUTE_ONE_CALLLANDLORD_STATE,
 		nullptr);
 
 	//注册显示电脑玩家2的叫分状态信息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordLayer::displayComputerTwoCallStateCallback, this),
+		callfuncO_selector(CallLandlordLayer::displayComputerTwoCallStateCallback),
 		DISPLAY_COMPUTE_TWO_CALLLANDLORD_STATE,
 		nullptr);
 
@@ -235,7 +235,7 @@ void CallLandlordLayer::displayComputerTwoCallStateCallback(cocos2d::Ref*)
 void CallLandlordLayer::holderCallLandlordState(const std::string& name_)
 {
 	auto spriteFrame = _stateSpriteCache->getSpriteFrameByName(name_);
-	CC_ASSERT(spriteFrame != nullptr, "Image Name Not Exist");
+	CC_ASSERT(spriteFrame != nullptr);
 	_holderCallLandlordState->setDisplayFrame(spriteFrame);
 	_holderCallLandlordState->setVisible(true);
 
@@ -246,7 +246,7 @@ void CallLandlordLayer::computerOneCallLandlordState(const std::string& name_)
 {
 	auto spriteFrame = _stateSpriteCache->getSpriteFrameByName(name_);
 	//auto spriteFrame = cocos2d::Sprite::createWithSpriteFrameName(NOCALLSTATE)->getSpriteFrame();
-	CC_ASSERT(spriteFrame != nullptr, "Image Name Not Exist");
+	CC_ASSERT(spriteFrame != nullptr);
 	_computerOneCallLandlordState->setDisplayFrame(spriteFrame);
 	_computerOneCallLandlordState->setVisible(true);
 }
@@ -254,7 +254,7 @@ void CallLandlordLayer::computerOneCallLandlordState(const std::string& name_)
 void CallLandlordLayer::computerTwoCallLandlordState(const std::string& name_)
 {
 	auto spriteFrame = _stateSpriteCache->getSpriteFrameByName(name_);
-	CC_ASSERT(spriteFrame != nullptr, "Image Name Not Exist");
+	CC_ASSERT(spriteFrame != nullptr);
 	_computerTwoCallLandlordState->setDisplayFrame(spriteFrame);
 	_computerTwoCallLandlordState->setVisible(true);
 }

@@ -23,13 +23,13 @@ void OutPokerState::initContent()
 {
 	//注册更新出牌顺序的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(OutPokerState::updateOutOrderCallback, this),
+		callfuncO_selector(OutPokerState::updateOutOrderCallback),
 		UPDATE_OUT_ORDER,
 		nullptr);
 
 	//注册更新上一手牌的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(OutPokerState::updateLastOutPokersCallback, this),
+		callfuncO_selector(OutPokerState::updateLastOutPokersCallback),
 		UPDATE_LAST_OUTPOKERS,
 		nullptr);
 }

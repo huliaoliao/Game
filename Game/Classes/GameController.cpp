@@ -26,7 +26,7 @@ GameController::GameController()
 bool GameController::initContent()
 {
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(GameController::updateStateCallback, this),
+		callfuncO_selector(GameController::updateStateCallback),
 		UPDATE_GAME_STATE,
 		nullptr);
 

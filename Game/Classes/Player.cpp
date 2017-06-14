@@ -66,13 +66,14 @@ std::vector<Poker> Player::searchOutPokers(OutPokers* lastOutPokers_)
 	}
 	else if (lastOutPokers_->getPokersType() != KINGBOMB)
 	{
+		static Poker poker = lastOutPokers_->getLowestPoker();
 		result = GameRule::getInstance()->calcPokersWithType(
-			_holdPokers, lastOutPokers_->getPokersType(), &lastOutPokers_->getLowestPoker(),
+			_holdPokers, lastOutPokers_->getPokersType(), &poker,//lastOutPokers_->getLowestPoker(),
 			lastOutPokers_->getTotalLen());
 
 		if (result.size() == 0) //如果找不到对应的牌，就找炸弹
 		{
-			result = GameRule::getInstance()->calcPokersWithType(_holdPokers, BOMB, &lastOutPokers_->getLowestPoker());
+			result = GameRule::getInstance()->calcPokersWithType(_holdPokers, BOMB, &poker);// lastOutPokers_->getLowestPoker());
 			if (result.size() == 0)//如果找不到普通的炸，就找王炸
 			{
 				result = GameRule::getInstance()->calcPokersWithType(_holdPokers, KINGBOMB);
@@ -86,7 +87,7 @@ std::vector<Poker> Player::searchOutPokers(OutPokers* lastOutPokers_)
 OutPokers* Player::createLastOutPokers(const std::vector<Poker>& pokers_)
 {
 	auto pokersType = GameRule::getInstance()->analysePokersType(pokers_);
-	auto lowestPoker = GameRule::getInstance()->getLowestPoker(pokers_, pokersType); 
+	auto lowestPoker = GameRule::getInstance()->getLowestPoker(pokers_, pokersType);
 	int pokersLen = GameRule::getInstance()->filterAccessoryPokers(pokers_).size();
 	auto lastOutPokers = new OutPokers(this, lowestPoker, pokersLen, pokersType);
 	//lastOutPokers->retain();

@@ -71,53 +71,53 @@ bool GameScene::initContent()
 {
 	//注册添加头像层消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(GameScene::createHeadImageLayerCallback, this),
+		callfuncO_selector(GameScene::createHeadImageLayerCallback),
 		CREATE_HEADIMAGE_LAYER, nullptr);
 
 	//注册销毁头像层消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(GameScene::destroyHeadImageLayerCallback, this),
+		callfuncO_selector(GameScene::destroyHeadImageLayerCallback),
 		DESTROY_HEADIMAGE_LAYER, nullptr);
 
 	//注册添加准备层消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(GameScene::createReadyLayerCallback, this),
+		callfuncO_selector(GameScene::createReadyLayerCallback),
 		CREATE_READY_LAYER, nullptr);
 
 	//注册销毁准备层消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(GameScene::destroyReadyLayerCallback, this),
+		callfuncO_selector(GameScene::destroyReadyLayerCallback),
 		DESTROY_READY_LAYER, nullptr);
 
 	//注册添加扑克层消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(GameScene::createPokerLayerCallback, this),
+		callfuncO_selector(GameScene::createPokerLayerCallback),
 		CREATE_POKER_LAYER, nullptr);
 
 	//注册销毁扑克层消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(GameScene::destroyPokerLayerCallback, this),
+		callfuncO_selector(GameScene::destroyPokerLayerCallback),
 		DESTROY_POKER_LAYER, nullptr);
 
 	//注册添加叫地主层消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(GameScene::createCallLandlordLayerCallback, this),
+		callfuncO_selector(GameScene::createCallLandlordLayerCallback),
 		CREATE_CALL_LANDLORD_LAYER, nullptr);
 
 	//注册销毁扑克层消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(GameScene::destroyCallLandlordLayerCallback, this),
+		callfuncO_selector(GameScene::destroyCallLandlordLayerCallback),
 		DESTROY_CALL_LANDLORD_LAYER, nullptr);
 
 	//注册添加结束层消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(GameScene::createOverLayerCallback, this),
+		callfuncO_selector(GameScene::createOverLayerCallback),
 		CREATE_OVER_LAYER,
 		nullptr);
 
 	//注册销毁结束层消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(GameScene::destroyOverLayerCallback, this),
+		callfuncO_selector(GameScene::destroyOverLayerCallback),
 		DESTROY_OVER_LAYER,
 		nullptr);
 

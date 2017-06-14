@@ -27,25 +27,25 @@ bool HolderPlayer::initContent()
 {
 	//注册在手动玩家待出牌中添加牌的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(HolderPlayer::addPokerWaitForOutCallback, this),
+		callfuncO_selector(HolderPlayer::addPokerWaitForOutCallback),
 		ADD_POKER_IN_HOLDER_POKERSWAITFOROUT,
 		nullptr);
 
 	//注册在手动玩家待出牌中删除牌的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(HolderPlayer::deletePokerWaitForOutCallback, this),
+		callfuncO_selector(HolderPlayer::deletePokerWaitForOutCallback),
 		DELETE_POKER_IN_HOLDER_POKERSWAITFOROUT,
 		nullptr);
 
 	//注册手动玩家出牌的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(HolderPlayer::holderOutPokersCallback, this),
+		callfuncO_selector(HolderPlayer::holderOutPokersCallback),
 		HOLDER_OUTPOKERS,
 		nullptr);
 
 	//注册提示按钮点击后手动玩家需要做出回应的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(HolderPlayer::clickHintBtnCallback, this),
+		callfuncO_selector(HolderPlayer::clickHintBtnCallback),
 		CLICK_HINT_BTN,
 		nullptr);
 
@@ -55,11 +55,11 @@ bool HolderPlayer::initContent()
 
 void HolderPlayer::displayPokers()
 {
-// 	cocos2d::Vector<Poker*> pokers;
-// 	for (int i = 0; i < _holdPokers.size(); ++i)
-// 	{
-// 		pokers.pushBack(&_holdPokers[i]);
-// 	}
+	// 	cocos2d::Vector<Poker*> pokers;
+	// 	for (int i = 0; i < _holdPokers.size(); ++i)
+	// 	{
+	// 		pokers.pushBack(&_holdPokers[i]);
+	// 	}
 
 	cocos2d::NotificationCenter::getInstance()->postNotification(
 		DISPLAY_HOLDER_POKERS, (cocos2d::Ref*)(&_holdPokers));
@@ -213,11 +213,11 @@ void HolderPlayer::holderOutPokersCallback(cocos2d::Ref*)
 	}
 
 	//更新用于消息传递的打出的牌（下一个玩家的上一手牌）
-// 	_outedPokersForPost.clear();
-// 	for (int i = 0; i < _outedPokers.size(); ++i)
-// 	{
-// 		_outedPokersForPost.pushBack(&_outedPokers.at(i));
-// 	}
+	// 	_outedPokersForPost.clear();
+	// 	for (int i = 0; i < _outedPokers.size(); ++i)
+	// 	{
+	// 		_outedPokersForPost.pushBack(&_outedPokers.at(i));
+	// 	}
 
 	//在持有的牌中删除要出的牌
 	for (int i = 0; i < _outedPokers.size(); ++i)
@@ -237,18 +237,18 @@ void HolderPlayer::holderOutPokersCallback(cocos2d::Ref*)
 	}
 
 	//更新用于消息传递的玩家持有的牌
-// 	_holderPokerForPost.clear();
-// 	for (int i = 0; i < _holdPokers.size(); ++i)
-// 	{
-// 		_holderPokerForPost.pushBack(&_holdPokers.at(i));
-// 	}
+	// 	_holderPokerForPost.clear();
+	// 	for (int i = 0; i < _holdPokers.size(); ++i)
+	// 	{
+	// 		_holderPokerForPost.pushBack(&_holdPokers.at(i));
+	// 	}
 
 	//准备出的牌清空
 	_pokersWaitForOut.clear();
 	//该局提示的牌清空
 	_hintPokers.clear();
 
-// 	//显示手动玩家出的牌
+	// 	//显示手动玩家出的牌
 	cocos2d::NotificationCenter::getInstance()->postNotification(DISPLAY_HOLDER_OUTPOKERS,
 		reinterpret_cast<cocos2d::Ref*>(&_outedPokers));
 	//更新手动玩家持有的牌
@@ -270,8 +270,10 @@ std::vector<Poker> HolderPlayer::searchOutPokers(OutPokers* lastOutPokers_)
 	}
 	else
 	{
+		static Poker poker = lastOutPokers_->getLowestPoker();	//NDK编译不允许传递临时变量地址，这里是为了解决这个问题
+
 		result = GameRule::getInstance()->calcPokersWithTypeInSplit(
-			_holdPokers, lastOutPokers_->getPokersType(), &lastOutPokers_->getLowestPoker(),
+			_holdPokers, lastOutPokers_->getPokersType(), &poker,//lastOutPokers_->getLowestPoker(),
 			lastOutPokers_->getTotalLen());
 
 		if (result.size() == 0) //如果找不到对应的牌，就找炸弹

@@ -145,19 +145,19 @@ bool OverLayer::initContent()
 {
 	//注册运行游戏胜利动画的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(OverLayer::runWinActionCallback, this),
+		callfuncO_selector(OverLayer::runWinActionCallback),
 		RUN_WIN_ANIMATION,
 		nullptr);;
 
 	//注册运行游戏失败动画的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(OverLayer::runLostActionCallback, this),
+		callfuncO_selector(OverLayer::runLostActionCallback),
 		RUN_LOST_ANIMATION,
 		nullptr);
 
 	//注册返回游戏大厅的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(OverLayer::returnToLobbyBtnCallback, this),
+		callfuncO_selector(OverLayer::returnToLobbyBtnCallback),
 		RETURN_TO_LOBBY, 
 		nullptr);
 

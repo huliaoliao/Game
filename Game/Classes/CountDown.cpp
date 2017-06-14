@@ -78,7 +78,7 @@ void CountDown::startCountDown()
 	this->_counting = _countDownUp;
 
 	//每0.2s调用一次countDown，用于更新计时信息
-	this->schedule(schedule_selector(CountDown::countDown, 0.2f));
+	this->schedule(schedule_selector(CountDown::countDown), 0.2f);
 }
 
 void CountDown::stopCountDown()

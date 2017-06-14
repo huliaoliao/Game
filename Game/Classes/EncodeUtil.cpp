@@ -1,7 +1,8 @@
 #include <cstdlib>
 #include <string>
 
-#include "cocos2d/Libraries/libiconv/include/iconv.h"
+//#include "cocos2d/Libraries/libiconv/include/iconv.h"
+#include "iconv.h"
 #include "EncodeUtil.h"
 #include "MacroUtil.h"
 
@@ -11,7 +12,7 @@
 
 namespace util
 {
-	const char* util::GBToUTF8(const char* str)
+	const char* GBToUTF8(const char* str)
 	{
 		if (IsUTF8(str, strlen(str)))
 		{

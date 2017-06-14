@@ -77,7 +77,7 @@ void util::PokerUtil::sort(std::vector<Poker>& pokers_)
 Poker util::PokerUtil::getGreaterPoker(Poker poker_, int increaseValue /*= 1*/)
 {
 	//不允许查找的牌比当前小
-	CC_ASSERT(increaseValue >= 0, "increaseValue < 0");
+	CC_ASSERT(increaseValue >= 0);
 
 	int curValue = poker_.value;
 	int needValue = curValue + increaseValue;

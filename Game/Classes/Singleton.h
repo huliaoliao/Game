@@ -9,7 +9,10 @@ public:
 
 	static T* getInstance();
 
-private:
+//在VS2013里，private可以正常运行，但是NDK编译时会出错
+//这里应该使用protected，不然继承该类的类无法调用该父类的
+//默认构造函数
+protected:
 	Singleton() = default;
 
 	~Singleton() = default;

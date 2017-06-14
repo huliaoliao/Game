@@ -77,17 +77,17 @@ bool HeadImageLayer::initView()
 bool HeadImageLayer::initContent()
 {
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(HeadImageLayer::updateHolderHeadImageCallback, this),
+		callfuncO_selector(HeadImageLayer::updateHolderHeadImageCallback),
 		UPDATE_HOLDER_HEADIMAGE,
 		nullptr);
 
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(HeadImageLayer::updateComputerOneHeadImageCallback, this),
+		callfuncO_selector(HeadImageLayer::updateComputerOneHeadImageCallback),
 		UPDATE_COMPUTERONE_HEADIMAHE,
 		nullptr);
 
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(HeadImageLayer::updateComputerTwoHeadImageCallback, this),
+		callfuncO_selector(HeadImageLayer::updateComputerTwoHeadImageCallback),
 		UPDATE_COMPUTERTWO_HEADIMAGE,
 		nullptr);
 

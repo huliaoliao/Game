@@ -46,7 +46,7 @@ void CallLandlordState::update()
 bool CallLandlordState::initContent()
 {
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(CallLandlordState::updateCallIndexCallback, this),
+		callfuncO_selector(CallLandlordState::updateCallIndexCallback),
 		UPDATE_CALL_LANDLORD_INDEX, nullptr);
 
 	return true;

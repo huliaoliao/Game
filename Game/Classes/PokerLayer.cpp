@@ -155,49 +155,49 @@ bool PokerLayer::initContent()
 {
 	//注册显示手动玩家手中的牌消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::displayHolderPokersCallback, this),
+		callfuncO_selector(PokerLayer::displayHolderPokersCallback),
 		DISPLAY_HOLDER_POKERS,
 		nullptr);
 
 	//注册显示预留给地主的牌消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::displayLandlordPokersCallback, this),
+		callfuncO_selector(PokerLayer::displayLandlordPokersCallback),
 		DISPLAY_LANDLORD_POKERS,
 		nullptr);
 
 	//注册销毁手动玩家上一手打出的牌消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::destroyHolderLastOutPokersCallback, this),
+		callfuncO_selector(PokerLayer::destroyHolderLastOutPokersCallback),
 		DESTROY_LAST_HOLDER_OUTPOKERS,
 		nullptr);
 
 	//注册显示玩家该局打出的牌消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::displayHolderOutPokersCallback, this),
+		callfuncO_selector(PokerLayer::displayHolderOutPokersCallback),
 		DISPLAY_HOLDER_OUTPOKERS,
 		nullptr);
 
 	//注册销毁电脑玩家1上一手打出的牌消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::destroyComputerOneLastOutPokersCallback, this),
+		callfuncO_selector(PokerLayer::destroyComputerOneLastOutPokersCallback),
 		DESTROY_LAST_COMPUTER_ONE_OUTPOKERS,
 		nullptr);
 
 	//注册显示电脑玩家1该局打出的牌消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::displayComputerOneOutPokersCallback, this),
+		callfuncO_selector(PokerLayer::displayComputerOneOutPokersCallback),
 		DISPLAY_COMPUTER_ONE_OUTPOKERS,
 		nullptr);
 
 	//注册销毁电脑玩家2上一手打出的牌的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::destroyComputerTwoLastOutPokersCallback, this),
+		callfuncO_selector(PokerLayer::destroyComputerTwoLastOutPokersCallback),
 		DESTROY_LAST_COMPUTER_TWO_OUTPOKERS,
 		nullptr);
 
 	//注册显示电脑玩家2该局打出的牌的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::displayComputerTwoOutPokersCallback, this),
+		callfuncO_selector(PokerLayer::displayComputerTwoOutPokersCallback),
 		DISPLAY_COMPUTER_TWO_OUTPOKERS,
 		nullptr);
 
@@ -209,55 +209,55 @@ bool PokerLayer::initContent()
 
 	//注册令出牌按钮可按的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::outPokersBtnEnabledCallback, this),
+		callfuncO_selector(PokerLayer::outPokersBtnEnabledCallback),
 		OUTPOKERS_BTN_ENABLED,
 		nullptr);
 
 	//注册令出牌按钮不可按的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::outPokersBtnDisabledCallback, this),
+		callfuncO_selector(PokerLayer::outPokersBtnDisabledCallback),
 		OUTPOKERS_BTN_DISABLED,
 		nullptr);
 
 	//注册提示按钮可按的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::hintBtnEnabledCallback, this),
+		callfuncO_selector(PokerLayer::hintBtnEnabledCallback),
 		HINT_BTN_ENABLED,
 		nullptr);
 
 	//注册显示"没有打得过上家的牌"提示的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::showPassHintCallback, this),
+		callfuncO_selector(PokerLayer::showPassHintCallback),
 		SHOW_PASSHINT,
 		nullptr);
 
 	//注册手动玩家计时器开始计时的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::holderStartCountDownCallback, this),
+		callfuncO_selector(PokerLayer::holderStartCountDownCallback),
 		HOLDER_START_COUNTDOWN,
 		nullptr);
 
 	//注册手动玩家计时器停止计时的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::holderStopCountDownCallback, this),
+		callfuncO_selector(PokerLayer::holderStopCountDownCallback),
 		HOLDER_STOP_COUNTDOWN,
 		nullptr);
 
 	//注册电脑玩家1计时器开始计时的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::computerOneStartCountDownCallback, this),
+		callfuncO_selector(PokerLayer::computerOneStartCountDownCallback),
 		COMPUTER_ONE_START_COUNTDOWN,
 		nullptr);
 
 	//注册电脑玩家2计时器开始计时的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::computerTwoStartCountDownCallback, this),
+		callfuncO_selector(PokerLayer::computerTwoStartCountDownCallback),
 		COMPUTER_TWO_START_COUNTDOWN,
 		nullptr);
 
 	//注册显示提示按钮点击后令提示的扑克选中的消息
 	cocos2d::NotificationCenter::getInstance()->addObserver(this,
-		callfuncO_selector(PokerLayer::makeHintPokersSelectedCallback, this),
+		callfuncO_selector(PokerLayer::makeHintPokersSelectedCallback),
 		MAKE_HINT_POKERS_SELECTED,
 		nullptr);
 
