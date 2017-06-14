@@ -240,6 +240,9 @@
     <ClCompile Include="..\Classes\OverLayer.cpp">
       <Filter>src\游戏\游戏场景\游戏结束层</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\WindowUtil.cpp">
+      <Filter>src\功能</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -379,6 +382,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\OverLayer.h">
       <Filter>src\游戏\游戏场景\游戏结束层</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WindowUtil.h">
+      <Filter>src\功能</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
