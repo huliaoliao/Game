@@ -5,29 +5,47 @@
 
 const char* const pressBtnMusic = "music/btnpress.mp3";
 
-const char dialogBgImage[] = "lobby/dialog_bg.png";
-const char dialogTopBgImage[] = "lobby/dialog_bgTop.png";
-const char DIALOG_BTN[] = "lobby/dialog_btn.png";
-const char setDialogEffect[] = "lobby/set/setting-effect.png";
-const char setDialogMusic[] = "lobby/set/setting-music.png";
-const char setDialogProgress[] = "lobby/set/setting-progress.png";
-const char setDialogSlider[] = "lobby/set/setting-slider.png";
-const char setDialogTrack[] = "lobby/set/setting-track.png";
-const char dialogCloseBtn[] = "lobby/close_btn.png";
-const char dialogMiddleBgImage[] = "lobby/dialog-middleBg.png";
-const char startGameImage[] = "lobby/start_game.png";
+const char DIALOG_BG_IMAGE[] = "image/lobby/dialog_bg.png";
+const char DIALOG_TOP_BG_IMAGE[] = "image/lobby/dialog_bgTop.png";
+const char DIALOG_BTN[] = "image/lobby/dialog_btn.png";
+const char SET_DIALOG_EFFECT[] = "image/lobby/set/setting-effect.png";	//设置音效
+const char SET_DIALOG_MUSIC[] = "image/lobby/set/setting-music.png";
+const char SET_DIALOG_PROGRESS[] = "image/lobby/set/setting-progress.png";
+const char SET_DIALOG_SLIDER[] = "image/lobby/set/setting-slider.png";
+const char SET_DIALOG_TRACK[] = "image/lobby/set/setting-track.png";
+const char DIALOG_CLOSE_BTN[] = "image/lobby/close_btn.png";
+const char DIALOG_MIDDLE_BG_IMAGE[] = "image/lobby/dialog-middleBg.png";
+const char START_DIALOG_ICON[] = "image/lobby/start_game.png";
 
-const char gameSceneBg[] = "image/game/gamescene_bg.png";
-const char gameSceneBorder[] = "image/game/gamescene_border.png";
-const char gameSceneCorner[] = "image/game/gamescene_ corner.png";
+const char GAME_SCENE_BG[] = "image/game/gamescene_bg.png";
+const char GAME_SCENE_BORDER[] = "image/game/gamescene_border.png";
+const char GAME_SCENE_CORNER[] = "image/game/gamescene_ corner.png";
 
-const char headImages[] = "image/game/headimage/head_image.png";
-const char headImageList[] = "image/game/headimage/head_image.plist";
-const char headBox[] = "image/game/headimage/head_box.png";
-const char noHead[] = "image/game/headimage/no_head.png";
+const char HEAD_IMAGES[] = "image/game/headimage/head_image.png";
+const char HEAD_IMAGE_LIST[] = "image/game/headimage/head_image.plist";
+const char HEAD_BOX[] = "image/game/headimage/head_box.png";
+const char NO_HEAD[] = "image/game/headimage/no_head.png";
 
 const char gameStateReady[] = "image/game/ready.png";
 const char gameStateReadyBtn[] = "image/game/btn_start.png";
+
+const char LOBBY_BG[] = "image/lobby/lobby_bg.png";
+const char LOBBY_TOP_BG[] = "image/lobby/lobby_top_bg.png";
+const char LOBBY_HEAD_BOX[] = "image/lobby/head_box.png";
+const char LOBBY_HEAD[] = "image/lobby/head.png";
+const char LOBBY_SLOGAN_BG[] = "image/lobby/slogan_bg.png";
+const char LOBBY_SLOGAN[] = "image/lobby/slogan.png";
+const char LOBBY_SETTING[] = "image/lobby/setting.png";
+const char LOBBY_RULE[] = "image/lobby/rule.png";
+const char LOBBY_FEEDBACK[] = "image/lobby/feedback.png";
+const char LOBBY_BTN_LINE[] = "image/lobby/lobby_btn_line.png";	//按钮之间的分割线
+const char LOBBY_MARQUEE_RIGHT[] = "image/lobby/lobby_marquee_right.png";
+const char LOBBY_MARQUEE_LEFT[] = "image/lobby/lobby_marquee_left.png";
+const char LOBBY_BOTTOM_BG[] = "image/lobby/lobby_bottom_bg.png";
+const char LOBBY_SHARE[] = "image/lobby/share.png";
+const char LOBBY_ACTIVITY[] = "image/lobby/activity.png";
+const char LOBBY_RECORD[] = "image/lobby/record.png";
+const char START_GAME[] = "image/lobby/start_game.png";
 
 const char NOCALLBTN[] = "image/game/calllandlord/btn_nocall.png";
 const char CALLONEBTN[] = "image/game/calllandlord/btn_one.png";
