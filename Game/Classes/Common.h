@@ -20,6 +20,8 @@ const char START_DIALOG_ICON[] = "image/lobby/start_game.png";
 const char GAME_SCENE_BG[] = "image/game/gamescene_bg.png";
 const char GAME_SCENE_BORDER[] = "image/game/gamescene_border.png";
 const char GAME_SCENE_CORNER[] = "image/game/gamescene_ corner.png";
+const char GAME_SCENE_LEFT_LEAF[] = "image/game/left_leafi.png";
+const char GAME_SCENE_RIGHT_LEAF[] = "image/game/right_leaf.png";
 
 const char HEAD_IMAGES[] = "image/game/headimage/head_image.png";
 const char HEAD_IMAGE_LIST[] = "image/game/headimage/head_image.plist";

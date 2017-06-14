@@ -8,6 +8,7 @@
 #include "PokerLayer.h"
 #include "ReadyStateLayer.h"
 #include "ui/UIScale9Sprite.h"
+#include "Util.h"
 
 cocos2d::Scene* GameScene::createScene()
 {
@@ -63,6 +64,20 @@ bool GameScene::initView()
 	sceneBorder->setContentSize(cocos2d::Size(winSize.width, winSize.height));
 	sceneBorder->setPosition(cocos2d::Point(winSize / 2));
 	this->addChild(sceneBorder);
+
+	//游戏场景左上角叶子
+	auto leftLeaf = cocos2d::Sprite::create(GAME_SCENE_LEFT_LEAF);
+	leftLeaf->setScale(MIDDLE_SCALE);
+	leftLeaf->setAnchorPoint(cocos2d::Vec2::ANCHOR_TOP_LEFT);
+	leftLeaf->setPosition(cocos2d::Point(0, winSize.height));
+	this->addChild(leftLeaf);
+
+	//游戏场景右上角叶子
+	auto rightLeaf = cocos2d::Sprite::create(GAME_SCENE_RIGHT_LEAF);
+	rightLeaf->setScale(MIDDLE_SCALE);
+	rightLeaf->setAnchorPoint(cocos2d::Vec2::ANCHOR_TOP_RIGHT);
+	rightLeaf->setPosition(cocos2d::Point(winSize.width, winSize.height));
+	this->addChild(rightLeaf);
 
 	return true;
 }
