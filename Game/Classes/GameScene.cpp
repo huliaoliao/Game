@@ -47,7 +47,7 @@ bool GameScene::initView()
 	auto winSize = cocos2d::Director::getInstance()->getWinSize();
 
 	//游戏场景背景
-	auto sceneBg = cocos2d::ui::Scale9Sprite::create(gameSceneBg);
+	auto sceneBg = cocos2d::ui::Scale9Sprite::create(GAME_SCENE_BG);
 	auto sceneBgSize = sceneBg->getContentSize();
 	sceneBg->setCapInsets(cocos2d::Rect(sceneBgSize.width / 4, sceneBgSize.height / 4,
 		sceneBgSize.width / 4, sceneBgSize.height / 4));
@@ -56,7 +56,7 @@ bool GameScene::initView()
 	this->addChild(sceneBg);
 
 	//游戏场景四周边框
-	auto sceneBorder = cocos2d::ui::Scale9Sprite::create(gameSceneBorder);
+	auto sceneBorder = cocos2d::ui::Scale9Sprite::create(GAME_SCENE_BORDER);
 	auto sceneBorderSize = sceneBorder->getContentSize();
 	sceneBorder->setCapInsets(cocos2d::Rect(sceneBorderSize.width / 4, sceneBorderSize.height / 4,
 		sceneBorderSize.width / 4, sceneBorderSize.height / 4));

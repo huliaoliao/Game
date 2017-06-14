@@ -52,17 +52,21 @@ bool OverLayer::initView()
 	
 	initLostAnimation();
 
-	auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	//auto winSize = cocos2d::Director::getInstance()->getWinSize();
 
 	_winSprite = cocos2d::Sprite::create();
+	_winSprite->setScale(MAX_SCALE);
 	_winSprite->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	_winSprite->setPosition(cocos2d::Point(winSize / 2));
+	_winSprite->setPosition(cocos2d::Point(BASE_WIDTH / 2 * SCALE_X,
+		BASE_HEIGHT / 2 * SCALE_Y));
 	_winSprite->setVisible(false);
 	this->addChild(_winSprite);
 
 	_lostSprite = cocos2d::Sprite::create();
+	_lostSprite->setScale(MAX_SCALE);
 	_lostSprite->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	_lostSprite->setPosition(cocos2d::Point(winSize / 2));
+	_lostSprite->setPosition(cocos2d::Point(BASE_WIDTH / 2 * SCALE_X,
+		BASE_HEIGHT / 2 * SCALE_Y));
 	_lostSprite->setVisible(false);
 	this->addChild(_lostSprite);
 
@@ -71,13 +75,16 @@ bool OverLayer::initView()
 		cocos2d::Sprite::create(DIALOG_BTN),
 		nullptr,
 		CC_CALLBACK_1(OverLayer::returnToLobbyBtnCallback, this));
+	_returnToLobbyBtn->setScale(MAX_SCALE);
 	_returnToLobbyBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	_returnToLobbyBtn->setPosition(cocos2d::Point(winSize / 2));
+	_returnToLobbyBtn->setPosition(cocos2d::Point(BASE_WIDTH / 2 * SCALE_X,
+		BASE_HEIGHT / 2 * SCALE_Y));
 	_returnToLobbyBtn->setVisible(false);
 
 	//返回按钮标题
 	auto btnTTF = cocos2d::LabelTTF::create(util::strongGBToUTF8("返回游戏大厅"),
 		"Arial", 32);
+	btnTTF->setScale(MAX_SCALE);
 	btnTTF->setColor(cocos2d::Color3B(0x68, 0x2f, 0x2b));
 	btnTTF->setPosition(cocos2d::Point(_returnToLobbyBtn->getContentSize() / 2));
 	_returnToLobbyBtn->addChild(btnTTF);

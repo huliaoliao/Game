@@ -5,5 +5,6 @@
 #include "MacroUtil.h"
 #include "MusicUtil.h"
 #include "PokerUtil.h"
+#include "WindowUtil.h"
 
 #endif

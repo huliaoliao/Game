@@ -28,15 +28,16 @@ bool LobbySceneTop::init()
 bool LobbySceneTop::initView()
 {
 	//顶部背景
-	auto topBg = cocos2d::ui::Scale9Sprite::create("lobby/lobby_top_bg.png");
+	auto topBg = cocos2d::ui::Scale9Sprite::create(LOBBY_TOP_BG);
 	auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	topBg->setContentSize(cocos2d::Size(winSize.width, 100));
+	topBg->setContentSize(cocos2d::Size(BASE_WIDTH, 100));
+	topBg->setScale(SCALE_X);
 	topBg->setAnchorPoint(cocos2d::Vec2::ANCHOR_TOP_LEFT);
 	topBg->setPosition(cocos2d::Point(0, winSize.height));
 	this->addChild(topBg, 0);
 
 	//头像背景（框）
-	auto headBgSprite = cocos2d::ui::Scale9Sprite::create("lobby/head_box.png");
+	auto headBgSprite = cocos2d::ui::Scale9Sprite::create(LOBBY_HEAD_BOX);
 	const auto headBgScale = cocos2d::Size(0.54, 0.54);
 	headBgSprite->setContentSize(cocos2d::Size(148 * 0.54, 148 * 0.54));
 	headBgSprite->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);
@@ -44,7 +45,7 @@ bool LobbySceneTop::initView()
 	topBg->addChild(headBgSprite);
 
 	//头像
-	auto headSprite = cocos2d::Sprite::create("lobby/head.png");
+	auto headSprite = cocos2d::Sprite::create(LOBBY_HEAD);
 	headSprite->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	auto headScaleX = headSprite->getContentSize().width * headBgScale.width / headBgSprite->getContentSize().width;
 	auto headScaleY = headSprite->getContentSize().height * headBgScale.height / headBgSprite->getContentSize().height;
@@ -72,17 +73,17 @@ bool LobbySceneTop::initView()
 	topBg->addChild(playerIDText);
 
 	//大厅标题
-	auto lobbyLogoBg = cocos2d::Sprite::create("lobby/slogan_bg.png");
+	auto lobbyLogoBg = cocos2d::Sprite::create(LOBBY_SLOGAN_BG);
 	lobbyLogoBg->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);
 	lobbyLogoBg->setPosition(cocos2d::Point(topBg->getContentSize().width / 2, 0));
 	topBg->addChild(lobbyLogoBg);
-	auto lobbyLogo = cocos2d::Sprite::create("lobby/slogan.png");
+	auto lobbyLogo = cocos2d::Sprite::create(LOBBY_SLOGAN);
 	lobbyLogo->setPosition(cocos2d::Point(lobbyLogoBg->getContentSize() / 2));
 	lobbyLogoBg->addChild(lobbyLogo);
 
 	//大厅设置按钮
 	auto setBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create("lobby/setting.png"),
+		cocos2d::Sprite::create(LOBBY_SETTING),
 		nullptr,
 		CC_CALLBACK_1(LobbySceneTop::lobbySetCallback, this));
 	auto topBgSize = topBg->getContentSize();
@@ -91,7 +92,7 @@ bool LobbySceneTop::initView()
 
 	//游戏规则按钮
 	auto ruleBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create("lobby/rule.png"),
+		cocos2d::Sprite::create(LOBBY_RULE),
 		nullptr,
 		CC_CALLBACK_1(LobbySceneTop::lobbyRuleCallback, this));
 	ruleBtn->setPosition(cocos2d::Vec2(topBgSize.width  - topBgSize.width / 3 / 2,
@@ -99,15 +100,15 @@ bool LobbySceneTop::initView()
 
 	//反馈按钮
 	auto feedbackBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create("lobby/feedback.png"),
+		cocos2d::Sprite::create(LOBBY_FEEDBACK),
 		nullptr,
 		CC_CALLBACK_1(LobbySceneTop::lobbyFeedbackCallback, this));
 	feedbackBtn->setPosition(cocos2d::Point(topBgSize.width - topBgSize.width / 3 * 5 / 6,
 		topBgSize.height / 2));
 	
 	//按钮之间的分割线
-	auto btnLine1 = cocos2d::Sprite::create("lobby/lobby_btn_line.png");
-	auto btnLine2 = cocos2d::Sprite::create("lobby/lobby_btn_line.png");
+	auto btnLine1 = cocos2d::Sprite::create(LOBBY_BTN_LINE);
+	auto btnLine2 = cocos2d::Sprite::create(LOBBY_BTN_LINE);
 	auto btnLine1PosX = (setBtn->getPosition().x + ruleBtn->getPosition().x) / 2;
 	auto btnLine2PosX = (ruleBtn->getPosition().x + feedbackBtn->getPosition().x) / 2;
 	btnLine1->setPosition(cocos2d::Point(btnLine1PosX, ruleBtn->getPositionY()));

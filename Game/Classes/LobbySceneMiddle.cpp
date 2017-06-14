@@ -23,18 +23,18 @@ bool LobbySceneMiddle::init()
 
 bool LobbySceneMiddle::initView()
 {
-	auto winSize = cocos2d::Director::getInstance()->getWinSize();
 	//公告显示
-	auto marqueeBg = cocos2d::ui::Scale9Sprite::create(
-		"lobby/lobby_marquee_right.png");
-	const auto marqueeBgWidth = 700.0f;
-	marqueeBg->setContentSize(cocos2d::Size(marqueeBgWidth, marqueeBg->getContentSize().height));
-	marqueeBg->setPosition(cocos2d::Point(winSize.width / 2,
-		0.78 * winSize.height));
+	auto marqueeBg = cocos2d::ui::Scale9Sprite::create(LOBBY_MARQUEE_RIGHT);
+	const auto marqueeBgWidth = 720.0f;
+	marqueeBg->setContentSize(cocos2d::Size(marqueeBgWidth, 
+		marqueeBg->getContentSize().height));
+	marqueeBg->setScale(MAX_SCALE);
+	marqueeBg->setPosition(cocos2d::Point(SCREEN_WIDTH / 2.0f,
+		SCREEN_HEIGHT - (100  + 30 + marqueeBg->getContentSize().height / 2) * MAX_SCALE));	//顶部高度为100
 	this->addChild(marqueeBg);
 	
 	//喇叭
-	auto marqueeLeft = cocos2d::Sprite::create("lobby/lobby_marquee_left.png");
+	auto marqueeLeft = cocos2d::Sprite::create(LOBBY_MARQUEE_LEFT);
 	marqueeLeft->setPosition(cocos2d::Point(0, marqueeBg->getContentSize().height / 2));
 	marqueeBg->addChild(marqueeLeft);
 
@@ -60,7 +60,7 @@ bool LobbySceneMiddle::initView()
 	showContentTTF->runAction(cocos2d::RepeatForever::create(
 		cocos2d::Sequence::create(
 		cocos2d::MoveTo::create(5.0f * moveLen / (marqueeBg->getContentSize().width / 2), cocos2d::Point(-moveLen, 0)),
-		cocos2d::Place::create(showContentTTF->getPosition() + cocos2d::Size(00, 0)), nullptr)));
+		cocos2d::Place::create(showContentTTF->getPosition() + cocos2d::Size(0, 0)), nullptr)));
 
 	//创建房间按钮
 // 	auto createRoomBtn = ScalableMenuItemSprite::create(
@@ -81,12 +81,12 @@ bool LobbySceneMiddle::initView()
 // 	joinRoomBtn->setScale(0.8f);
 
 	auto startGameBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create(startGameImage),
+		cocos2d::Sprite::create(START_GAME),
 		nullptr,
 		CC_CALLBACK_1(LobbySceneMiddle::startGameCallback, this));
 	startGameBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	startGameBtn->setPosition(cocos2d::Point(winSize.width / 2, winSize.height / 2 - 20));
-	startGameBtn->setScale(0.8f);
+	startGameBtn->setPosition(cocos2d::Point(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2 - 20 * MAX_SCALE));
+	startGameBtn->setScale(0.8f * SCALE);
 
 	auto startGameMenu = cocos2d::Menu::create(
 		startGameBtn, nullptr);

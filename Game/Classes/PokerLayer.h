@@ -40,7 +40,7 @@ private:
 
 private:
 	void displayPokers(const std::vector<PokerSprite*>& pokers_, float displayMaxWidth_,
-		float displayStartX_, float displayMiddleX_, float displayY_, bool isOnScene_, const float SCALE = 1.0f);
+		float displayStartX_, float displayMiddleX_, float displayY_, bool isOnScene_, const float scale = 1.0f);
 
 	std::vector<PokerSprite*> createPokerSprites(const std::vector<Poker>& pokers);
 

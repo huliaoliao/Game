@@ -9,13 +9,13 @@ const float HEADIMAGE_SCALE = 0.7f;
 bool HeadImage::init()
 {
 	//Í·Ïñ¿ò
-	_headBox = cocos2d::Sprite::create(headBox);
+	_headBox = cocos2d::Sprite::create(HEAD_BOX);
 	_headBox->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_headBox->setPosition(cocos2d::Point(_headBox->getContentSize() / 2));
 	_headBox->setScale(HEADIMAGE_SCALE);
 	this->addChild(_headBox);
 	//ÎÞÍ·Ïñ
-	_curHeadImage = cocos2d::Sprite::create(noHead);
+	_curHeadImage = cocos2d::Sprite::create(NO_HEAD);
 	_curHeadImage->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_curHeadImage->setPosition(cocos2d::Point(_headBox->getContentSize() / 2));
 	//_curHeadImage->setScale(HEADIMAGE_SCALE);
@@ -28,7 +28,7 @@ bool HeadImage::init()
 	if (s_spriteFrameCache == nullptr)
 	{
 		s_spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
-		s_spriteFrameCache->addSpriteFramesWithFile(headImageList, headImages);
+		s_spriteFrameCache->addSpriteFramesWithFile(HEAD_IMAGE_LIST, HEAD_IMAGES);
 	}
 
 	return true;

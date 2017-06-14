@@ -270,7 +270,9 @@ std::vector<Poker> HolderPlayer::searchOutPokers(OutPokers* lastOutPokers_)
 	}
 	else
 	{
-		static Poker poker = lastOutPokers_->getLowestPoker();	//NDK编译不允许传递临时变量地址，这里是为了解决这个问题
+		//static Poker poker = lastOutPokers_->getLowestPoker();	//这样写会导致赋值操作仅执行一次，因而产生BUG
+		static Poker poker;
+		poker = lastOutPokers_->getLowestPoker();	//NDK编译不允许传递临时变量地址，这里是为了解决这个问题
 
 		result = GameRule::getInstance()->calcPokersWithTypeInSplit(
 			_holdPokers, lastOutPokers_->getPokersType(), &poker,//lastOutPokers_->getLowestPoker(),

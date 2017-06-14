@@ -8,6 +8,7 @@
 #include "Poker.h"
 #include "PokerController.h"
 #include "ScalableMenuItemSprite.h"
+#include "Util.h"
 
 const std::string layerName = "pokerLayer";
 
@@ -59,38 +60,45 @@ bool PokerLayer::init()
 
 bool PokerLayer::initView()
 {
-	auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	const auto computerOnePos = cocos2d::Point(winSize.width * 0.8, winSize.height * 0.72);
-	const auto computerTwoPos = cocos2d::Point(winSize.width * 0.2, winSize.height * 0.72);
-	const auto holderPos = cocos2d::Point(winSize.width * 0.2, winSize.height * 0.4);
+	//auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	const auto computerOnePos = cocos2d::Point(BASE_WIDTH * 0.8 * SCALE_X,
+		BASE_HEIGHT * 0.72 * SCALE_Y);
+	const auto computerTwoPos = cocos2d::Point(BASE_WIDTH * 0.2 * SCALE_X,
+		BASE_HEIGHT * 0.72 * SCALE_Y);
+	const auto holderPos = cocos2d::Point(BASE_WIDTH * 0.2 * SCALE_X,
+		BASE_HEIGHT * 0.4 * SCALE_Y);
 
 	_holderPassSprite = cocos2d::Sprite::create(PASS_IMAGE);
+	_holderPassSprite->setScale(MAX_SCALE);
 	_holderPassSprite->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_holderPassSprite->setPosition(holderPos);
 	_holderPassSprite->setVisible(false);	//初始不显示
 	this->addChild(_holderPassSprite);
 
 	_computerOnePassSprite = cocos2d::Sprite::create(PASS_IMAGE);
+	_computerOnePassSprite->setScale(MAX_SCALE);
 	_computerOnePassSprite->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_computerOnePassSprite->setPosition(computerOnePos);
 	_computerOnePassSprite->setVisible(false);
 	this->addChild(_computerOnePassSprite);
 
 	_computerTwoPassSprite = cocos2d::Sprite::create(PASS_IMAGE);
+	_computerTwoPassSprite->setScale(MAX_SCALE);
 	_computerTwoPassSprite->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_computerTwoPassSprite->setPosition(computerTwoPos);
 	_computerTwoPassSprite->setVisible(false);
 	this->addChild(_computerTwoPassSprite);
 
 	//出牌相关按钮（不出，出牌，提示，没有牌打得过上家）
-	const auto btnInterval = 10.0f;
-	const auto btnWidth = cocos2d::Sprite::create(PASS_BTN)->getContentSize().width;
-	const auto btnPos = cocos2d::Point(winSize.width * 0.5f, winSize.height * 0.35);
+	const auto btnInterval = 10.0f * SCALE_X;
+	const auto btnWidth = cocos2d::Sprite::create(PASS_BTN)->getContentSize().width * MAX_SCALE;
+	const auto btnPos = cocos2d::Point(BASE_WIDTH * 0.5f * SCALE_X, BASE_HEIGHT * 0.35 * SCALE_Y);
 	//不出按钮
 	auto passBtn = ScalableMenuItemSprite::create(
 		cocos2d::Sprite::create(PASS_BTN),
 		nullptr,
 		CC_CALLBACK_1(PokerLayer::passBtnCallback, this));
+	passBtn->setScale(MAX_SCALE);
 	passBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	passBtn->setPosition(cocos2d::Point(btnPos.x - btnWidth - btnInterval, btnPos.y));
 
@@ -99,6 +107,7 @@ bool PokerLayer::initView()
 		cocos2d::Sprite::create(HINT_BTN),
 		nullptr,
 		CC_CALLBACK_1(PokerLayer::hintBtnCallback, this));
+	_hintBtn->setScale(MAX_SCALE);
 	_hintBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_hintBtn->setPosition(cocos2d::Point(btnPos.x, btnPos.y));
 	_hintBtn->setDisabledImage(cocos2d::Sprite::create(HINT_DISABLE_BTN));	//提示按钮不可按状态
@@ -109,6 +118,7 @@ bool PokerLayer::initView()
 		cocos2d::Sprite::create(OUTPOKER_BTN),
 		nullptr,
 		CC_CALLBACK_1(PokerLayer::outPokersBtnCallback, this));
+	_outPokersBtn->setScale(MAX_SCALE);
 	_outPokersBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_outPokersBtn->setPosition(cocos2d::Point(btnPos.x + btnWidth + btnInterval, btnPos.y));
 	_outPokersBtn->setDisabledImage(cocos2d::Sprite::create(OUTPOKER_DISABLE_BTN));	//出牌按钮不可按状态
@@ -124,27 +134,30 @@ bool PokerLayer::initView()
 	_holderCountDown->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_holderCountDown->setPosition(holderPos);
 	_holderCountDown->setVisible(false);
-	_holderCountDown->setScale(COUNTDOWN_SCALE);
+	_holderCountDown->setScale(COUNTDOWN_SCALE * MAX_SCALE);
 	this->addChild(_holderCountDown);
 
 	_computerOneCountDown = CountDown::create();
 	_computerOneCountDown->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_computerOneCountDown->setPosition(computerOnePos);
 	_computerOneCountDown->setVisible(false);
-	_computerOneCountDown->setScale(COUNTDOWN_SCALE);
+	_computerOneCountDown->setScale(COUNTDOWN_SCALE * MAX_SCALE);
 	this->addChild(_computerOneCountDown);
 
 	_computerTwoCountDown = CountDown::create();
+	//_computerTwoCountDown->setScale(MAX_SCALE);		//缩放效果会被后面的setScale覆盖
 	_computerTwoCountDown->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_computerTwoCountDown->setPosition(computerTwoPos);
 	_computerTwoCountDown->setVisible(false);
-	_computerTwoCountDown->setScale(COUNTDOWN_SCALE);
+	_computerTwoCountDown->setScale(COUNTDOWN_SCALE * MAX_SCALE);
 	this->addChild(_computerTwoCountDown);
 
 	//没有打得过上家牌的提示
 	_passHintSprite = cocos2d::Sprite::create(PASS_HINT);
+	_passHintSprite->setScale(MAX_SCALE);
 	_passHintSprite->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	_passHintSprite->setPosition(cocos2d::Point(winSize.width * 0.5, winSize.height * 0.4));
+	_passHintSprite->setPosition(cocos2d::Point(BASE_WIDTH * 0.5 * SCALE_X, 
+		BASE_HEIGHT * 0.45 * SCALE_Y));
 	_passHintSprite->setVisible(false);
 	this->addChild(_passHintSprite);
 
@@ -380,7 +393,7 @@ std::vector<PokerSprite*> PokerLayer::createPokerSprites(const std::vector<Poker
 }
 
 void PokerLayer::displayPokers(const std::vector<PokerSprite*>& pokers_, float displayMaxWidth_,
-	float displayStartX_, float displayMiddleX_, float displayY_, bool isOnScene_, const float SCALE /*= 1.0f*/)
+	float displayStartX_, float displayMiddleX_, float displayY_, bool isOnScene_, const float scale /*= 1.0f*/)
 {
 	if (pokers_.size() == 0)
 	{
@@ -388,10 +401,10 @@ void PokerLayer::displayPokers(const std::vector<PokerSprite*>& pokers_, float d
 	}
 
 	int pokersNum = pokers_.size();
-	float pokerWidth = pokers_.front()->getContentSize().width * SCALE;
-	float pokerHeight = pokers_.front()->getContentSize().height * SCALE;
+	float pokerWidth = pokers_.front()->getContentSize().width * scale * SCALE_X;
+	float pokerHeight = pokers_.front()->getContentSize().height * scale * SCALE_Y;
 	//两张牌之间的最大间隙
-	float	maxIntervalBetweenPokers = pokerWidth - MIMIUM_CARDS_OVERLAPWIDTH * SCALE;
+	float	maxIntervalBetweenPokers = pokerWidth - MIMIUM_CARDS_OVERLAPWIDTH * scale * SCALE_X;
 	float intervalBetweenPokers = (displayMaxWidth_ - pokerWidth) < maxIntervalBetweenPokers * (pokersNum - 1) ?
 		(displayMaxWidth_ - pokerWidth) / (pokersNum - 1) : maxIntervalBetweenPokers;
 
@@ -416,7 +429,7 @@ void PokerLayer::displayPokers(const std::vector<PokerSprite*>& pokers_, float d
 		{
 			displayY_ = pokers_.at(i)->getPosition().y;	//针对待出的牌
 		}
-		pokers_.at(i)->setScale(SCALE);
+		pokers_.at(i)->setScale(scale * MIDDLE_SCALE);
 		pokers_.at(i)->setVisible(true);
 		pokers_.at(i)->setPosition(cocos2d::Point(displayStartX_ + pokerWidth / 2 + i * intervalBetweenPokers,
 			displayY_));
@@ -452,11 +465,11 @@ void PokerLayer::displayHolderPokersCallback(cocos2d::Ref* sender_)
 		return;
 	}
 
-	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	float displayPokerMaxWidth =  winSize.width * 5.0 / 6.0;
-	float displayPokerMiddleX = winSize.width / 2;
+	//const auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	float displayPokerMaxWidth =  BASE_WIDTH * 5.0 / 6.0 * SCALE_X;
+	float displayPokerMiddleX = BASE_WIDTH / 2 * SCALE_X;
 	float displayPokerStartX = displayPokerMiddleX - displayPokerMaxWidth / 2;
-	float displayPokerY = pokerSprites.front()->getContentSize().height / 2 + 25;//winSize.height * 0.2;
+	float displayPokerY = SCALE_Y * (pokerSprites.front()->getContentSize().height / 2 + 25);//winSize.height * 0.2;
 	displayPokers(pokerSprites, displayPokerMaxWidth, displayPokerStartX, displayPokerMiddleX,
 		displayPokerY, false);
 }
@@ -472,15 +485,15 @@ void PokerLayer::displayLandlordPokersCallback(cocos2d::Ref* sender_)
 
 	auto pokerSprites = createPokerSprites(pokers);
 
-	const float SCALE = 0.7f;
+	const float scale = 0.7f;
 
-	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	float displayPokerMaxWidth = 192;
-	float displayPokerMiddleX = winSize.width / 2;
+	//const auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	float displayPokerMaxWidth = 192 * SCALE_X;
+	float displayPokerMiddleX = BASE_WIDTH / 2 * SCALE_X;
 	float displayPokerStartX = displayPokerMiddleX - displayPokerMaxWidth / 2.0f;
-	float displayPokerY = winSize.height - SCALE * (pokerSprites.front()->getContentSize().height / 2 + 10);
+	float displayPokerY = SCALE_Y * (BASE_HEIGHT - scale * (pokerSprites.front()->getContentSize().height / 2 + 10));
 	displayPokers(pokerSprites, displayPokerMaxWidth, displayPokerStartX, displayPokerMiddleX,
-		displayPokerY, false, SCALE);
+		displayPokerY, false, scale);
 }
 
 void PokerLayer::destroyHolderLastOutPokersCallback(cocos2d::Ref* sender_)
@@ -521,15 +534,15 @@ void PokerLayer::displayHolderOutPokersCallback(cocos2d::Ref* sender_)
 	//把当前出的牌记录下来
 	_lastHolderOutPokersSprites = pokerSprites;
 
-	const float SCALE = 0.7f;
+	const float scale = 0.7f;
 
-	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	float displayPokerMaxWidth = 240;
-	float displayPokerMiddleX = winSize.width / 2;
+	//const auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	float displayPokerMaxWidth = 240 * SCALE_X;
+	float displayPokerMiddleX = BASE_WIDTH / 2 * SCALE_X;
 	float displayPokerStartX = displayPokerMiddleX - displayPokerMaxWidth / 2.0f;
-	float displayPokerY = winSize.height * 0.4f;
+	float displayPokerY = BASE_HEIGHT * 0.4f * SCALE_Y;
 	displayPokers(pokerSprites, displayPokerMaxWidth, displayPokerStartX, displayPokerMiddleX,
-		displayPokerY, false, SCALE);
+		displayPokerY, false, scale);
 }
 
 void PokerLayer::destroyComputerOneLastOutPokersCallback(cocos2d::Ref* sender_)
@@ -568,15 +581,15 @@ void PokerLayer::displayComputerOneOutPokersCallback(cocos2d::Ref* sender_)
 
 	_lastComputerOneOutPokersSprites = pokerSprites;
 
-	const float SCALE = 0.7f;
+	const float scale = 0.7f;
 
-	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	float displayPokerMaxWidth = 240;
-	float displayPokerMiddleX = winSize.width * 0.7f;
+	//const auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	float displayPokerMaxWidth = 240 * SCALE_X;
+	float displayPokerMiddleX = BASE_WIDTH * 0.7f * SCALE_X;
 	float displayPokerStartX = displayPokerMiddleX - displayPokerMaxWidth / 2.0f;
-	float displayPokerY = winSize.height * 0.72f;
+	float displayPokerY = BASE_HEIGHT * 0.72f * SCALE_Y;
 	displayPokers(pokerSprites, displayPokerMaxWidth, displayPokerStartX, displayPokerMiddleX,
-		displayPokerY, false, SCALE);
+		displayPokerY, false, scale);
 }
 
 void PokerLayer::destroyComputerTwoLastOutPokersCallback(cocos2d::Ref* sender_)
@@ -614,15 +627,15 @@ void PokerLayer::displayComputerTwoOutPokersCallback(cocos2d::Ref* sender_)
 
 	_lastComputerTwoOutPokersSprites = pokerSprites;
 
-	const float SCALE = 0.7f;
+	const float scale = 0.7f;
 
-	const auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	float displayPokerMaxWidth = 240;
-	float displayPokerMiddleX = winSize.width * 0.3f;
+	//const auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	float displayPokerMaxWidth = 240 * SCALE_X;
+	float displayPokerMiddleX = BASE_WIDTH * 0.3f * SCALE_X;
 	float displayPokerStartX = displayPokerMiddleX - displayPokerMaxWidth / 2.0f;
-	float displayPokerY = winSize.height * 0.72f;
+	float displayPokerY = BASE_HEIGHT * 0.72f * SCALE_Y;
 	displayPokers(pokerSprites, displayPokerMaxWidth, displayPokerStartX, displayPokerMiddleX,
-		displayPokerY, false, SCALE);
+		displayPokerY, false, scale);
 }
 
 void PokerLayer::displayHolderOutPokersBtnsCallback(cocos2d::Ref*)

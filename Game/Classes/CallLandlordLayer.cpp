@@ -5,6 +5,7 @@
 #include "ComputerPlayerInstanceTwo.h"
 #include "HolderPlayerInstance.h"
 #include "ScalableMenuItemSprite.h"
+#include "Util.h"
 
 const std::string layerName = "callLandlordLayer";
 
@@ -51,10 +52,13 @@ bool CallLandlordLayer::initView()
 	_stateSpriteCache = cocos2d::SpriteFrameCache::getInstance();
 	_stateSpriteCache->addSpriteFramesWithFile(CALL_LANDLORD_IMAGE_LIST, CALL_LANDLORD_IMAGES);
 
-	auto winSize = cocos2d::Director::getInstance()->getWinSize();
-	const auto computerOnePos = cocos2d::Point(winSize.width * 0.8, winSize.height * 0.72);
-	const auto computerTwoPos = cocos2d::Point(winSize.width * 0.2, winSize.height * 0.72);
-	const auto holderPos = cocos2d::Point(winSize.width * 0.5, winSize.height * 0.4);
+	//auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	const auto computerOnePos = cocos2d::Point(BASE_WIDTH * 0.8 * SCALE_X, 
+		BASE_HEIGHT * 0.72 * SCALE_Y);
+	const auto computerTwoPos = cocos2d::Point(BASE_WIDTH * 0.2 * SCALE_X, 
+		BASE_HEIGHT * 0.72 * SCALE_Y);
+	const auto holderPos = cocos2d::Point(BASE_WIDTH * 0.5 * SCALE_X, 
+		BASE_HEIGHT * 0.4 * SCALE_Y);
 
 	auto btnWidth = cocos2d::Sprite::create(NOCALLBTN)->getContentSize().width;
 	const auto btnInterval = 10;
@@ -64,32 +68,36 @@ bool CallLandlordLayer::initView()
 		cocos2d::Sprite::create(CALLONEBTN),
 		nullptr,
 		CC_CALLBACK_1(CallLandlordLayer::callOneCallback, this));
+	callOneBtn->setScale(MAX_SCALE);
 	callOneBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	callOneBtn->setPosition(cocos2d::Point(holderPos.x - btnInterval / 2 - btnWidth / 2,
+	callOneBtn->setPosition(cocos2d::Point(holderPos.x - SCALE_X * (btnInterval / 2 + btnWidth / 2),
 		holderPos.y));
 	
 	auto noCallBtn = ScalableMenuItemSprite::create(
 		cocos2d::Sprite::create(NOCALLBTN),
 		nullptr,
 		CC_CALLBACK_1(CallLandlordLayer::noCallCallBack, this));
+	noCallBtn->setScale(MAX_SCALE);
 	noCallBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	noCallBtn->setPosition(cocos2d::Point(callOneBtn->getPosition().x - btnWidth - btnInterval,
+	noCallBtn->setPosition(cocos2d::Point(callOneBtn->getPosition().x - SCALE_X *  (btnWidth + btnInterval),
 		callOneBtn->getPosition().y));
 
 	auto callTwoBtn = ScalableMenuItemSprite::create(
 		cocos2d::Sprite::create(CALLTWOBTN),
 		nullptr,
 		CC_CALLBACK_1(CallLandlordLayer::callTwoCallback, this));
+	callTwoBtn->setScale(MAX_SCALE);
 	callTwoBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	callTwoBtn->setPosition(cocos2d::Point(callOneBtn->getPosition().x + btnWidth + btnInterval,
+	callTwoBtn->setPosition(cocos2d::Point(callOneBtn->getPosition().x + SCALE_X * (btnWidth + btnInterval),
 		callOneBtn->getPosition().y));
 
 	auto callThreeBtn = ScalableMenuItemSprite::create(
 		cocos2d::Sprite::create(CALLTHREEBTN),
 		nullptr,
 		CC_CALLBACK_1(CallLandlordLayer::callThreeCallback, this));
+	callThreeBtn->setScale(MAX_SCALE);
 	callThreeBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
-	callThreeBtn->setPosition(cocos2d::Point(callTwoBtn->getPosition().x + btnWidth + btnInterval,
+	callThreeBtn->setPosition(cocos2d::Point(callTwoBtn->getPosition().x + SCALE_X * (btnWidth + btnInterval),
 		callTwoBtn->getPosition().y));
 
 	_btnMenu = cocos2d::Menu::create(noCallBtn, callOneBtn, callTwoBtn, callThreeBtn, nullptr);
@@ -99,21 +107,25 @@ bool CallLandlordLayer::initView()
 
 	//叫分状态信息，初始各个sprite设置为不叫的状态，根据具体叫分的状态来显示叫分信息
 	//手动玩家的叫地主状态放在头像旁
-	auto holderCallLandlordStatePos = cocos2d::Point(winSize.width * 0.2, winSize.height * 0.4);
+	auto holderCallLandlordStatePos = cocos2d::Point(BASE_WIDTH * 0.2 * SCALE_X,
+		BASE_HEIGHT * 0.4 * SCALE_Y);
 
 	_holderCallLandlordState = cocos2d::Sprite::createWithSpriteFrameName(NOCALLSTATE);
+	_holderCallLandlordState->setScale(MAX_SCALE);
 	_holderCallLandlordState->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_holderCallLandlordState->setPosition(cocos2d::Point(holderCallLandlordStatePos));
 	_holderCallLandlordState->setVisible(false);	//开始不显示
 	this->addChild(_holderCallLandlordState);
 
 	_computerOneCallLandlordState = cocos2d::Sprite::createWithSpriteFrameName(NOCALLSTATE);
+	_computerOneCallLandlordState->setScale(MAX_SCALE);
 	_computerOneCallLandlordState->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_computerOneCallLandlordState->setPosition(cocos2d::Point(computerOnePos));
 	_computerOneCallLandlordState->setVisible(false);
 	this->addChild(_computerOneCallLandlordState);
 
 	_computerTwoCallLandlordState = cocos2d::Sprite::createWithSpriteFrameName(NOCALLSTATE);
+	_computerTwoCallLandlordState->setScale(MAX_SCALE);
 	_computerTwoCallLandlordState->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
 	_computerTwoCallLandlordState->setPosition(cocos2d::Point(computerTwoPos));
 	_computerTwoCallLandlordState->setVisible(false);

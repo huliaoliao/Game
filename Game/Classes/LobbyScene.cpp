@@ -1,5 +1,6 @@
 #include "LobbyScene.h"
 
+#include "Common.h"
 #include "LobbySceneBottom.h"
 #include "LobbySceneMiddle.h"
 #include "LobbySceneTop.h"
@@ -24,13 +25,18 @@ bool LobbyScene::init()
 		return false;
 	}
 
+	auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+	cocos2d::log("winSize : %f, %f", winSize.width, winSize.height);
+	cocos2d::log("visibleSize : %f, %f", visibleSize.width, visibleSize.height);
+
 	return true;
 }
 
 bool LobbyScene::initContent()
 {
 	//初始化界面背景
-	auto bgSprite = cocos2d::Sprite::create("lobby/lobby_bg.png");
+	auto bgSprite = cocos2d::Sprite::create(LOBBY_BG);
 	auto winSize = cocos2d::Director::getInstance()->getWinSize();
 	bgSprite->setPosition(cocos2d::Point(winSize.width / 2, winSize.height / 2));
 	auto bgSize = bgSprite->getContentSize();

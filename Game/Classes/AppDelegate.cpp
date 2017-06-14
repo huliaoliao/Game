@@ -29,15 +29,20 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
         glview = GLViewImpl::create("Poker");
+		glview->setFrameSize(1920, 1024);
         director->setOpenGLView(glview);
     }
 
     // turn on display FPS
-    director->setDisplayStats(true);
+    //director->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
+	//初始化窗口相关参数
+	util::WindowUtil::doInit(cocos2d::Size(960, 640));
+
+	//初始化音乐音效相关参数
 	util::MusicUtil::doInit();
 
     // create a scene. it's an autorelease object

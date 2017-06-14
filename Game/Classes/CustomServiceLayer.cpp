@@ -60,29 +60,30 @@ bool CustomServiceLayer::init()
 
 bool CustomServiceLayer::initView()
 {
-	auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	//auto winSize = cocos2d::Director::getInstance()->getWinSize();
 	//添加透明背景层
 	auto transparentBg = cocos2d::LayerColor::create(
 		cocos2d::ccc4(0x00, 0x00, 0x00, 0xff * 0.5f),
-		winSize.width, winSize.height);
+		BASE_WIDTH * SCALE_X, BASE_HEIGHT * SCALE_Y);
 	this->addChild(transparentBg);
 
 	//对话框背景
-	auto dialogBg = cocos2d::ui::Scale9Sprite::create(dialogBgImage);
+	auto dialogBg = cocos2d::ui::Scale9Sprite::create(DIALOG_BG_IMAGE);
 	auto len = dialogBg->getContentSize().width;
 	//设置伸展区域
 	dialogBg->setCapInsets(cocos2d::Rect(len / 3, len / 2, len / 3, len / 4));
 	dialogBg->setContentSize(cocos2d::Size(720, 480));
-	dialogBg->setPosition(cocos2d::Point(winSize.width / 2, winSize.height / 2));
+	//dialogBg->setScale(MAX_SCALE);
+	dialogBg->setPosition(cocos2d::Point(BASE_WIDTH / 2 * SCALE_X, BASE_HEIGHT / 2 * SCALE_Y));
 	dialogBg->setScale(0);	//创建时不显示，后面通过代码以动画形式展示
 	dialogBg->runAction(cocos2d::EaseBackOut::create(
-		cocos2d::ScaleTo::create(0.3, 1.0f)));
+		cocos2d::ScaleTo::create(0.3, MIDDLE_SCALE)));
 	this->addChild(dialogBg, 1);
 
 	auto dialogBgSize = dialogBg->getContentSize();
 
 	//顶部背景
-	auto dialogBgTop = cocos2d::Sprite::create(dialogTopBgImage);
+	auto dialogBgTop = cocos2d::Sprite::create(DIALOG_TOP_BG_IMAGE);
 	dialogBgTop->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_TOP);
 	dialogBgTop->setPosition(cocos2d::Point(dialogBgSize.width / 2, dialogBgSize.height - 10));
 	dialogBg->addChild(dialogBgTop);
@@ -95,7 +96,7 @@ bool CustomServiceLayer::initView()
 
 	//窗口关闭按钮
 	auto closeBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create(dialogCloseBtn),
+		cocos2d::Sprite::create(DIALOG_CLOSE_BTN),
 		nullptr,
 		CC_CALLBACK_1(CustomServiceLayer::backCallback, this));
 	auto closeBtnPos = cocos2d::Size(dialogBgSize.width - closeBtn->getContentSize().width / 3,
@@ -106,7 +107,7 @@ bool CustomServiceLayer::initView()
 	dialogBg->addChild(closeBtnMenu);
 
 	//对话框中间背景
-	_middleBgSprite = cocos2d::ui::Scale9Sprite::create(dialogMiddleBgImage);
+	_middleBgSprite = cocos2d::ui::Scale9Sprite::create(DIALOG_MIDDLE_BG_IMAGE);
 	len = _middleBgSprite->getContentSize().width;
 	_middleBgSprite->setCapInsets(cocos2d::Rect(len / 3, len / 3, len / 3, len / 3));
 	_middleBgSprite->setContentSize(cocos2d::Size(664, 303));

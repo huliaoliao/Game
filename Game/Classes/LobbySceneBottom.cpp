@@ -1,6 +1,7 @@
 #include "LobbySceneBottom.h"
 
 #include "ScalableMenuItemSprite.h"
+#include "Util.h"
 
 bool LobbySceneBottom::init()
 {
@@ -19,20 +20,20 @@ bool LobbySceneBottom::init()
 
 bool LobbySceneBottom::initView()
 {
-	auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	//auto winSize = cocos2d::Director::getInstance()->getWinSize();
 
 	//背景
-	auto bottomBg = cocos2d::Sprite::create("lobby/lobby_bottom_bg.png");
-	bottomBg->setScale(0.9f);
+	auto bottomBg = cocos2d::Sprite::create(LOBBY_BOTTOM_BG);
+	bottomBg->setScale(0.9f * SCALE_X);
 	bottomBg->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);
-	bottomBg->setPosition(cocos2d::Point(winSize.width / 2, 0));
+	bottomBg->setPosition(cocos2d::Point(SCREEN_WIDTH / 2, 0));
 	this->addChild(bottomBg);
 
 	const auto bottomBgSize = bottomBg->getContentSize();
 
 	//分享按钮
 	auto shareBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create("lobby/share.png"),
+		cocos2d::Sprite::create(LOBBY_SHARE),
 		nullptr,
 		CC_CALLBACK_1(LobbySceneBottom::lobbyShareCallback, this));
 	shareBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
@@ -40,7 +41,7 @@ bool LobbySceneBottom::initView()
 
 	//活动按钮
 	auto activityBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create("lobby/activity.png"),
+		cocos2d::Sprite::create(LOBBY_ACTIVITY),
 		nullptr,
 		CC_CALLBACK_1(LobbySceneBottom::lobbyActivityCallback, this));
 	activityBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_RIGHT);
@@ -49,7 +50,7 @@ bool LobbySceneBottom::initView()
 
 	//战绩按钮
 	auto recordBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create("lobby/record.png"),
+		cocos2d::Sprite::create(LOBBY_RECORD),
 		nullptr,
 		CC_CALLBACK_1(LobbySceneBottom::lobbyRecordCallback, this));
 	recordBtn->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_LEFT);

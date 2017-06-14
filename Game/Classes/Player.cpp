@@ -66,7 +66,9 @@ std::vector<Poker> Player::searchOutPokers(OutPokers* lastOutPokers_)
 	}
 	else if (lastOutPokers_->getPokersType() != KINGBOMB)
 	{
-		static Poker poker = lastOutPokers_->getLowestPoker();
+		//static Poker poker = lastOutPokers_->getLowestPoker();	//这样写会导致赋值操作仅执行一次，因而产生BUG
+		static Poker poker;
+		poker = lastOutPokers_->getLowestPoker();
 		result = GameRule::getInstance()->calcPokersWithType(
 			_holdPokers, lastOutPokers_->getPokersType(), &poker,//lastOutPokers_->getLowestPoker(),
 			lastOutPokers_->getTotalLen());

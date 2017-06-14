@@ -42,26 +42,27 @@ bool RuleLayer::init()
 
 bool RuleLayer::initView()
 {
-	auto winSize = cocos2d::Director::getInstance()->getWinSize();
+	//auto winSize = cocos2d::Director::getInstance()->getWinSize();
 	//透明背景层
 	auto transparentBg = cocos2d::LayerColor::create(
 		cocos2d::ccc4(0x00, 0x00, 0x00, 0xff * 0.5f),
-		winSize.width, winSize.height);
+		BASE_WIDTH * SCALE_X, BASE_HEIGHT * SCALE_Y);
 	this->addChild(transparentBg);
 
 	//对话框背景
-	auto dialogBg = cocos2d::ui::Scale9Sprite::create(dialogBgImage);
+	auto dialogBg = cocos2d::ui::Scale9Sprite::create(DIALOG_BG_IMAGE);
 	auto len = dialogBg->getContentSize().width;
 	dialogBg->setCapInsets(cocos2d::Rect(len / 3, len / 2, len / 3, len / 4));
 	dialogBg->setContentSize(cocos2d::Size(DIALOG_WIDTH, DIALOG_HEIGHT));
-	dialogBg->setPosition(cocos2d::Point(winSize.width / 2, winSize.height / 2));
+	//dialogBg->setScale(MAX_SCALE);
+	dialogBg->setPosition(cocos2d::Point(BASE_WIDTH / 2 * SCALE_X, BASE_HEIGHT / 2 * SCALE_Y));
 	dialogBg->setScale(0.0f);	//创建时不显示，以下行代码实现动画效果
 	dialogBg->runAction(cocos2d::EaseBackOut::create(
-		cocos2d::ScaleTo::create(0.3, 1.0f))); 
+		cocos2d::ScaleTo::create(0.3, MIDDLE_SCALE)));
 	this->addChild(dialogBg);
 
 	//对话框顶部背景
-	auto dialogTopBg = cocos2d::Sprite::create(dialogTopBgImage);
+	auto dialogTopBg = cocos2d::Sprite::create(DIALOG_TOP_BG_IMAGE);
 	dialogTopBg->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_TOP);
 	dialogTopBg->setPosition(cocos2d::Point(dialogBg->getContentSize().width / 2, 
 		dialogBg->getContentSize().height - 10));
@@ -75,7 +76,7 @@ bool RuleLayer::initView()
 
 	//窗口关闭按钮
 	auto closeBtn = ScalableMenuItemSprite::create(
-		cocos2d::Sprite::create(dialogCloseBtn),
+		cocos2d::Sprite::create(DIALOG_CLOSE_BTN),
 		nullptr,
 		CC_CALLBACK_1(RuleLayer::backCallback, this));
 	auto closeBtnPos = cocos2d::Point(dialogBg->getContentSize().width - closeBtn->getContentSize().width / 3,
@@ -103,7 +104,7 @@ bool RuleLayer::initView()
 	btnOK->addChild(btnTTF);
 
 	//对话框中间的背景
-	_dialogMiddleBg = cocos2d::ui::Scale9Sprite::create(dialogMiddleBgImage);
+	_dialogMiddleBg = cocos2d::ui::Scale9Sprite::create(DIALOG_MIDDLE_BG_IMAGE);
 	_dialogMiddleBg->setContentSize(cocos2d::Size(664, 300));
 	_dialogMiddleBg->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE_BOTTOM);
 	_dialogMiddleBg->setPosition(cocos2d::Point(dialogBg->getContentSize().width / 2,
